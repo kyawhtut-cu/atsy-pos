@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.kyawhtut.pos"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.0-rc02'
+
+    //multi dex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //custom crash activity
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+
+    //Timber(Logging)
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //flexbox
+    implementation 'com.google.android:flexbox:1.0.0'
+    // recyclerview swipe - https://github.com/anzaizai/EasySwipeMenuLayout
+    implementation 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
+    // grid pager - https://github.com/hanhailong/GridPagerSnapHelper
+    implementation 'com.hhl:gridpagersnaphelper:1.0.0'
+    // grid pager indicator
+    implementation 'com.hhl:recyclerviewindicator:1.0.0'
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-core:$koin_version"
+    //ViewModel for AndroidX
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    //Architecture
+    def lifecycle_version = "2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+
+    //Room
+    def room_version = "2.2.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation 'androidx.work:work-runtime-ktx:2.2.0'
+
+    // font choose
+    implementation 'com.github.kyawhtut-cu:FontChoose:1.0.0'
+
+    // date util
+    implementation 'net.danlew:android.joda:2.10.1.1'
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+
+    // gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    // breadcrumbsview
+    implementation 'com.github.HamidrezaAmz:BreadcrumbsView:0.2.9'
+
+    // SimpleSearchView
+    implementation 'com.github.Ferfalk:SimpleSearchView:0.1.4'
+
+    // color picker - https://github.com/fennifith/ColorPickerDialog
+    implementation 'me.jfenn.ColorPickerDialog:base:0.2.1'
+    implementation 'me.jfenn.ColorPickerDialog:imagepicker:0.2.1'
+
+    // text drawable
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
+    // tableview https://github.com/evrencoskun/TableView
+    implementation 'com.evrencoskun.library:tableview:0.8.8'
+
+    // kotlin coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+    implementation project(path: ':lib')
+}

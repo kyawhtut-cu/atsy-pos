@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/colorWhite" />
+            <corners
+                android:bottomLeftRadius="@dimen/margin_medium_2"
+                android:bottomRightRadius="@dimen/margin_medium_2" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_keyboard_arrow_down_black" />
+</layer-list>

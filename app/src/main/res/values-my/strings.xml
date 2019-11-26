@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">POS</string>
+    <string name="action_settings">ပြင်ဆင်ရန်</string>
+    <string name="lbl_welcome">ကြိုဆိုပါသည်</string>
+    <string name="lbl_glad_to_see_you">မင်းကိုတွေ့ရတာ ဝမ်းသာပါတယ်။</string>
+    <string name="lbl_create_account">အကောင့်ဖွင့်မည်</string>
+    <string name="lbl_forgot_password">ပတ်စဝေါ့မေ့နေပါသည်။</string>
+    <string name="lbl_btn_login">အကောင့်ဝင်မည်</string>
+    <string name="lbl_hint_user_name">အကောင့်နာမည်</string>
+    <string name="lbl_hint_user_password">ပတ်စဝေါ့</string>
+    <string name="lbl_hint_user_display_name">သင့်နာမည်</string>
+    <string name="lbl_btn_create">အကောင့်ဖွင့်မည်</string>
+    <string name="lbl_hint_category_name">အမျိုးစား နာမည်</string>
+    <string name="lbl_btn_ok">Ok</string>
+    <string name="lbl_btn_cancel">Cancel</string>
+    <string name="lbl_category_color">Category color</string>
+    <string name="lbl_category_text_color">Category text color</string>
+</resources>
