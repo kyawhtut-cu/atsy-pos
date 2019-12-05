@@ -36,7 +36,11 @@ class App : Application() {
                     AppInjection.authentication,
                     AppInjection.home,
                     AppInjection.category,
-                    AppInjection.user
+                    AppInjection.user,
+                    AppInjection.table,
+                    AppInjection.product,
+                    AppInjection.customer,
+                    AppInjection.ticket
                 )
             )
         }

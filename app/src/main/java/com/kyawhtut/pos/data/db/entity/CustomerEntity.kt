@@ -1,8 +1,10 @@
 package com.kyawhtut.pos.data.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.kyawhtut.pos.base.BaseColumn
+import com.kyawhtut.pos.data.vo.TableCellVO
+import com.kyawhtut.pos.data.vo.rowHeader
+import com.kyawhtut.pos.data.vo.tableCellList
 import org.joda.time.DateTime
 import java.util.*
 
@@ -56,5 +58,99 @@ class CustomerBuilder {
         updatedDate
     )
 }
+
+class CustomerColumn : BaseColumn(
+    "Customer Name",
+    "Customer Address",
+    "Customer Phone",
+    "Customer Debit",
+    "Status",
+    "Created User",
+    "Updated User",
+    "Created Date",
+    "Updated Date",
+    "Action"
+) {
+    companion object {
+        fun getRowHeaderList(list: List<CustomerTable>) = list.map {
+            rowHeader {
+                data = "${it.customer.id}"
+            }
+        }
+
+        private fun getTableCellList(table: CustomerTable): List<TableCellVO> = tableCellList {
+            tableCell {
+                cellId = "customer_name"
+                data = table.customer.customerName
+            }
+            tableCell {
+                cellId = "customer_address"
+                data = table.customer.customerAddress
+            }
+            tableCell {
+                cellId = "customer_phone"
+                data = table.customer.customerPhone
+            }
+            tableCell {
+                cellId = "customer_debit"
+                data = "${table.customer.customerDebit}"
+            }
+            tableCell {
+                cellId = "customer_status"
+                data = table.customer.customerAvailable
+            }
+            tableCell {
+                cellId = "created_user"
+                data = table.createdUser ?: ""
+            }
+            tableCell {
+                cellId = "updated_user"
+                data = table.updatedUser ?: ""
+            }
+            tableCell {
+                cellId = "created_date"
+                data = table.customer.createdDate
+            }
+            tableCell {
+                cellId = "customer_updateDate"
+                data = table.customer.updatedDate
+            }
+            tableCell {
+                cellId = "${table.customer.id}"
+                data = table.ticketCount.size
+            }
+        }
+
+        fun getTableCellList(list: List<CustomerTable>) = list.map {
+            getTableCellList(it)
+        }
+    }
+}
+
+data class CustomerTable(
+    @Embedded
+    val customer: CustomerEntity,
+    @Relation(
+        parentColumn = "created_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var createdUser: String?,
+    @Relation(
+        parentColumn = "updated_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var updatedUser: String?,
+    @Relation(
+        parentColumn = "customer_id",
+        entityColumn = "customer_id",
+        entity = TicketEntity::class,
+        projection = ["ticket_id"]
+    )
+    val ticketCount: List<String>
+)
 
 fun customer(block: CustomerBuilder.() -> Unit) = CustomerBuilder().apply(block).build()

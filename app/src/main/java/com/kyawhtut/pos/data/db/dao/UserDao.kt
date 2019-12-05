@@ -1,36 +1,39 @@
 package com.kyawhtut.pos.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
+import androidx.room.Transaction
+import com.kyawhtut.pos.base.BaseDao
 import com.kyawhtut.pos.data.db.entity.UserEntity
+import com.kyawhtut.pos.data.db.entity.UserTable
+import io.reactivex.Flowable
 
 @Dao
-interface UserDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg users: UserEntity)
+abstract class UserDao : BaseDao<UserEntity> {
 
     @Query("select * from user_table")
-    fun get(): List<UserEntity>
+    abstract fun get(): List<UserEntity>
 
     @Query("select * from user_table")
-    fun liveData(): LiveData<List<UserEntity>>
+    abstract fun liveData(): LiveData<List<UserEntity>>
 
     @Query("select * from user_table where user_id = :userId limit 1")
-    fun get(userId: Int): UserEntity
+    abstract fun get(userId: Int): UserEntity
 
     @Query("select * from user_table where user_name = :userName and user_password = :password")
-    fun login(userName: String, password: String): UserEntity?
+    abstract fun login(userName: String, password: String): UserEntity?
+
+    @Transaction
+    @Query("select * from user_table")
+    abstract fun getUserTable(): Flowable<List<UserTable>>
 
     @Query("delete from user_table")
-    fun delete()
+    abstract fun delete()
 
     @Query("delete from user_table where user_id = :userId")
-    fun delete(userId: Int)
+    abstract fun delete(userId: Int)
 
     @Query("delete from user_table where user_name = :userName")
-    fun delete(userName: String)
-
-    @Delete
-    fun delete(user: UserEntity)
+    abstract fun delete(userName: String)
 }

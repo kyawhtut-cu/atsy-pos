@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
-import com.kyawhtut.pos.data.adapter.PopupWindowAdapter
+import com.kyawhtut.pos.adapter.PopupWindowAdapter
 
 object ViewExtension
 
@@ -25,7 +25,7 @@ fun View.invisible() {
 fun Context?.getInflateView(
     @LayoutRes layoutId: Int, container: ViewGroup? = null,
     attachToRoot: Boolean = false
-) = LayoutInflater.from(this).inflate(layoutId, container, attachToRoot)
+) = LayoutInflater.from(checkNull()).inflate(layoutId, container, attachToRoot)
 
 fun Context.measureContentWidth(adapter: PopupWindowAdapter): Int {
     var viewGroup: ViewGroup? = null

@@ -6,9 +6,11 @@ import com.kyawhtut.pos.data.db.entity.ProductEntity
 
 interface CategoryRepository {
 
+    var categoryId: Int
+
     fun getCategory(): LiveData<List<ProductEntity>>
 
-    fun getProductList(categoryId: Int): LiveData<List<ProductEntity>>
+    fun getProductList(): LiveData<List<ProductEntity>>
 
     fun insertProduct(block: ProductBuilder.() -> Unit)
 }

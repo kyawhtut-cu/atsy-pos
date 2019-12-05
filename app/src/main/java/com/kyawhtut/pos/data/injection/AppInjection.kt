@@ -11,12 +11,24 @@ import com.kyawhtut.pos.ui.category.CategoryViewModel
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialogRepository
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialogRepositoryImpl
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialogViewModel
+import com.kyawhtut.pos.ui.customer.CustomerRepository
+import com.kyawhtut.pos.ui.customer.CustomerRepositoryImpl
+import com.kyawhtut.pos.ui.customer.CustomerViewModel
 import com.kyawhtut.pos.ui.home.HomeRepository
 import com.kyawhtut.pos.ui.home.HomeRepositoryImpl
 import com.kyawhtut.pos.ui.home.HomeViewModel
+import com.kyawhtut.pos.ui.product.ProductRepository
+import com.kyawhtut.pos.ui.product.ProductRepositoryImpl
+import com.kyawhtut.pos.ui.product.ProductViewModel
 import com.kyawhtut.pos.ui.superadmin.FunctionRepository
 import com.kyawhtut.pos.ui.superadmin.FunctionRepositoryImpl
 import com.kyawhtut.pos.ui.superadmin.FunctionViewModel
+import com.kyawhtut.pos.ui.table.TableRepository
+import com.kyawhtut.pos.ui.table.TableRepositoryImpl
+import com.kyawhtut.pos.ui.table.TableViewModel
+import com.kyawhtut.pos.ui.ticket.TicketRepository
+import com.kyawhtut.pos.ui.ticket.TicketRepositoryImp
+import com.kyawhtut.pos.ui.ticket.TicketViewModel
 import com.kyawhtut.pos.ui.user.UserRepository
 import com.kyawhtut.pos.ui.user.UserRepositoryImpl
 import com.kyawhtut.pos.ui.user.UserViewModel
@@ -66,6 +78,10 @@ object AppInjection {
         single {
             provideSellDao(get())
         }
+
+        single {
+            provideTicketDao(get())
+        }
     }
 
     val preference = module {
@@ -86,7 +102,7 @@ object AppInjection {
 
     val home = module {
         single<HomeRepository> {
-            HomeRepositoryImpl(get { parametersOf(null) })
+            HomeRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
         }
 
         viewModel {
@@ -96,7 +112,11 @@ object AppInjection {
 
     val category = module {
         single<CategoryAddDialogRepository> {
-            CategoryAddDialogRepositoryImpl(get())
+            CategoryAddDialogRepositoryImpl(
+                get(),
+                get { parametersOf(null) },
+                get(named("rootUser"))
+            )
         }
 
         single<CategoryRepository> {
@@ -114,7 +134,7 @@ object AppInjection {
 
     val function = module {
         single<FunctionRepository> {
-            FunctionRepositoryImpl(get { parametersOf(null) })
+            FunctionRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
         }
 
         viewModel { param ->
@@ -124,11 +144,57 @@ object AppInjection {
 
     val user = module {
         single<UserRepository> {
-            UserRepositoryImpl(get { parametersOf(null) })
+            UserRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
         }
 
         viewModel {
             UserViewModel(get())
+        }
+    }
+
+    val table = module {
+        single<TableRepository> {
+            TableRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
+        }
+
+        viewModel {
+            TableViewModel(get())
+        }
+    }
+
+    val product = module {
+        single<ProductRepository> {
+            ProductRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get(), get())
+        }
+
+        viewModel {
+            ProductViewModel(get())
+        }
+    }
+
+    val customer = module {
+        single<CustomerRepository> {
+            CustomerRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
+        }
+
+        viewModel {
+            CustomerViewModel(get())
+        }
+    }
+
+    val ticket = module {
+        single<TicketRepository> {
+            TicketRepositoryImp(
+                get { parametersOf(null) },
+                get(named("rootUser")),
+                get(),
+                get(),
+                get()
+            )
+        }
+
+        viewModel {
+            TicketViewModel(get())
         }
     }
 }

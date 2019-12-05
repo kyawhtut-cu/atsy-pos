@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.ListPopupWindow
 import com.kyawhtut.pos.R
-import com.kyawhtut.pos.data.adapter.PopupWindowAdapter
+import com.kyawhtut.pos.adapter.PopupWindowAdapter
 
 class PopupDialog private constructor(
     private val view: View,

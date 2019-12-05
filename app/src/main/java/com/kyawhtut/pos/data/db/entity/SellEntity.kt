@@ -20,7 +20,12 @@ data class SellEntity(
     )
     val productId: Int,
     @ColumnInfo(name = "ticket_id")
-    val ticketId: Int,
+    @ForeignKey(
+        entity = TicketEntity::class,
+        parentColumns = ["ticket_id"],
+        childColumns = ["ticket_id"]
+    )
+    val ticketId: String,
     @ColumnInfo(name = "product_quality")
     val productQuality: Int,
     @ColumnInfo(name = "created_date")
@@ -32,12 +37,19 @@ data class SellEntity(
 class SellBuilder {
     var id: Int = 0
     var productId: Int = 0
-    var ticketId: Int = 0
+    var ticketId: String = ""
     var productQuality: Int = 0
     var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
     val updateDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
 
     fun build() = SellEntity(id, productId, ticketId, productQuality, createdDate, updateDate)
+}
+
+class SellList : ArrayList<SellEntity>() {
+
+    fun sell(block: SellBuilder.() -> Unit) {
+        add(SellBuilder().apply(block).build())
+    }
 }
 
 fun sell(block: SellBuilder.() -> Unit) = SellBuilder().apply(block).build()

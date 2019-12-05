@@ -13,12 +13,19 @@ class CategoryRepositoryImpl(
     private val productDao: ProductDao
 ) : CategoryRepository {
 
+    override var categoryId: Int = 0
+
     override fun getCategory(): LiveData<List<ProductEntity>> = categoryDao.flowable().map {
         CategoryEntity.categoryList2ProductList(it)
     }.toLiveData()
 
-    override fun getProductList(categoryId: Int): LiveData<List<ProductEntity>> =
-        productDao.liveData(categoryId)
+    override fun getProductList(): LiveData<List<ProductEntity>> =
+        productDao.flowable()
+            .map {
+                it.filter {
+                    it.categoryId == categoryId
+                }
+            }.toLiveData()
 
     override fun insertProduct(block: ProductBuilder.() -> Unit) {
         productDao.insert(ProductBuilder().apply(block).build())

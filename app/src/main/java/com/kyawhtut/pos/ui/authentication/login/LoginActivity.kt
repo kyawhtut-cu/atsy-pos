@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.core.view.isGone
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
+import com.kyawhtut.fontchooserlib.FontChoose
+import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.pos.R
+import com.kyawhtut.pos.base.BaseActivity
 import com.kyawhtut.pos.data.db.entity.RoleEntity
-import com.kyawhtut.pos.ui.base.BaseActivity
 import com.kyawhtut.pos.ui.superadmin.FunctionActivity
 import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -16,38 +18,49 @@ import java.util.*
 class LoginActivity : BaseActivity<LoginViewModel>(
     R.layout.activity_login,
     checkLogin = false
-) /*ServiceConnection*/ {
+) {
 
     companion object {
         const val extraLoginType = "extra.loginType"
+        const val extraUserID = "extra.userID"
     }
 
     override val viewModel: LoginViewModel by viewModel()
     private var roleList = mutableListOf<RoleEntity>()
-    /*private var localWordService: LocalWordService? = null*/
 
     override fun setup(bundle: Bundle) {
-        if (bundle.getBoolean(extraLoginType)) {
-            darkTheme()
-        } else {
-            lightTheme()
-        }
-        /*startService<LocalWordService>()
 
-        if (UStats.getUsageStatsList(this).isEmpty()) {
-            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-        }*/
+        viewModel.initRoleData(getStringList(R.array.user_role).toList())
 
         viewModel.getRoleData().observe(this) {
             roleList.apply {
                 clear()
                 addAll(it)
-                removeAt(0)
+                viewModel.userRole = it.first().id
             }.map {
                 it.roleName
             }.run {
                 sp_create_user_role.attachDataSource(LinkedList(this))
             }
+        }
+
+        if (bundle.getBoolean(extraLoginType)) {
+            viewModel.getUserById(bundle.getInt(extraUserID))?.run {
+                if (id != 0) {
+                    sp_create_user_role.selectedIndex = roleList.indexOfFirst { it.id == roleId }
+                    viewModel.userRole = roleId
+                    viewModel.createdDate = createdDate
+                    viewModel.createdUserId = createdUserId
+                    viewModel.userId = id
+                    ed_create_user_name.setText(userName)
+                    ed_create_user_name.isEnabled = false
+                    ed_create_user_display_name.setText(displayName.toDisplay(FontChoose.isUnicode()))
+                    ed_create_user_password.setText(password)
+                }
+            }
+            darkTheme()
+        } else {
+            lightTheme()
         }
 
         sp_create_user_role.setOnSpinnerItemSelectedListener { parent, view, position, id ->
@@ -106,10 +119,15 @@ class LoginActivity : BaseActivity<LoginViewModel>(
             if (viewModel.userPassword.isEmpty()) edt_create_user_password.setError(
                 "Please enter user password"
             ).run { return@setOnClickListener }
-            viewModel.createUser {
-                if (it) btn_login.longSnackBar("Account create successful.").run { lightTheme() }
-                else btn_login.longSnackBar("User name or password already exist.").run { createDataClear() }
-            }
+            if (viewModel.userId == 0)
+                viewModel.createUser {
+                    if (it) btn_login.longSnackBar("Account create successful.").run { finish() }
+                    else btn_login.longSnackBar("User name or password already exist.").run { createDataClear() }
+                }
+            else
+                viewModel.updateUser {
+                    finish()
+                }
         }
     }
 
@@ -141,31 +159,4 @@ class LoginActivity : BaseActivity<LoginViewModel>(
         tv_footer.text = getString(R.string.lbl_create_account)
         createDataClear()
     }
-
-    override fun onResume() {
-        super.onResume()
-        /*val service = intentFor<LocalWordService>()
-        bindService(service, this, Context.BIND_AUTO_CREATE)
-
-        Timber.d(
-            "onResume -> %s",
-            localWordService?.runningList
-        )*/
-    }
-
-    override fun onPause() {
-        super.onPause()
-        /*unbindService(this)*/
-    }
-
-    /*override fun onServiceDisconnected(name: ComponentName?) {
-        localWordService = null
-        Timber.d("onServiceDisconnected")
-    }
-
-    override fun onServiceConnected(name: ComponentName, service: IBinder) {
-        val b: LocalWordService.MyBinder = service as LocalWordService.MyBinder
-        localWordService = b.service
-        Timber.d("onServiceConnected")
-    }*/
 }

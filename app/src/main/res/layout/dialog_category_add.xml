@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="@dimen/margin_medium"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    tools:context=".ui.category.dialog.CategoryAddDialog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -86,6 +88,46 @@
                 android:textColor="@color/colorWhite" />
         </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
 
+        <CheckBox
+            android:id="@+id/cb_active_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:checked="true"
+            android:text="@string/lbl_active_status"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toEndOf="@+id/cv_category_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/edt_category_name" />
+
+        <ImageView
+            android:id="@+id/iv_delete_unavailable"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="16dp"
+            android:tint="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delete_unavailable_message"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toTopOf="@+id/tv_delete_unavailable_message"
+            app:srcCompat="@drawable/ic_warning_white" />
+
+        <TextView
+            android:id="@+id/tv_delete_unavailable_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/lbl_delete_unavailable"
+            android:textColor="@color/colorDeleteUnavailable"
+            android:textSize="@dimen/text_regular"
+            app:layout_constraintStart_toEndOf="@+id/iv_delete_unavailable"
+            app:layout_constraintTop_toBottomOf="@+id/cb_active_status" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_delete_unavailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_delete_unavailable_message,iv_delete_unavailable" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_category_color"
             android:layout_width="wrap_content"
@@ -110,7 +152,8 @@
             android:text="@string/lbl_btn_ok"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel"
@@ -122,7 +165,21 @@
             android:text="@string/lbl_btn_cancel"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_ok" />
+            app:layout_constraintEnd_toStartOf="@+id/btn_ok"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lbl_btn_delete"
+            android:textColor="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:rippleColor="@color/colorDeleteUnavailable" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

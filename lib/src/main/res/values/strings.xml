@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">lib</string>
+    <string name="lbl_btn_next_page">Next</string>
+    <string name="lbl_btn_previous_page">Previous</string>
 </resources>

@@ -2,7 +2,14 @@ package com.kyawhtut.pos.data.db.entity
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
+import com.kyawhtut.pos.base.BaseColumn
+import com.kyawhtut.pos.data.vo.TableCellVO
+import com.kyawhtut.pos.data.vo.TableRowHeaderVO
+import com.kyawhtut.pos.data.vo.rowHeader
+import com.kyawhtut.pos.data.vo.tableCellList
 import com.kyawhtut.pos.utils.ProductType
+import com.kyawhtut.pos.utils.toBoolean
+import com.kyawhtut.pos.utils.toInt
 import org.joda.time.DateTime
 import java.util.*
 
@@ -34,6 +41,8 @@ data class ProductEntity(
     val categoryId: Int,
     @ColumnInfo(name = "product_available")
     val productAvailable: Int,
+    @ColumnInfo(name = "show_alert_remain_amount")
+    val productRemainAmountShow: Int,
     @ColumnInfo(name = "created_user_id")
     @ForeignKey(
         entity = UserEntity::class,
@@ -89,6 +98,7 @@ class ProductBuilder {
     var productRetailPrice: Long = 0
     var categoryId: Int = 0
     var productAvailable = 1
+    var productRemainAmountShow: Boolean = true
     var createdUserId = 0
     var updatedUserId = 0
     var type: ProductType = ProductType.Product
@@ -106,6 +116,7 @@ class ProductBuilder {
         productRetailPrice,
         categoryId,
         productAvailable,
+        productRemainAmountShow.toInt(),
         createdUserId,
         updatedUserId,
         createdDate,
@@ -114,5 +125,138 @@ class ProductBuilder {
         type = this@ProductBuilder.type
     }
 }
+
+class ProductColumn : BaseColumn(
+    "Product Name",
+    "Product Price",
+    "Color",
+    "Text Color",
+    "Product Count",
+    "Retail Price",
+    "Category Name",
+    "Status",
+    "Created User Name",
+    "Updated User Name",
+    "Show Alert",
+    "Created Date",
+    "Updated Date",
+    "Action"
+) {
+    companion object {
+        fun getRowHeaderList(list: List<ProductTable>): List<TableRowHeaderVO> {
+            list.map {
+                rowHeader {
+                    data = "${it.product.id}"
+                }
+            }.run {
+                return this
+            }
+        }
+
+        private fun getTableCellList(list: ProductTable): List<TableCellVO> {
+            tableCellList {
+                tableCell {
+                    cellId = "product_name"
+                    data = list.product.productName
+                }
+                tableCell {
+                    cellId = "product_price"
+                    data = "${list.product.productPrice}"
+                }
+                tableCell {
+                    cellId = "product_color"
+                    data = list.product.productColor
+                }
+                tableCell {
+                    cellId = "product_text_color"
+                    data = list.product.productTextColor
+                }
+                tableCell {
+                    cellId = "product_count"
+                    data = "${list.product.productCount}"
+                }
+                tableCell {
+                    cellId = "product_retail_Price"
+                    data = "${list.product.productRetailPrice}"
+                }
+                tableCell {
+                    cellId = "category_name"
+                    data = list.categoryName
+                }
+                tableCell {
+                    cellId = "product_status"
+                    data = list.product.productAvailable
+                }
+                tableCell {
+                    cellId = "created_user"
+                    data = list.createdUser ?: ""
+                }
+                tableCell {
+                    cellId = "updated_user"
+                    data = list.updatedUser ?: ""
+                }
+                tableCell {
+                    cellId = "show_alert"
+                    data = if (list.product.productRemainAmountShow.toBoolean()) "Show" else "Off"
+                }
+                tableCell {
+                    cellId = "created_date"
+                    data = list.product.createdDate
+                }
+                tableCell {
+                    cellId = "updated_date"
+                    data = list.product.updatedDate
+                }
+                tableCell {
+                    cellId = "${list.product.id}"
+                    data = list.sellCount.size
+                }
+            }.run {
+                return this
+            }
+        }
+
+        fun getTableCellList(list: List<ProductTable>): List<List<TableCellVO>> {
+            list.map {
+                getTableCellList(it)
+            }.run {
+                return this
+            }
+        }
+    }
+}
+
+data class ProductTable(
+    @Embedded
+    val product: ProductEntity,
+    @Relation(
+        parentColumn = "category_id",
+        entityColumn = "category_id",
+        entity = CategoryEntity::class,
+        projection = ["category_name"]
+    )
+    val categoryName: String,
+    @Relation(
+        parentColumn = "created_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var createdUser: String?,
+    @Relation(
+        parentColumn = "updated_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var updatedUser: String?,
+    @Relation(
+        parentColumn = "product_id",
+        entityColumn = "product_id",
+        entity = SellEntity::class,
+        projection = ["sell_id"]
+    )
+    val sellCount: List<Int>
+)
 
 fun product(block: ProductBuilder.() -> Unit) = ProductBuilder().apply(block).build()

@@ -9,14 +9,14 @@
     tools:context=".ui.home.HomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/actionBarItemBackground"
         android:padding="@dimen/margin_medium_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu_white" />
+        app:srcCompat="@drawable/ic_arrow_back_white" />
 
     <ImageView
         android:id="@+id/iv_search"
@@ -45,10 +45,10 @@
         app:CustomTextSize="@dimen/text_regular_2x"
         app:SelectedTextColor="@color/colorAccent"
         app:UnSelectedTextColor="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toStartOf="@+id/iv_add_category"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <com.ferfalk.simplesearchview.SimpleSearchView
@@ -56,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toStartOf="@+id/right_panel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_65"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/iv_back">
 
     </FrameLayout>
 
@@ -90,6 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".65" />
+        app:layout_constraintGuide_percent=".6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

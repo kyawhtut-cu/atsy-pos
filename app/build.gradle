@@ -87,7 +87,7 @@ dependencies {
 
     // date util
     implementation 'net.danlew:android.joda:2.10.1.1'
-    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+    implementation 'com.github.arcadefire:nice-spinner:1.4.5'
 
     // gson
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'

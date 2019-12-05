@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="@dimen/margin_medium"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_product_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/lbl_product_color"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_product_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbl_product_text_color"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_product_color"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_color" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_product_text_color"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_text_color" />
+
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/sp_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTextAlignment="start" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_product_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/lbl_hint_product_name"
+            android:textColorHint="@color/colorWhite"
+            app:boxStrokeColor="@color/colorWhite"
+            app:hintTextColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/sp_category">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_product_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/lbl_hint_product_price"
+            android:textColorHint="@color/colorWhite"
+            app:boxStrokeColor="@color/colorWhite"
+            app:hintTextColor="@color/colorWhite"
+            app:layout_constraintEnd_toStartOf="@+id/edt_product_retail_price"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cv_product_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/edt_product_name">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_product_retail_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/lbl_hint_product_retail_price"
+            android:textColorHint="@color/colorWhite"
+            app:boxStrokeColor="@color/colorWhite"
+            app:hintTextColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="@+id/edt_product_count"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/edt_product_price"
+            app:layout_constraintTop_toBottomOf="@+id/edt_product_name">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_product_retail_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_product_count"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/lbl_hint_product_count"
+            android:textColorHint="@color/colorWhite"
+            app:boxStrokeColor="@color/colorWhite"
+            app:hintTextColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/edt_product_retail_price"
+            app:layout_constraintTop_toBottomOf="@+id/edt_product_name">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_product_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <Switch
+            android:id="@+id/sw_notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/lbl_show_low_balance"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cv_product_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/edt_product_price" />
+
+        <CheckBox
+            android:id="@+id/cb_active_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:checked="true"
+            android:text="@string/lbl_active_status"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toEndOf="@+id/cv_product_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/sw_notification" />
+
+        <ImageView
+            android:id="@+id/iv_delete_unavailable"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="16dp"
+            android:tint="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delete_unavailable_message"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toTopOf="@+id/tv_delete_unavailable_message"
+            app:srcCompat="@drawable/ic_warning_white" />
+
+        <TextView
+            android:id="@+id/tv_delete_unavailable_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/lbl_delete_unavailable"
+            android:textColor="@color/colorDeleteUnavailable"
+            android:textSize="@dimen/text_regular"
+            app:layout_constraintStart_toEndOf="@+id/iv_delete_unavailable"
+            app:layout_constraintTop_toBottomOf="@+id/cb_active_status" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_delete_unavailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_delete_unavailable_message,iv_delete_unavailable" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_category_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.22" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_category_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.44" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ok"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lbl_btn_ok"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lbl_btn_cancel"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_ok"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lbl_btn_delete"
+            android:textColor="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:rippleColor="@color/colorDeleteUnavailable" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

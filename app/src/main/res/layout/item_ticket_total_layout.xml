@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="?attr/selectableItemBackground"
+    android:longClickable="true"
+    android:padding="@dimen/margin_medium"
+    tools:background="@color/colorPrimaryDark">
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_total_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/lbl_total_amount"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_total_product_qty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2" />
+
+    <EditText
+        android:id="@+id/edt_paid_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bg_tag_ed_bg"
+        android:gravity="center"
+        android:hint="@string/lbl_hint_product_count"
+        android:inputType="number"
+        android:padding="2dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorDivider"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_net_amount"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_total_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10,000 Ks" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_tax_amount_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/lbl_tax_amount"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_title" />
+
+    <TextView
+        android:id="@+id/tv_total_tax_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="@+id/tv_tax_amount_title"
+        tools:text="500 Ks" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_net_amount_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/lbl_net_amount"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tax_amount_title" />
+
+    <TextView
+        android:id="@+id/tv_total_net_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="@+id/tv_net_amount_title"
+        tools:text="10500 Ks" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_paid_amount_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/lbl_paid_amount"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_paid_amount"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toTopOf="@+id/edt_paid_amount" />
+
+    <TextView
+        android:id="@+id/tv_total_paid_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="@+id/tv_paid_amount_title"
+        tools:text="11000 Ks" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_change_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/lbl_change_amount"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toBottomOf="@+id/edt_paid_amount" />
+
+    <TextView
+        android:id="@+id/tv_total_change_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="@+id/tv_change_title"
+        tools:text="500 Ks" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_product_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 
 object ResourceExtension
 
-private fun Context?.checkNull() =
+fun Context?.checkNull() =
     this ?: throw Exception("Context must not be null")
 
 fun String.toColor() = Color.parseColor(this)

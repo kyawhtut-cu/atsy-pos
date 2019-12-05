@@ -5,40 +5,33 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.kyawhtut.pos.data.db.entity.ProductEntity
 import com.kyawhtut.pos.utils.ProductType
-import com.kyawhtut.pos.utils.toColor
 
 class CategoryViewModel(private val repo: CategoryRepository) : ViewModel() {
 
     var categoryId: Int = 0
+        set(value) {
+            repo.categoryId = value
+            field = value
+        }
     private val _categoryData = repo.getCategory()
-    private val _productData: LiveData<List<ProductEntity>>
-        get() = repo.getProductList(categoryId)
+    private val _productData: LiveData<List<ProductEntity>> = repo.getProductList()
 
     val dataList = MediatorLiveData<List<ProductEntity>>()
 
-    fun insertProduct() {
-        repo.insertProduct {
-            productName = "Product Name"
-            productColor = "#ff0000".toColor()
-            productTextColor = "#ffffff".toColor()
-            categoryId = 2
-        }
-    }
-
-    private fun removeSoure() {
+    fun removeSource() {
         dataList.removeSource(_categoryData)
         dataList.removeSource(_productData)
     }
 
     fun addSource(sourceType: ProductType) {
-        removeSoure()
-        when (sourceType) {
-            is ProductType.Product -> dataList.addSource(_productData) {
-                dataList.postValue(it)
+        removeSource()
+        dataList.addSource(
+            when (sourceType) {
+                is ProductType.Product -> _productData
+                else -> _categoryData
             }
-            is ProductType.Category -> dataList.addSource(_categoryData) {
-                dataList.postValue(it)
-            }
+        ) {
+            dataList.postValue(it)
         }
     }
 }

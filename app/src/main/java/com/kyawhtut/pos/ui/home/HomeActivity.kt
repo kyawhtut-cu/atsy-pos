@@ -1,13 +1,17 @@
 package com.kyawhtut.pos.ui.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.commit
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.kyawhtut.pos.R
-import com.kyawhtut.pos.ui.base.BaseActivity
+import com.kyawhtut.pos.base.BaseActivity
 import com.kyawhtut.pos.ui.category.CategoryFragment
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
+import com.kyawhtut.pos.ui.product.ProductAddDialog
+import com.kyawhtut.pos.ui.ticket.TicketFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import moe.feng.common.view.breadcrumbs.DefaultBreadcrumbsCallback
 import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
@@ -21,6 +25,10 @@ class HomeActivity : BaseActivity<HomeViewModel>(
 
     override val viewModel: HomeViewModel by viewModel()
     var onNavigationItemClick: (BreadcrumbItem, Int) -> Unit = { item, pos -> }
+
+    val ticketFragment: TicketFragment by lazy {
+        supportFragmentManager.findFragmentById(R.id.right_panel) as TicketFragment
+    }
 
     override fun setup(bundle: Bundle) {
         supportFragmentManager.commit {
@@ -44,7 +52,12 @@ class HomeActivity : BaseActivity<HomeViewModel>(
         }
 
         iv_add_category.setOnClickListener {
-            CategoryAddDialog.show(supportFragmentManager, viewModel.getCurrentUser()!!)
+            if (breadcrumbs_view.items.size > 1) ProductAddDialog.show(supportFragmentManager)
+            else CategoryAddDialog.show(supportFragmentManager)
+        }
+
+        iv_back.setOnClickListener {
+            onBackPressed()
         }
 
         search_view.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
@@ -97,6 +110,21 @@ class HomeActivity : BaseActivity<HomeViewModel>(
             )
             return
         }
+        if (ticketFragment.isOrder()) AlertDialog.Builder(this).apply {
+            setTitle("Draft")
+            setMessage("Are you want to draft this order")
+            setPositiveButton("OK") { dialog, which ->
+                dialog.dismiss()
+                setResult(Activity.RESULT_CANCELED)
+                super.onBackPressed()
+            }
+            setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+            }
+        }.show().run {
+            return
+        }
+        setResult(Activity.RESULT_OK)
         super.onBackPressed()
     }
 }

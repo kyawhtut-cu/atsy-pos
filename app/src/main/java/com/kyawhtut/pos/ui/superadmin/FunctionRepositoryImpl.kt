@@ -3,16 +3,19 @@ package com.kyawhtut.pos.ui.superadmin
 import android.content.Context
 import android.content.SharedPreferences
 import com.kyawhtut.pos.R
+import com.kyawhtut.pos.base.BaseRepositoryImpl
 import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.data.sharedpreference.get
 import com.kyawhtut.pos.data.vo.FunctionVO
 import com.kyawhtut.pos.data.vo.functionList
-import com.kyawhtut.pos.ui.base.BaseRepositoryImpl
 import com.kyawhtut.pos.utils.Constants
 import com.kyawhtut.pos.utils.getIntList
 import com.kyawhtut.pos.utils.getStringList
 
-class FunctionRepositoryImpl(private val sh: SharedPreferences) : BaseRepositoryImpl(sh),
+class FunctionRepositoryImpl(
+    sh: SharedPreferences,
+    rootUser: UserEntity
+) : BaseRepositoryImpl(sh, rootUser),
     FunctionRepository {
 
     override fun getFunctionList(context: Context): List<FunctionVO> {
@@ -22,7 +25,7 @@ class FunctionRepositoryImpl(private val sh: SharedPreferences) : BaseRepository
             4 -> R.array.assistant_permission
             else -> R.array.sale_permission
         }
-        return functionList {
+        functionList {
             context.getStringList(R.array.function).forEachIndexed { index, s ->
                 function {
                     functionTitle = s
@@ -30,6 +33,9 @@ class FunctionRepositoryImpl(private val sh: SharedPreferences) : BaseRepository
                     functionAvailable = context.getIntList(role)[index] == 1
                 }
             }
+        }.run {
+            sortByDescending { it.functionAvailable }
+            return this
         }
     }
 }

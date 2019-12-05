@@ -13,6 +13,25 @@
     <string name="lbl_hint_category_name">အမျိုးစား နာမည်</string>
     <string name="lbl_btn_ok">Ok</string>
     <string name="lbl_btn_cancel">Cancel</string>
+    <string name="lbl_btn_delete">ဖျတ်မည်</string>
     <string name="lbl_category_color">Category color</string>
     <string name="lbl_category_text_color">Category text color</string>
+    <string name="lbl_active_status">Active</string>
+    <string name="lbl_delete_unavailable">ဖျတ်လို့မရပါ။</string>
+    <string name="lbl_btn_edit">ပြင်ဆင်မည်</string>
+    <string name="lbl_btn_add">အသစ်ထည့်မည်</string>
+    <string name="lbl_product_color">Product Color</string>
+    <string name="lbl_product_text_color">Product Text Color</string>
+    <string name="lbl_hint_product_price">မူရင်းစျေး</string>
+    <string name="lbl_hint_product_retail_price">ရောင်းစျေး</string>
+    <string name="lbl_hint_product_name">ပစ္စည်းအမည်</string>
+    <string name="lbl_show_low_balance">ပစ္စည်းအရေအတွက် %s ထက်လျော့နည်းပါက notification တွင်ပြရန်။</string>
+    <string name="lbl_hint_product_count">ပစ္စည်းအရေအတွက်</string>
+    <string name="lbl_hint_phone_number">ဖုန်းနံပါတ်</string>
+    <string name="lbl_hint_user_address">လိပ်စာ</string>
+    <string name="lbl_total_amount">စုစုပေါင်း</string>
+    <string name="lbl_tax_amount">အခွန်တန်ဖိုး (%s)</string>
+    <string name="lbl_net_amount">အခွန် + စုစုပေါင်း</string>
+    <string name="lbl_paid_amount">ပေးငွေ</string>
+    <string name="lbl_change_amount">ပြန်အမ်းငွေ</string>
 </resources>

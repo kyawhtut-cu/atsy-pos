@@ -10,9 +10,11 @@ import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.lib.rv.bind
 import com.kyawhtut.lib.rv.update
 import com.kyawhtut.pos.R
+import com.kyawhtut.pos.base.BaseFragment
 import com.kyawhtut.pos.data.db.entity.ProductEntity
-import com.kyawhtut.pos.ui.base.BaseFragment
+import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.home.HomeActivity
+import com.kyawhtut.pos.ui.product.ProductAddDialog
 import com.kyawhtut.pos.utils.ProductType
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.item_category.view.*
@@ -21,15 +23,19 @@ import kotlinx.android.synthetic.main.item_category.view.item_card_view
 import kotlinx.android.synthetic.main.item_category.view.iv_bundle
 import kotlinx.android.synthetic.main.item_product.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class CategoryFragment : BaseFragment(R.layout.fragment_category) {
 
     private val viewModel: CategoryViewModel by viewModel()
+    var state: ProductType = ProductType.Category
 
     override fun onViewCreated(bundle: Bundle) {
 
         (activity as HomeActivity).onNavigationItemClick = { item, pos ->
-            viewModel.addSource(if (pos == 0 && item.items.first() == "Items") ProductType.Category else ProductType.Product)
+            state =
+                if (pos == 0 && item.items.first() == "Items") ProductType.Category else ProductType.Product
+            viewModel.addSource(state)
         }
 
         viewModel.dataList.observe(this) {
@@ -49,6 +55,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                     viewModel.categoryId = item.id
                     (activity as HomeActivity).nextIndex(item.productName.toDisplay(FontChoose.isUnicode()))
                 }
+                this.item_card_view.setOnLongClickListener {
+                    CategoryAddDialog.show(parentFragmentManager, item.id)
+                    true
+                }
                 this.iv_bundle.setColorFilter(item.productTextColor)
                 this.item_card_view.setCardBackgroundColor(item.productColor)
                 this.divider.setBackgroundColor(item.productTextColor)
@@ -63,7 +73,14 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
             }.map(
                 R.layout.item_product,
                 { item, idx -> item.type == ProductType.Product }) { item, pos ->
-                this.setOnClickListener { }
+                Timber.d("Product bind -> %s", item)
+                this.setOnClickListener {
+                    (activity as HomeActivity).ticketFragment.addProduct(item.id)
+                }
+                this.setOnLongClickListener {
+                    ProductAddDialog.show(parentFragmentManager, item.id)
+                    true
+                }
                 this.item_card_view.setCardBackgroundColor(item.productColor)
                 this.tv_product_name.apply {
                     mText = item.productName
@@ -76,7 +93,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                     setTextColor(item.productTextColor)
                 }
                 this.tv_product_price.apply {
-                    mText = "${item.productPrice} Ks"
+                    mText = "${item.productRetailPrice} Ks"
                     setTextColor(item.productTextColor)
                 }
             }.layoutManager(FlexboxLayoutManager(context).apply {
