@@ -44,7 +44,11 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             home()
         }
 
-        rv_voucher.bind(emptyList<CartWithHeader>(), R.layout.item_voucher) { item, pos ->
+        rv_voucher.bind(
+            emptyList(),
+            CartWithHeader.diffUtil,
+            R.layout.item_voucher
+        ) { item, pos ->
             this.btn_delete.setOnClickListener {
                 viewModel.deleteVoucherByTicketID(item.cartHeader.ticketId)
             }
@@ -66,7 +70,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             if (it == 0 && viewModel._cartList.size == 0) gp_empty.visible() else gp_empty.gone()
             changeFabStatus()
         }
-        rv_voucher.addItemDecoration(DividerItemDecoration(context))
+        rv_voucher.addItemDecoration(DividerItemDecoration(context!!, ignoreLastItem = true))
 
         rv_cart.bind(emptyList<PrintVO>())
             .map(

@@ -28,12 +28,13 @@
         android:layout_height="wrap_content"
         android:background="?attr/actionBarItemBackground"
         android:padding="@dimen/margin_medium_2"
-        android:tint="@color/colorWhite"
+        android:tint="@color/colorBlack"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_keyboard_arrow_down_black" />
+        app:srcCompat="@drawable/ic_keyboard_arrow_down_black"
+        tools:visibility="visible" />
 
     <View
         android:id="@+id/divider"

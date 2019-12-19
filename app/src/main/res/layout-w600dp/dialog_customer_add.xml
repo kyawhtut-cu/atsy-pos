@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/colorWhite"
+    app:cardCornerRadius="@dimen/margin_medium"
+    app:cardUseCompatPadding="true"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="1dp"
+    tools:context=".ui.customer.CustomerDialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_customer_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/lbl_hint_user_display_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_customer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <com.kyawhtut.pos.ui.view.TagEditText
+            android:id="@+id/tag_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_customer_name" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+            android:id="@+id/edt_customer_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/lbl_hint_user_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tag_phone">
+
+            <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                android:id="@+id/ed_customer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:textColor="@color/default_textColor" />
+        </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+        <CheckBox
+            android:id="@+id/cb_active_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="true"
+            android:text="@string/lbl_active_status"
+            android:textColor="@color/default_textColor"
+            app:layout_constraintStart_toStartOf="@+id/edt_customer_address"
+            app:layout_constraintTop_toBottomOf="@+id/edt_customer_address" />
+
+        <ImageView
+            android:id="@+id/iv_delete_unavailable"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:tint="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delete_unavailable_message"
+            app:layout_constraintStart_toStartOf="@+id/edt_customer_address"
+            app:layout_constraintTop_toTopOf="@+id/tv_delete_unavailable_message"
+            app:srcCompat="@drawable/ic_warning_white" />
+
+        <TextView
+            android:id="@+id/tv_delete_unavailable_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/lbl_delete_unavailable"
+            android:textColor="@color/colorDeleteUnavailable"
+            android:textSize="@dimen/text_regular"
+            app:layout_constraintStart_toEndOf="@+id/iv_delete_unavailable"
+            app:layout_constraintTop_toBottomOf="@+id/cb_active_status" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_delete_unavailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_delete_unavailable_message,iv_delete_unavailable" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ok"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lbl_btn_ok"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/lbl_btn_cancel"
+            android:textColor="@color/default_textColor"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_ok"
+            app:layout_constraintEnd_toStartOf="@+id/btn_ok"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/lbl_btn_delete"
+            android:textColor="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_ok"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:rippleColor="@color/colorDeleteUnavailable" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

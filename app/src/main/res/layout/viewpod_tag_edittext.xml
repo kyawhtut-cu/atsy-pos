@@ -26,7 +26,5 @@
         android:maxLines="1"
         android:minWidth="100dp"
         android:padding="@dimen/margin_small"
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhite"
         app:layout_minWidth="150dp" />
 </com.google.android.flexbox.FlexboxLayout>

@@ -1,5 +1,6 @@
 package com.kyawhtut.pos.data.db.entity
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
 import com.kyawhtut.pos.data.vo.*
 
@@ -112,6 +113,25 @@ data class CartWithHeader(
     )
     val cartList: List<CartWithProduct>
 ) {
+
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<CartWithHeader>() {
+            override fun areItemsTheSame(
+                oldItem: CartWithHeader,
+                newItem: CartWithHeader
+            ): Boolean {
+                return oldItem.cartHeader.id == newItem.cartHeader.id
+            }
+
+            override fun areContentsTheSame(
+                oldItem: CartWithHeader,
+                newItem: CartWithHeader
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
     @Ignore
     val totalQty = cartList.sumBy { it.cartEntity.productQty }
     @Ignore

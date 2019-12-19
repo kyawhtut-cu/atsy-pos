@@ -17,7 +17,10 @@ import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 import me.jfenn.colorpickerdialog.views.picker.ImagePickerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CategoryAddDialog : BaseDialogFragment(R.layout.dialog_category_add, true) {
+class CategoryAddDialog : BaseDialogFragment(
+    R.layout.dialog_category_add,
+    true
+) {
 
     companion object {
         private const val extraCategoryId = "extra.categoryId"
