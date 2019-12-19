@@ -9,7 +9,7 @@ import com.ferfalk.simplesearchview.SimpleSearchView
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseActivityViewModel
 import com.kyawhtut.pos.phone.home.PhoneHomeActivity
-import com.kyawhtut.pos.ui.authentication.login.LoginFragment
+import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.category.CategoryFragment
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.product.ProductAddDialog

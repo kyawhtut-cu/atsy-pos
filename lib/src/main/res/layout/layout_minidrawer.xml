@@ -18,7 +18,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_full_menu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="56dp" />
         </FrameLayout>
 
         <FrameLayout
@@ -31,7 +33,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mini_menu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="56dp" />
         </FrameLayout>
     </FrameLayout>
 

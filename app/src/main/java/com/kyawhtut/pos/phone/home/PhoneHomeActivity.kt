@@ -10,7 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.kyawhtut.lib.minidrawer.UIUtils
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseActivityViewModel
-import com.kyawhtut.pos.ui.authentication.login.LoginFragment
+import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.category.CategoryFragment
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.home.HomeViewModel

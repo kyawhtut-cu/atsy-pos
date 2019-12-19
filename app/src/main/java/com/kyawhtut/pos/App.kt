@@ -37,7 +37,6 @@ class App : Application() {
                     AppInjection.main,
                     AppInjection.home,
                     AppInjection.category,
-                    AppInjection.user,
                     AppInjection.table,
                     AppInjection.product,
                     AppInjection.customer,

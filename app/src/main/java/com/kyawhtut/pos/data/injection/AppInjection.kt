@@ -2,9 +2,6 @@ package com.kyawhtut.pos.data.injection
 
 import com.kyawhtut.pos.data.db.*
 import com.kyawhtut.pos.data.db.entity.user
-import com.kyawhtut.pos.ui.authentication.login.LoginRepository
-import com.kyawhtut.pos.ui.authentication.login.LoginRepositoryImpl
-import com.kyawhtut.pos.ui.authentication.login.LoginViewModel
 import com.kyawhtut.pos.ui.category.CategoryRepository
 import com.kyawhtut.pos.ui.category.CategoryRepositoryImpl
 import com.kyawhtut.pos.ui.category.CategoryViewModel
@@ -17,24 +14,24 @@ import com.kyawhtut.pos.ui.customer.CustomerViewModel
 import com.kyawhtut.pos.ui.function.FunctionRepository
 import com.kyawhtut.pos.ui.function.FunctionRepositoryImpl
 import com.kyawhtut.pos.ui.function.FunctionViewModel
-import com.kyawhtut.pos.ui.sale.SaleRepository
-import com.kyawhtut.pos.ui.sale.SaleRepositoryImpl
-import com.kyawhtut.pos.ui.sale.SaleViewModel
 import com.kyawhtut.pos.ui.home.HomeRepository
 import com.kyawhtut.pos.ui.home.HomeRepositoryImpl
 import com.kyawhtut.pos.ui.home.HomeViewModel
+import com.kyawhtut.pos.ui.login.LoginRepository
+import com.kyawhtut.pos.ui.login.LoginRepositoryImpl
+import com.kyawhtut.pos.ui.login.LoginViewModel
 import com.kyawhtut.pos.ui.product.ProductRepository
 import com.kyawhtut.pos.ui.product.ProductRepositoryImpl
 import com.kyawhtut.pos.ui.product.ProductViewModel
+import com.kyawhtut.pos.ui.sale.SaleRepository
+import com.kyawhtut.pos.ui.sale.SaleRepositoryImpl
+import com.kyawhtut.pos.ui.sale.SaleViewModel
 import com.kyawhtut.pos.ui.table.TableRepository
 import com.kyawhtut.pos.ui.table.TableRepositoryImpl
 import com.kyawhtut.pos.ui.table.TableViewModel
 import com.kyawhtut.pos.ui.ticket.TicketRepository
 import com.kyawhtut.pos.ui.ticket.TicketRepositoryImp
 import com.kyawhtut.pos.ui.ticket.TicketViewModel
-import com.kyawhtut.pos.ui.user.UserRepository
-import com.kyawhtut.pos.ui.user.UserRepositoryImpl
-import com.kyawhtut.pos.ui.user.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
@@ -156,16 +153,6 @@ object AppInjection {
 
         viewModel { param ->
             FunctionViewModel(param[0], get())
-        }
-    }
-
-    val user = module {
-        single<UserRepository> {
-            UserRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
-        }
-
-        viewModel {
-            UserViewModel(get())
         }
     }
 

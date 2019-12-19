@@ -10,6 +10,7 @@ import com.kyawhtut.pos.base.BaseFragmentViewModel
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.customer.CustomerDialog
 import com.kyawhtut.pos.ui.product.ProductAddDialog
+import com.kyawhtut.pos.ui.user.UserAddDialog
 import com.kyawhtut.pos.utils.*
 import com.kyawhtut.pos.utils.listeners.TablePagination
 import com.kyawhtut.pos.utils.listeners.TableViewClickListener
@@ -55,13 +56,7 @@ class TableFragment private constructor() :
             callbackEdit = {
                 when (tableType) {
                     is TableType.ITEMS -> CategoryAddDialog.show(parentFragmentManager, it)
-                    is TableType.USERS -> {
-                        //todo: show user edit dialog
-                        /*startActivity<LoginFragment>(
-                        LoginFragment.extraLoginType to true,
-                        LoginFragment.extraUserID to it
-                    )*/
-                    }
+                    is TableType.USERS -> UserAddDialog.show(parentFragmentManager, it)
                     is TableType.PRODUCTS -> ProductAddDialog.show(parentFragmentManager, it)
                     is TableType.CUSTOMER -> CustomerDialog.show(parentFragmentManager, it)
                 }
@@ -114,16 +109,8 @@ class TableFragment private constructor() :
     fun addNewData() {
         when (tableType) {
             is TableType.ITEMS -> CategoryAddDialog.show(parentFragmentManager)
-            is TableType.USERS -> {
-                // todo: show user add dialog
-                /*startActivity<LoginFragment>(
-                LoginFragment.extraLoginType to true
-            )*/
-            }
-            is TableType.PRODUCTS -> {
-                //todo: show products add dialog
-                ProductAddDialog.show(parentFragmentManager)
-            }
+            is TableType.USERS -> UserAddDialog.show(parentFragmentManager)
+            is TableType.PRODUCTS -> ProductAddDialog.show(parentFragmentManager)
             is TableType.CUSTOMER -> CustomerDialog.show(parentFragmentManager)
         }
     }

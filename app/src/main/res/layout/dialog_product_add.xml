@@ -84,6 +84,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:popupTextAlignment="start" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_outline_box"
+            app:layout_constraintBottom_toBottomOf="@+id/sp_category"
+            app:layout_constraintEnd_toEndOf="@+id/sp_category"
+            app:layout_constraintStart_toStartOf="@+id/sp_category"
+            app:layout_constraintTop_toTopOf="@+id/sp_category" />
+
         <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
             android:id="@+id/edt_product_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

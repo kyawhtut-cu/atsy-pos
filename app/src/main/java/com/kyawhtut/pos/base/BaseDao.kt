@@ -12,6 +12,9 @@ interface BaseDao<T> {
     fun insert(data: T)
 
     @RawQuery
+    fun count(query: SimpleSQLiteQuery): Int
+
+    @RawQuery
     fun delete(query: SimpleSQLiteQuery): T
 
     @Update
