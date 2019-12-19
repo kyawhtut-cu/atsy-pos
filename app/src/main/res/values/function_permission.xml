@@ -9,6 +9,7 @@
     </string-array>
 
     <string-array name="function">
+        <item>Home</item>
         <item>Database</item>
         <item>Items</item>
         <item>Products</item>
@@ -16,9 +17,25 @@
         <item>Report</item>
         <item>Sale</item>
         <item>Customer</item>
+        <item>Setting</item>
+        <item>Logout</item>
     </string-array>
 
+    <integer-array name="show_in_mini_drawer">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
     <string-array name="function_description">
+        <item>မူလစာမျက်နှာ</item>
         <item>Application တစ်ခုလုံး၏ Data များသိမ်းထားခြင်းဖြစ်ပါသည်။ Admin ဖြစ်မှသာ လုပ်ပိုင်ခွင့်ရပါမည်။</item>
         <item>ပစွည်းအမျိုးအမည်များထပ်ထည့်ရန်အတွက်အသုံးပြုပါသည်။</item>
         <item>ပစ္စည်းများ ထပ်ထည့်ရန်အတွက် အသုံးပြုပါသည်။</item>
@@ -26,6 +43,8 @@
         <item>ရောင်းအားများ နှင့်ပတ်သက်သည့် စာရင်းများကြည့်ရန်အသုံးပြုပါသည်။</item>
         <item>ပစ္စည်းအရောင်း အတွက်အသုံးပြုပါသည်။</item>
         <item>ဆိုင်မှ ဖောက်သည်များ၏ အချက်လက်များ ပြင်ဆင်ရန်အတွက် အသုံးပြုပါသည်။</item>
+        <item>Application နှင့်သက်ဆိုင်သည့် အချက်အလက်များပြင်ဆင်ရန် အတွက်အသုံးပြုပါသည်။</item>
+        <item>အကောင့်မှ ထွက်ရန်။</item>
     </string-array>
 
     <integer-array name="super_admin_permission">
@@ -36,10 +55,16 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
     </integer-array>
 
     <integer-array name="admin_permission">
+        <item>1</item>
         <item>0</item>
+        <item>1</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>
@@ -49,21 +74,27 @@
     </integer-array>
 
     <integer-array name="assistant_permission">
+        <item>1</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>1</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>
     </integer-array>
 
     <integer-array name="sale_permission">
+        <item>1</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>1</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
     </integer-array>

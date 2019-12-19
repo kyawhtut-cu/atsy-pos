@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: me.jfenn.ColorPickerDialog:base:0.2.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbdf54b255ae732def2c296d061a0bc9/base-0.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbdf54b255ae732def2c296d061a0bc9/base-0.2.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/me.jfenn.ColorPickerDialog/base/0.2.1/d409a289e8f91727a50a442e85fa557588811ba0/base-0.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

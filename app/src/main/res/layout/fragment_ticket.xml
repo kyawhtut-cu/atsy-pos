@@ -4,79 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     tools:context=".ui.ticket.TicketFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sell_item"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer_view"
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="42dp"
+        android:layout_height="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ticket_open_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/gp_footer"
-        android:layout_width="match_parent"
+    <com.kyawhtut.pos.ui.view.BreadcrumbsItem
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="footer_view,iv_menu,tv_total_amount,tv_total,divider" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/footer_view"
-        android:layout_width="match_parent"
+    <com.kyawhtut.pos.ui.view.BreadcrumbsItem
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_voucher"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:clipToPadding="false"
+        android:paddingBottom="56dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_menu" />
+        app:layout_constraintTop_toBottomOf="@+id/home" />
 
-    <TextView
-        android:id="@+id/tv_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium_2"
-        android:text="Total"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_heading_1x"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/footer_view" />
-
-    <TextView
-        android:id="@+id/tv_total_amount"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cart"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginEnd="@dimen/margin_medium"
-        android:ellipsize="end"
-        android:gravity="end"
-        android:maxLines="1"
-        android:text="0.00 $"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_regular_3x"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/divider"
-        app:layout_constraintStart_toEndOf="@+id/tv_total"
-        app:layout_constraintTop_toTopOf="@+id/footer_view" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0.8dp"
         android:layout_height="0dp"
-        android:background="@color/colorc9c9c9"
+        android:layout_marginTop="48dp"
+        android:background="@color/colorWhite"
+        android:clipToPadding="false"
+        android:paddingBottom="56dp"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_menu"
-        app:layout_constraintTop_toTopOf="@+id/footer_view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_view" />
 
     <ImageView
-        android:id="@+id/iv_menu"
+        android:id="@+id/iv_cart_empty"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="16dp"
+        android:tint="#c9c9c9"
+        app:layout_constraintBottom_toTopOf="@+id/btn_create_new_voucher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_empty_cart_black" />
+
+    <com.kyawhtut.fontchooserlib.component.MMMaterialButton
+        android:id="@+id/btn_create_new_voucher"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/actionBarItemBackground"
-        android:padding="@dimen/margin_medium_2"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_btn_new_voucher"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_menu_horiz_white" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_cart_empty"
+        app:rippleColor="@color/colorAccent"
+        app:strokeColor="@color/colorAccent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gp_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btn_create_new_voucher,iv_cart_empty" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_print"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_white"
+        app:tint="@color/colorWhite" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

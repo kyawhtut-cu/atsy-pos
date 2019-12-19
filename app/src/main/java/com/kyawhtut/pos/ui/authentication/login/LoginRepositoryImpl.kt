@@ -10,7 +10,6 @@ import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.data.db.entity.role
 import com.kyawhtut.pos.data.sharedpreference.put
 import com.kyawhtut.pos.utils.Constants
-import timber.log.Timber
 
 class LoginRepositoryImpl(
     private val userDao: UserDao,
@@ -37,9 +36,7 @@ class LoginRepositoryImpl(
 
     private fun checkUser(userName: String, password: String): UserEntity? =
         (if (userName == rootUser.userName && password == rootUser.password) rootUser
-        else userDao.login(userName, password)).also {
-            Timber.d("user -> %s", it)
-        }
+        else userDao.login(userName, password))
 
     override fun createUser(block: UserBuilder.() -> Unit): Boolean {
         return with(UserBuilder().apply(block).build()) {

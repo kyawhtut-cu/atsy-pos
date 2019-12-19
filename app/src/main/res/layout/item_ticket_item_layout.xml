@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:longClickable="true"
-        android:minHeight="56dp"
-        android:padding="@dimen/margin_medium"
-        tools:background="@color/colorPrimaryDark">
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/tv_product_count"
@@ -45,11 +45,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/default_textColor"
             android:textSize="@dimen/text_regular_2x"
             app:layout_constraintEnd_toStartOf="@+id/guideline_id"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_name"
             tools:text="100" />
 
         <com.kyawhtut.fontchooserlib.component.MMTextView
@@ -58,10 +58,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
             android:ellipsize="end"
+            android:lines="2"
             android:maxLines="2"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/default_textColor"
             android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
             app:layout_constraintStart_toStartOf="@+id/guideline_id"
             app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/default_textColor"
             android:textSize="@dimen/text_regular_2x"
             app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
             app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
@@ -90,7 +93,7 @@
             android:hint="@string/lbl_hint_product_count"
             android:inputType="number"
             android:padding="2dp"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/default_textColor"
             android:textColorHint="@color/colorDivider"
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
@@ -104,7 +107,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:maxLines="1"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/default_textColor"
             android:textSize="@dimen/text_regular_2x"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"

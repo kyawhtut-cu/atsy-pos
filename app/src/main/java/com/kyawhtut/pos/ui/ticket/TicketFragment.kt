@@ -1,52 +1,84 @@
 package com.kyawhtut.pos.ui.ticket
 
 import android.os.Bundle
+import android.widget.EditText
+import androidx.core.view.isGone
+import androidx.lifecycle.observe
 import com.kyawhtut.lib.rv.*
 import com.kyawhtut.pos.R
-import com.kyawhtut.pos.base.BaseFragment
+import com.kyawhtut.pos.base.BaseFragmentViewModel
+import com.kyawhtut.pos.data.db.entity.CartWithHeader
 import com.kyawhtut.pos.data.vo.*
-import com.kyawhtut.pos.utils.gone
-import com.kyawhtut.pos.utils.invisible
-import com.kyawhtut.pos.utils.popupDialogBuilder
-import com.kyawhtut.pos.utils.visible
+import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.fragment_ticket.*
+import kotlinx.android.synthetic.main.item_ticket_header_layout.view.*
 import kotlinx.android.synthetic.main.item_ticket_item_layout.view.*
+import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_price
+import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_product_count
+import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_product_name
+import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_product_qty
 import kotlinx.android.synthetic.main.item_ticket_total_layout.view.*
+import kotlinx.android.synthetic.main.item_voucher.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TicketFragment : BaseFragment(R.layout.fragment_ticket) {
+class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_ticket) {
 
-    private val viewModel: TicketViewModel by viewModel()
-
-    private val popupDialog = popupDialogBuilder {
-        popupItemList {
-            popupItem {
-                title = "Print"
-                icon = R.drawable.ic_search_black_24dp
-            }
-            popupItem {
-                title = "Cancel"
-                icon = R.drawable.ic_search_black_24dp
-            }
-        }
-        callback = {
-
-        }
-    }
+    override val viewModel: TicketViewModel by viewModel()
+    private var isClickHome: Boolean = false
 
     override fun onViewCreated(bundle: Bundle) {
-        iv_menu.setOnClickListener {
-            popupDialog.apply {
-                view = iv_menu
-                bind().show()
-            }
+        viewModel.getDraftCartList().observe(this) {
+            rv_voucher.update(it.toMutableList())
         }
 
-        rv_sell_item.bind(viewModel.cartList)
+        viewModel.cartList.observe(this) {
+            isClickHome = true
+            rv_cart.update(it)
+        }
+
+        setHomeState(true, true)
+        second.invisible()
+        home.setOnClickListener {
+            setHomeState(true, true)
+            second.invisible()
+            home()
+        }
+
+        rv_voucher.bind(emptyList<CartWithHeader>(), R.layout.item_voucher) { item, pos ->
+            this.btn_delete.setOnClickListener {
+                viewModel.deleteVoucherByTicketID(item.cartHeader.ticketId)
+            }
+            this.tv_ticket_title.mText =
+                String.format("%s(%s)", item.cartHeader.ticketId, item.cartHeader.customerName)
+            this.tv_sale_man.mText =
+                String.format("%s/%s", item.cartHeader.saleManId, item.cartHeader.saleName)
+            this.tv_ticket_count_price.mText =
+                String.format("%s / %s", item.totalQty, item.getTotalNetAmount("Ks"))
+            this.content_ticket.setOnClickListener {
+                isClickHome = true
+                home.setItem("Voucher", R.drawable.ic_gift_card_black, false, false)
+                second.visible()
+                second.setItem(item.cartHeader.ticketId, R.drawable.ic_gift_card_black, true, true)
+                viewModel.getDraftCarListByTicketId(item.cartHeader.ticketId)
+            }
+        }.itemChange {
+            if (it == 0) rv_voucher.gone() else rv_voucher.visible()
+            if (it == 0 && viewModel._cartList.size == 0) gp_empty.visible() else gp_empty.gone()
+            changeFabStatus()
+        }
+        rv_voucher.addItemDecoration(DividerItemDecoration(context))
+
+        rv_cart.bind(emptyList<PrintVO>())
             .map(
                 R.layout.item_ticket_header_layout,
                 { item, idx -> item.type is PrintType.HEADER }
             ) { item, pos ->
+                val data = item.data as PrintHeader
+                this.tv_customer_name.mText = data.customerName
+                this.tv_customer_phone.mText = data.customerPhone
+                this.tv_ticket_waiter.mText = String.format("%s/%s", data.waiterID, data.waiterName)
+                this.tv_ticket_number.mText = data.ticketID
+                this.tv_ticket_date.mText = getCurrentTimeString("dd-MM-yyyy h:m a")
             }
             .map(
                 R.layout.item_ticket_footer_layout,
@@ -64,17 +96,19 @@ class TicketFragment : BaseFragment(R.layout.fragment_ticket) {
                 this.tv_total_net_amount.text = data.getTotalNetAmount("Ks")
                 this.tv_total_change_amount.text = data.getTotalChangeAmount("Ks")
                 this.tv_total_paid_amount.text = data.getTotalPaidAmount("Ks")
+                this.edt_paid_amount.setText(data.paidAmount.toString())
                 this.tv_total_paid_amount.setOnClickListener {
                     it.invisible()
                     this.edt_paid_amount.visible()
                 }
-                this.edt_paid_amount.setOnKeyListener { _, keyCode, event ->
+                this.edt_paid_amount.setOnKeyListener { view, keyCode, event ->
                     if (this.edt_paid_amount.text.toString().isNotEmpty() && keyCode == 66) {
                         this.edt_paid_amount.invisible()
                         this.tv_total_paid_amount.visible()
                         data.paidAmount = this.edt_paid_amount.text.toString().toLong()
                         item.data = data
-                        rv_sell_item.update(pos, item)
+                        rv_cart.update(pos, item)
+                        (view as EditText).hideKeyBoard()
                     }
                     false
                 }
@@ -92,53 +126,79 @@ class TicketFragment : BaseFragment(R.layout.fragment_ticket) {
                     this.edt_product_qty.visible()
                 }
                 this.btn_product_delete.setOnClickListener {
-                    rv_sell_item.remove(item)
-                    viewModel.cartList.removeAt(pos)
+                    rv_cart.remove(item)
+                    viewModel._cartList.remove(item)
                     updateTotalAmount()
                 }
-                this.edt_product_qty.setOnKeyListener { _, keyCode, event ->
+                this.edt_product_qty.setOnKeyListener { view, keyCode, event ->
                     if (this.edt_product_qty.text.toString().isNotEmpty() && keyCode == 66) {
                         this.edt_product_qty.gone()
                         this.tv_product_qty.visible()
                         data.qty = this.edt_product_qty.text.toString().toInt()
                         item.data = data
-                        rv_sell_item.update(pos, item)
+                        rv_cart.update(pos, item)
                         updateTotalAmount()
+                        (view as EditText).hideKeyBoard()
                     }
                     false
                 }
                 this.tv_price.text = data.getTotalPrice("Ks")
+            }.itemChange {
+                if (!isClickHome)
+                    viewModel.saveCacheCart()
+                isClickHome = false
+                if (it == 0) rv_cart.gone().run {
+                    second.invisible()
+                    setHomeState(true, true)
+                } else rv_cart.visible()
+                if (it == 0 && rv_voucher.size == 0) gp_empty.visible() else gp_empty.gone()
+                changeFabStatus()
             }
+    }
+
+    private fun changeFabStatus() {
+        fab_print.setImageResource(R.drawable.ic_printer_black)
+        if (!gp_empty.isGone) fab_print.hide().run { return }
+        fab_print.show()
+        if (rv_cart.size > 0) return
+        fab_print.setImageResource(R.drawable.ic_add_white)
     }
 
     fun addProduct(productId: Int) {
         if (!viewModel.isAddedHeader) {
             viewModel.isAddedHeader = true
-            rv_sell_item.add(
-                printVO {
-                    type = PrintType.HEADER
-                }
-            )
             viewModel.setProduct(0, printVO {
                 type = PrintType.HEADER
-            })
-            rv_sell_item.add(
-                printVO {
-                    type = PrintType.FOOTER
+                data = printHeader {
+                    customerName = "Kyaw Htut"
+                    customerPhone = "09973419006, 09786596541"
+                    ticketID = viewModel.generateNewTicketID()
+                    waiterID = viewModel.getCurrentUser()?.id ?: 0
+                    waiterName = viewModel.getCurrentUser()?.displayName ?: ""
                 }
+            })
+            setHomeState(false, false)
+            setSecondState(viewModel.ticketID, true, true)
+            rv_cart.add(
+                viewModel._cartList.first()
             )
             viewModel.setProduct(1, printVO {
                 type = PrintType.FOOTER
             })
-        }
-        with(viewModel.getProductById(viewModel.productCount++, productId)) {
-            rv_sell_item.add(
-                this,
-                if (viewModel.isAddedTotalVO) rv_sell_item.size - 2 else rv_sell_item.size - 1
+            rv_cart.add(
+                viewModel._cartList.last()
             )
+        }
+        with(viewModel.getProductById(productId)) {
+            val pos =
+                if (viewModel.isAddedTotalVO) viewModel._cartList.size - 2 else viewModel._cartList.size - 1
             viewModel.setProduct(
-                if (viewModel.isAddedTotalVO) viewModel.cartList.size - 2 else viewModel.cartList.size - 1,
+                pos,
                 this
+            )
+            rv_cart.add(
+                viewModel._cartList[pos],
+                pos
             )
         }
         if (!viewModel.isAddedTotalVO) {
@@ -152,14 +212,14 @@ class TicketFragment : BaseFragment(R.layout.fragment_ticket) {
                     totalQty = viewModel.getTotalQty()
                 }
             }) {
-                rv_sell_item.add(
-                    this,
-                    rv_sell_item.size - 1
-                )
-
+                val pos = viewModel._cartList.size - 1
                 viewModel.setProduct(
-                    viewModel.cartList.size - 1,
+                    pos,
                     this
+                )
+                rv_cart.add(
+                    viewModel._cartList[pos],
+                    pos
                 )
             }
         } else {
@@ -167,41 +227,55 @@ class TicketFragment : BaseFragment(R.layout.fragment_ticket) {
         }
     }
 
+    private fun setHomeState(isHome: Boolean, isSelected: Boolean) {
+        home.setItem("Voucher", R.drawable.ic_gift_card_black, isHome, isSelected)
+    }
+
+    private fun setSecondState(title: String, isHome: Boolean, isSelected: Boolean) {
+        second.setItem(title, R.drawable.ic_gift_card_black, isHome, isSelected)
+        if (isSelected) second.visible() else second.invisible()
+    }
+
     private fun updateTotalAmount() {
-        val oldData = rv_sell_item.get<PrintVO>(rv_sell_item.size - 2)
+        if (!viewModel.isHasItem) {
+            clearData()
+            return
+        }
+        val pos = viewModel._cartList.size - 2
+        val oldData = viewModel._cartList[pos]
         var taxAmount: Int
         var paidAmount: Long
         (oldData.data as PrintTotalVO).apply {
             taxAmount = tax
             paidAmount = this.paidAmount
         }
-        rv_sell_item.update(
-            rv_sell_item.size - 2,
-            printVO {
-                type = PrintType.TOTAL
-                data = printTotal {
-                    tax = taxAmount
-                    this.paidAmount = paidAmount
-                    totalAmount = viewModel.getTotalAmount(rv_sell_item.getItems())
-                    totalQty = viewModel.getTotalQty(rv_sell_item.getItems())
-                }
-            }
-        )
-        viewModel.cartList.removeAt(viewModel.cartList.size - 2)
-        viewModel.cartList.add(viewModel.cartList.size - 1, printVO {
+        viewModel._cartList.removeAt(pos)
+        viewModel._cartList.add(viewModel._cartList.size - 1, printVO {
             type = PrintType.TOTAL
             data = printTotal {
                 tax = taxAmount
                 this.paidAmount = paidAmount
-                totalAmount = viewModel.getTotalAmount(rv_sell_item.getItems())
-                totalQty = viewModel.getTotalQty(rv_sell_item.getItems())
+                totalAmount = viewModel.getTotalAmount()
+                totalQty = viewModel.getTotalQty()
             }
         })
-        if (viewModel.getTotalAmount() == 0L) {
-            viewModel.clearCartList()
-            rv_sell_item.clear()
+        rv_cart.update(
+            pos,
+            viewModel._cartList[pos]
+        )
+        if (!viewModel.isHasItem) {
+            clearData()
         }
     }
 
-    fun isOrder() = rv_sell_item.size != 0
+    private fun home() {
+        isClickHome = true
+        clearData()
+        rv_voucher.visible()
+    }
+
+    private fun clearData() {
+        viewModel.clearCartList()
+        rv_cart.clear()
+    }
 }

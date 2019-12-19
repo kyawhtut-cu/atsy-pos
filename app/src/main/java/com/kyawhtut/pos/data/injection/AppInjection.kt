@@ -14,15 +14,18 @@ import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialogViewModel
 import com.kyawhtut.pos.ui.customer.CustomerRepository
 import com.kyawhtut.pos.ui.customer.CustomerRepositoryImpl
 import com.kyawhtut.pos.ui.customer.CustomerViewModel
+import com.kyawhtut.pos.ui.function.FunctionRepository
+import com.kyawhtut.pos.ui.function.FunctionRepositoryImpl
+import com.kyawhtut.pos.ui.function.FunctionViewModel
+import com.kyawhtut.pos.ui.sale.SaleRepository
+import com.kyawhtut.pos.ui.sale.SaleRepositoryImpl
+import com.kyawhtut.pos.ui.sale.SaleViewModel
 import com.kyawhtut.pos.ui.home.HomeRepository
 import com.kyawhtut.pos.ui.home.HomeRepositoryImpl
 import com.kyawhtut.pos.ui.home.HomeViewModel
 import com.kyawhtut.pos.ui.product.ProductRepository
 import com.kyawhtut.pos.ui.product.ProductRepositoryImpl
 import com.kyawhtut.pos.ui.product.ProductViewModel
-import com.kyawhtut.pos.ui.superadmin.FunctionRepository
-import com.kyawhtut.pos.ui.superadmin.FunctionRepositoryImpl
-import com.kyawhtut.pos.ui.superadmin.FunctionViewModel
 import com.kyawhtut.pos.ui.table.TableRepository
 import com.kyawhtut.pos.ui.table.TableRepositoryImpl
 import com.kyawhtut.pos.ui.table.TableViewModel
@@ -82,11 +85,25 @@ object AppInjection {
         single {
             provideTicketDao(get())
         }
+
+        single {
+            provideCartDao(get())
+        }
     }
 
     val preference = module {
         single { (name: String?) ->
             PreferenceInjector().provideSharedPreference(get(), name)
+        }
+    }
+
+    val main = module {
+        single<HomeRepository> {
+            HomeRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
+        }
+
+        viewModel {
+            HomeViewModel(get())
         }
     }
 
@@ -101,12 +118,12 @@ object AppInjection {
     }
 
     val home = module {
-        single<HomeRepository> {
-            HomeRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
+        single<SaleRepository> {
+            SaleRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
         }
 
         viewModel {
-            HomeViewModel(get())
+            SaleViewModel(get())
         }
     }
 
@@ -120,7 +137,7 @@ object AppInjection {
         }
 
         single<CategoryRepository> {
-            CategoryRepositoryImpl(get(), get())
+            CategoryRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get(), get())
         }
 
         viewModel {
@@ -134,7 +151,7 @@ object AppInjection {
 
     val function = module {
         single<FunctionRepository> {
-            FunctionRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")))
+            FunctionRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
         }
 
         viewModel { param ->
@@ -187,6 +204,7 @@ object AppInjection {
             TicketRepositoryImp(
                 get { parametersOf(null) },
                 get(named("rootUser")),
+                get(),
                 get(),
                 get(),
                 get()

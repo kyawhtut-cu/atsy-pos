@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:background="@color/colorPrimaryDark">
+    android:layout_height="wrap_content">
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_store_name"
@@ -14,8 +13,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="@string/app_name"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_regular_3x"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_heading_1x"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +32,8 @@
         android:lineSpacingMultiplier="1.2"
         android:maxLines="2"
         android:text="@string/dummy_store_address"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_regular_2x"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_3x"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_store_name" />
@@ -50,8 +49,8 @@
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/dummy_store_phone"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_regular"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_store_address" />
@@ -61,22 +60,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Customer - Kyaw Kyaw"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
         app:layout_constraintStart_toStartOf="@+id/tv_store_phone"
-        app:layout_constraintTop_toBottomOf="@+id/tv_store_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_store_phone"
+        tools:text="Customer - Kyaw Kyaw" />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_customer_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Phone - 09973419006"
-        android:textColor="@color/colorWhite"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_customer_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_name"
+        tools:text="Phone - 09973419006" />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_ticket_waiter"
@@ -84,11 +87,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:text="1/Kyaw Htut"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone"
+        tools:text="1/Kyaw Htut" />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_ticket_date"
@@ -96,11 +99,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:text="12-02-2019 12:30 PM"
-        android:textColor="@color/colorc9c9c9"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone"
+        tools:text="12-02-2019 12:30 PM" />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_ticket_number"
@@ -108,11 +111,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:text="TICKET-123456"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_waiter" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_waiter"
+        tools:text="TICKET-123456" />
 
     <TextView
         android:id="@+id/tv_product_count"
@@ -123,14 +127,15 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:maxLines="1"
-        android:text="No."
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@+id/guideline_id"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_number" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_number"
+        tools:text="No." />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_product_name"
@@ -140,8 +145,9 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Items"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
         app:layout_constraintStart_toStartOf="@+id/guideline_id"
         app:layout_constraintTop_toTopOf="@+id/tv_product_count" />
@@ -151,8 +157,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Qaulity"
-        android:textColor="@color/colorWhite"
+        android:text="Qty"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
         app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
         app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
@@ -166,8 +172,9 @@
         android:gravity="end"
         android:maxLines="1"
         android:text="Price"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/default_textColor"
         android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
         app:layout_constraintTop_toTopOf="@+id/tv_product_qty" />
@@ -199,7 +206,6 @@
         android:layout_height="1px"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/colorDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

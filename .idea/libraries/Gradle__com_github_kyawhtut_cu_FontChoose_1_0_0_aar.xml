@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.kyawhtut-cu:FontChoose:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/464b734890e4bb908231032525efd216/FontChoose-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/464b734890e4bb908231032525efd216/FontChoose-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.kyawhtut-cu/FontChoose/1.0.0/4c7297d40497d2c17575c8627db10b10247c9740/FontChoose-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

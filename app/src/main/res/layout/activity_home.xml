@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        style="@style/AppTheme.AppBarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:elevation="@dimen/margin_small">
+
+        <!--Toolbar advance https://stackoverflow.com/questions/33339043/how-to-change-color-of-toolbar-back-button-in-android -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.kyawhtut.fontchooserlib.component.MMToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <moe.feng.common.view.breadcrumbs.BreadcrumbsView
+                    android:id="@+id/breadcrumbs_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:CustomTextSize="@dimen/text_regular_2x"
+                    app:SelectedTextColor="@color/colorWhite"
+                    app:UnSelectedTextColor="@color/colorAccent" />
+            </com.kyawhtut.fontchooserlib.component.MMToolbar>
+
+            <com.ferfalk.simplesearchview.SimpleSearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:type="card"
+                app:voiceSearch="true" />
+        </FrameLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.kyawhtut.lib.minidrawer.MiniDrawer
+        android:id="@+id/mini_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:menu_width="360dp"
+        app:mini_width="56dp">
+
+        <FrameLayout
+            android:id="@+id/content_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.kyawhtut.lib.minidrawer.MiniDrawer>
+
+    <include layout="@layout/bottom_sheet_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

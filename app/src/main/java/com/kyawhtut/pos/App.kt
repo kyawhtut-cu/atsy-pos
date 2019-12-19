@@ -34,6 +34,7 @@ class App : Application() {
                     AppInjection.database,
                     AppInjection.function,
                     AppInjection.authentication,
+                    AppInjection.main,
                     AppInjection.home,
                     AppInjection.category,
                     AppInjection.user,

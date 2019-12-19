@@ -1,10 +1,11 @@
 package com.kyawhtut.pos.ui.category
 
 import androidx.lifecycle.LiveData
+import com.kyawhtut.pos.base.BaseRepository
 import com.kyawhtut.pos.data.db.entity.ProductBuilder
 import com.kyawhtut.pos.data.db.entity.ProductEntity
 
-interface CategoryRepository {
+interface CategoryRepository : BaseRepository {
 
     var categoryId: Int
 

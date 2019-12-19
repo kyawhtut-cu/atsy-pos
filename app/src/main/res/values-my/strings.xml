@@ -34,4 +34,11 @@
     <string name="lbl_net_amount">အခွန် + စုစုပေါင်း</string>
     <string name="lbl_paid_amount">ပေးငွေ</string>
     <string name="lbl_change_amount">ပြန်အမ်းငွေ</string>
+
+    <string name="pref_header_about">အကြောင်း</string>
+    <string name="prefs_version_name">ဗားရှင်း</string>
+    <string name="prefs_developed_by">Develop by</string>
+    <string name="prefs_developed_by_me">ကျော်ထွဋ်</string>
+    <string name="label_setting_title">ပြင်ဆင်ရန်</string>
+    <string name="lbl_btn_new_voucher">ဘောင်ချာအသစ်ဖွင့်မည်။</string>
 </resources>

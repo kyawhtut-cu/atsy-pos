@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <PreferenceCategory
+        android:title="@string/pref_header_about"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="prefs_version_name"
+            android:summary=""
+            android:title="@string/prefs_version_name"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="General"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="pref_font_key"
+            android:title="Font"
+            app:iconSpaceReserved="false"
+            tools:summary="Unicode" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/prefs_developed_by"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="prefs_developed_by"
+            android:summary=""
+            android:title="@string/prefs_developed_by_me"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.data.sharedpreference.clear
 import com.kyawhtut.pos.data.sharedpreference.get
+import com.kyawhtut.pos.data.sharedpreference.put
 import com.kyawhtut.pos.utils.Constants
 
 abstract class BaseRepositoryImpl(
@@ -19,6 +20,7 @@ abstract class BaseRepositoryImpl(
 
     override fun logout() {
         sh.clear()
+        sh.put(Constants.KEY_LOGIN, false)
     }
 
     override fun getCurrentUser(): UserEntity? =

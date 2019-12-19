@@ -28,7 +28,7 @@ class TableViewModel(private val repo: TableRepository) : BaseViewModel(repo) {
                 is TableType.ITEMS -> _categoryTable
                 is TableType.PRODUCTS -> _productTable
                 is TableType.USERS -> _userTable
-                is TableType.CUSTOMER -> _customerTable
+                else -> _customerTable
             }
         ) {
             dataList.postValue(it)

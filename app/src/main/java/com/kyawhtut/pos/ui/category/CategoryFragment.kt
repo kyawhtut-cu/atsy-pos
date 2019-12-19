@@ -10,10 +10,10 @@ import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.lib.rv.bind
 import com.kyawhtut.lib.rv.update
 import com.kyawhtut.pos.R
-import com.kyawhtut.pos.base.BaseFragment
+import com.kyawhtut.pos.base.BaseFragmentViewModel
 import com.kyawhtut.pos.data.db.entity.ProductEntity
+import com.kyawhtut.pos.phone.home.PhoneHomeActivity
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
-import com.kyawhtut.pos.ui.home.HomeActivity
 import com.kyawhtut.pos.ui.product.ProductAddDialog
 import com.kyawhtut.pos.utils.ProductType
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -22,21 +22,21 @@ import kotlinx.android.synthetic.main.item_category.view.divider
 import kotlinx.android.synthetic.main.item_category.view.item_card_view
 import kotlinx.android.synthetic.main.item_category.view.iv_bundle
 import kotlinx.android.synthetic.main.item_product.view.*
+import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class CategoryFragment : BaseFragment(R.layout.fragment_category) {
+class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragment_category) {
 
-    private val viewModel: CategoryViewModel by viewModel()
+    var itemClick: (String) -> Unit = {
+        (activity as PhoneHomeActivity).nextIndex(it)
+    }
+    var addProduct: (Int) -> Unit = {}
+
+    override val viewModel: CategoryViewModel by viewModel()
     var state: ProductType = ProductType.Category
 
     override fun onViewCreated(bundle: Bundle) {
-
-        (activity as HomeActivity).onNavigationItemClick = { item, pos ->
-            state =
-                if (pos == 0 && item.items.first() == "Items") ProductType.Category else ProductType.Product
-            viewModel.addSource(state)
-        }
 
         viewModel.dataList.observe(this) {
             rv_category.update(it.toMutableList())
@@ -53,7 +53,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                 { item, pos -> item.type == ProductType.Category }) { item, pos ->
                 this.item_card_view.setOnClickListener {
                     viewModel.categoryId = item.id
-                    (activity as HomeActivity).nextIndex(item.productName.toDisplay(FontChoose.isUnicode()))
+                    itemClick(item.productName.toDisplay(FontChoose.isUnicode()))
                 }
                 this.item_card_view.setOnLongClickListener {
                     CategoryAddDialog.show(parentFragmentManager, item.id)
@@ -75,7 +75,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                 { item, idx -> item.type == ProductType.Product }) { item, pos ->
                 Timber.d("Product bind -> %s", item)
                 this.setOnClickListener {
-                    (activity as HomeActivity).ticketFragment.addProduct(item.id)
+                    addProduct(item.id)
                 }
                 this.setOnLongClickListener {
                     ProductAddDialog.show(parentFragmentManager, item.id)
@@ -100,6 +100,20 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                 flexDirection = FlexDirection.ROW
                 justifyContent = JustifyContent.FLEX_START
             })
+        }
+    }
+
+    fun changeData(item: BreadcrumbItem, pos: Int) {
+        state =
+            if (pos == 0 && item.items.first() == "Sale") ProductType.Category else ProductType.Product
+        viewModel.addSource(state)
+    }
+
+    fun filter(query: String) {
+        viewModel.dataList.value?.filter {
+            it.productName.toLowerCase().contains(query.toLowerCase()) || "${it.id}" == query
+        }.run {
+            rv_category.update(this?.toMutableList() ?: mutableListOf())
         }
     }
 }

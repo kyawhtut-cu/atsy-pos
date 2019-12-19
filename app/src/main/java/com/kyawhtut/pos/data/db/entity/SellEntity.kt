@@ -19,6 +19,8 @@ data class SellEntity(
         childColumns = ["product_id"]
     )
     val productId: Int,
+    @ColumnInfo(name = "product_price")
+    val productPrice: Long,
     @ColumnInfo(name = "ticket_id")
     @ForeignKey(
         entity = TicketEntity::class,
@@ -37,12 +39,14 @@ data class SellEntity(
 class SellBuilder {
     var id: Int = 0
     var productId: Int = 0
+    var productPrice: Long = 0
     var ticketId: String = ""
     var productQuality: Int = 0
     var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
     val updateDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
 
-    fun build() = SellEntity(id, productId, ticketId, productQuality, createdDate, updateDate)
+    fun build() =
+        SellEntity(id, productId, productPrice, ticketId, productQuality, createdDate, updateDate)
 }
 
 class SellList : ArrayList<SellEntity>() {

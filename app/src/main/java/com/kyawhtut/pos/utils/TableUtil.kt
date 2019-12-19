@@ -14,6 +14,7 @@ fun getDatePosition(type: TableType) = when (type) {
     is TableType.USERS -> UserColumn().datePosition
     is TableType.PRODUCTS -> ProductColumn().datePosition
     is TableType.CUSTOMER -> CustomerColumn().datePosition
+    is TableType.DEFAULT -> -1
 }
 
 fun getColorPosition(type: TableType) = when (type) {
@@ -21,6 +22,7 @@ fun getColorPosition(type: TableType) = when (type) {
     is TableType.USERS -> UserColumn().colorPosition
     is TableType.PRODUCTS -> ProductColumn().colorPosition
     is TableType.CUSTOMER -> CustomerColumn().colorPosition
+    is TableType.DEFAULT -> -1
 }
 
 fun getTextColorPosition(type: TableType) = when (type) {
@@ -28,6 +30,7 @@ fun getTextColorPosition(type: TableType) = when (type) {
     is TableType.USERS -> UserColumn().textColorPosition
     is TableType.PRODUCTS -> ProductColumn().textColorPosition
     is TableType.CUSTOMER -> CustomerColumn().textColorPosition
+    is TableType.DEFAULT -> -1
 }
 
 fun getActivePosition(type: TableType) = when (type) {
@@ -35,6 +38,7 @@ fun getActivePosition(type: TableType) = when (type) {
     is TableType.USERS -> UserColumn().activePosition
     is TableType.PRODUCTS -> ProductColumn().activePosition
     is TableType.CUSTOMER -> CustomerColumn().activePosition
+    is TableType.DEFAULT -> -1
 }
 
 private val COLUMN_TEXT_ALIGNS = intArrayOf( // Id

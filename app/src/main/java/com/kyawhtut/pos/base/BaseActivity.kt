@@ -9,38 +9,43 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import com.kyawhtut.fontchooserlib.FontChoose
-import com.kyawhtut.fontchooserlib.util.FontUtils
 import com.kyawhtut.pos.R
-import com.kyawhtut.pos.ui.authentication.login.LoginActivity
-import com.kyawhtut.pos.utils.startActivity
+import com.kyawhtut.pos.utils.getDrawableValue
+import com.mikepenz.actionitembadge.library.ActionItemBadge
 
-abstract class BaseActivity<V : BaseViewModel>(
+abstract class BaseActivity(
     @LayoutRes private val layoutId: Int,
     @MenuRes private val menuId: Int? = null,
     @IdRes private val toolbar: Int? = null,
-    private val checkLogin: Boolean = true
+    private val isBackAction: Boolean = false
 ) : AppCompatActivity() {
 
-    abstract fun setup(bundle: Bundle)
+    abstract fun setup(savedInstanceState: Bundle?, bundle: Bundle)
     open fun onClickMenu(id: Int) {}
-    open fun onClickBack() {}
-    abstract val viewModel: V
+    private var menuItemCart: MenuItem? = null
+    protected var badgeCount: Int = 0
+        set(value) {
+            field = value
+            if (menuItemCart != null)
+                ActionItemBadge.update(
+                    this,
+                    menuItemCart,
+                    getDrawableValue(R.drawable.ic_shopping_bag_white),
+                    ActionItemBadge.BadgeStyles.RED,
+                    value
+                )
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FontChoose.init(this, R.drawable.ic_g_letter)
-        if (checkLogin) checkLogin()
         setContentView(layoutId)
         if (toolbar != null)
             setSupportActionBar(findViewById(toolbar))
 
-        setup(intent.extras ?: Bundle())
-    }
+        supportActionBar?.setDisplayHomeAsUpEnabled(isBackAction)
 
-    protected fun checkLogin() {
-        if (!FontUtils.Builder(this).build().isFirst && !viewModel.isLogin()) startActivity<LoginActivity>().also {
-            finish()
-        }
+        setup(savedInstanceState, intent.extras ?: Bundle())
     }
 
     override fun attachBaseContext(newBase: Context?) {
@@ -48,14 +53,18 @@ abstract class BaseActivity<V : BaseViewModel>(
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (menuId != null)
-            menuInflater.inflate(R.menu.menu_main, menu)
+        if (menuId != null) {
+            menuInflater.inflate(menuId, menu)
+            menuItemCart = menu.findItem(R.id.action_cart)
+            if (menuItemCart != null)
+                badgeCount = badgeCount
+        }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> onClickBack().run {
+            android.R.id.home -> onBackPressed().run {
                 true
             }
             else -> onClickMenu(item.itemId).run {

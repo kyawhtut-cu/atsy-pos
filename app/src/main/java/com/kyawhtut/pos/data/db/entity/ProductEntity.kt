@@ -43,6 +43,8 @@ data class ProductEntity(
     val productAvailable: Int,
     @ColumnInfo(name = "show_alert_remain_amount")
     val productRemainAmountShow: Int,
+    @ColumnInfo(name = "product_sell_count")
+    val productSellCount: Int,
     @ColumnInfo(name = "created_user_id")
     @ForeignKey(
         entity = UserEntity::class,
@@ -99,6 +101,7 @@ class ProductBuilder {
     var categoryId: Int = 0
     var productAvailable = 1
     var productRemainAmountShow: Boolean = true
+    var productSellCount: Int = 0
     var createdUserId = 0
     var updatedUserId = 0
     var type: ProductType = ProductType.Product
@@ -117,6 +120,7 @@ class ProductBuilder {
         categoryId,
         productAvailable,
         productRemainAmountShow.toInt(),
+        productSellCount,
         createdUserId,
         updatedUserId,
         createdDate,
@@ -133,6 +137,7 @@ class ProductColumn : BaseColumn(
     "Text Color",
     "Product Count",
     "Retail Price",
+    "Sell Count",
     "Category Name",
     "Status",
     "Created User Name",
@@ -174,6 +179,10 @@ class ProductColumn : BaseColumn(
                 tableCell {
                     cellId = "product_count"
                     data = "${list.product.productCount}"
+                }
+                tableCell {
+                    cellId = "product_sell_count"
+                    data = "${list.product.productSellCount}"
                 }
                 tableCell {
                     cellId = "product_retail_Price"

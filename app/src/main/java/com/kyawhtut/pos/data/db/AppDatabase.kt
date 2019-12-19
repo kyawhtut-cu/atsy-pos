@@ -15,7 +15,9 @@ import com.kyawhtut.pos.data.db.entity.*
         ProductEntity::class,
         CustomerEntity::class,
         SellEntity::class,
-        TicketEntity::class
+        TicketEntity::class,
+        CartHeaderEntity::class,
+        CartEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -28,6 +30,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun customerDao(): CustomerDao
     abstract fun sellDao(): SellDao
     abstract fun ticketDao(): TicketDao
+    abstract fun cartDao(): CartDao
 }
 
 fun provideDB(context: Context): AppDatabase = Room.databaseBuilder(
@@ -51,3 +54,5 @@ fun provideCustomerDao(db: AppDatabase) = db.customerDao()
 fun provideSellDao(db: AppDatabase) = db.sellDao()
 
 fun provideTicketDao(db: AppDatabase) = db.ticketDao()
+
+fun provideCartDao(db: AppDatabase) = db.cartDao()

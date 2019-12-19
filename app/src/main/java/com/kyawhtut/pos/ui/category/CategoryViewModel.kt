@@ -2,11 +2,11 @@ package com.kyawhtut.pos.ui.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
+import com.kyawhtut.pos.base.BaseViewModel
 import com.kyawhtut.pos.data.db.entity.ProductEntity
 import com.kyawhtut.pos.utils.ProductType
 
-class CategoryViewModel(private val repo: CategoryRepository) : ViewModel() {
+class CategoryViewModel(private val repo: CategoryRepository) : BaseViewModel(repo) {
 
     var categoryId: Int = 0
         set(value) {
@@ -18,7 +18,7 @@ class CategoryViewModel(private val repo: CategoryRepository) : ViewModel() {
 
     val dataList = MediatorLiveData<List<ProductEntity>>()
 
-    fun removeSource() {
+    private fun removeSource() {
         dataList.removeSource(_categoryData)
         dataList.removeSource(_productData)
     }

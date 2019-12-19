@@ -7,13 +7,13 @@
     <color name="colorc9c9c9">#c9c9c9</color>
     <color name="colorDeleteUnavailable">#F03636</color>
 
-    <color name="selected_background_color">#61363636</color>
-    <color name="unselected_background_color">@color/colorPrimary</color>
-    <color name="shadow_background_color">#303141</color>
-    <color name="unselected_header_background_color">@color/colorPrimary</color>
+    <color name="selected_background_color">#1E757575</color>
+    <color name="unselected_background_color">#ffffff</color>
+    <color name="shadow_background_color">#1E757575</color>
+    <color name="unselected_header_background_color">#ffffff</color>
 
-    <color name="unselected_text_color">@color/colorWhite</color>
-    <color name="selected_text_color">@color/colorWhite</color>
+    <color name="unselected_text_color">@color/default_textColor</color>
+    <color name="selected_text_color">@color/default_textColor</color>
     <color name="separator_color">#273e5b</color>
 
     <color name="popup_menu_item_text_color">@color/colorAccent</color>

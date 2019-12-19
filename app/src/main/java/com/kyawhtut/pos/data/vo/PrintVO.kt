@@ -7,8 +7,29 @@ sealed class PrintType {
     object HEADER : PrintType()
     object ITEMS : PrintType()
     object FOOTER : PrintType()
-    object TOTAL: PrintType()
+    object TOTAL : PrintType()
 }
+
+data class PrintHeader private constructor(
+    val customerName: String,
+    val customerPhone: String,
+    val ticketID: String,
+    val waiterName: String,
+    val waiterID: Int
+) {
+
+    class Builder {
+        var customerName: String = ""
+        var customerPhone: String = ""
+        var ticketID: String = ""
+        var waiterName: String = ""
+        var waiterID: Int = 0
+
+        fun build() = PrintHeader(customerName, customerPhone, ticketID, waiterName, waiterID)
+    }
+}
+
+fun printHeader(block: PrintHeader.Builder.() -> Unit) = PrintHeader.Builder().apply(block).build()
 
 data class PrintVO private constructor(
     var type: PrintType = PrintType.ITEMS,

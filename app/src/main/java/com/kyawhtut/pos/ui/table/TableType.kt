@@ -7,4 +7,5 @@ sealed class TableType(val tableName: String, val primaryKey: String) : Serializ
     object PRODUCTS : TableType("product_table", "product_id")
     object USERS : TableType("user_table", "user_id")
     object CUSTOMER : TableType("customer_table", "customer_id")
+    object DEFAULT : TableType("", "")
 }
