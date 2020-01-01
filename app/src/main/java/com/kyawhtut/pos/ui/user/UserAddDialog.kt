@@ -54,6 +54,7 @@ class UserAddDialog private constructor() : BaseDialogFragment(R.layout.dialog_u
 
         with(bundle.getInt(extraUserID)) {
             if (this != 0) {
+                tv_dialog_title.mText = getString(R.string.lbl_user_edit)
                 with(viewModel.canDeleteUserById(this)) {
                     btn_delete.isEnabled = this
                     if (this) gp_delete_unavailable.gone() else gp_delete_unavailable.visible()

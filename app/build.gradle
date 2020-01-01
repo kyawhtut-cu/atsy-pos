@@ -17,6 +17,9 @@ android {
         multiDexEnabled = true
     }
     buildTypes {
+        debug {
+            resValue("string", "PORT_NUMBER", "2208")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -37,12 +40,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.preference:preference:1.1.0'
-    implementation 'androidx.fragment:fragment-ktx:1.2.0-rc03'
+    implementation 'androidx.fragment:fragment-ktx:1.2.0-rc04'
     implementation "androidx.slidingpanelayout:slidingpanelayout:1.0.0"
 
     //multi dex
@@ -77,21 +80,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
 
     //Room
-    def room_version = "2.2.2"
+    def room_version = "2.2.3"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation 'androidx.work:work-runtime-ktx:2.2.0'
-
-    // font choose
-    implementation 'com.github.kyawhtut-cu:FontChoose:1.0.0'
 
     // date util
     implementation 'net.danlew:android.joda:2.10.1.1'
     implementation 'com.github.arcadefire:nice-spinner:1.4.5'
 
     // gson
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
 
     // breadcrumbsview
     implementation 'com.github.HamidrezaAmz:BreadcrumbsView:0.2.9'
@@ -115,4 +115,13 @@ dependencies {
 
     // Android-ActionItemBadge - https://github.com/mikepenz/Android-ActionItemBadge
     implementation 'com.mikepenz:actionitembadge:4.0.0'
+
+    //qr scanner - https://github.com/dm77/barcodescanner
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+
+    //android debug databases - https://github.com/amitshekhariitbhu/Android-Debug-Database
+    implementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    //runtime permission - https://github.com/florent37/RuntimePermission
+    implementation 'com.github.florent37:runtime-permission-kotlin:1.1.2'
 }

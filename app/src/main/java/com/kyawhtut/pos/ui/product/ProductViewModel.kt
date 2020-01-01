@@ -12,6 +12,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
             field = value
             if (value != 0) loadProduct()
         }
+    var code = ""
     var name = ""
     var price = 0L
     var color = 0
@@ -24,10 +25,9 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
     var createUser = getCurrentUser()?.id ?: 0
     var createDate = getCurrentTimeString()
 
-    fun getLimitAmount() = repo.getLimitAmount()
-
     private fun loadProduct() {
         with(repo.getProductById(productId)!!) {
+            code = productCode
             name = productName
             price = productPrice
             color = productColor
@@ -48,6 +48,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
 
     fun insert() {
         repo.insertProduct {
+            productCode = code
             productName = name
             productPrice = price
             productColor = color
@@ -66,6 +67,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
     fun update() {
         repo.updateProduct {
             id = productId
+            productCode = code
             productName = name
             productPrice = price
             productColor = color

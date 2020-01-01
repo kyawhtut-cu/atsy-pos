@@ -70,6 +70,7 @@ class CategoryAddDialog : BaseDialogFragment(
         }
 
         if (viewModel.categoryId != 0) {
+            tv_dialog_title.mText = getString(R.string.lbl_category_edit)
             with(viewModel.canDeleteCurrentCategory()) {
                 btn_delete.isEnabled = this
                 if (this) gp_delete_unavailable.gone() else gp_delete_unavailable.visible()

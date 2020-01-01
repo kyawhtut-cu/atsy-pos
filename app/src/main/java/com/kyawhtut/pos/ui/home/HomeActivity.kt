@@ -6,19 +6,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.observe
 import com.ferfalk.simplesearchview.SimpleSearchView
+import com.kyawhtut.fontchooserlib.component.MMTextInputEditText
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseActivityViewModel
 import com.kyawhtut.pos.phone.home.PhoneHomeActivity
-import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.category.CategoryFragment
-import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
-import com.kyawhtut.pos.ui.product.ProductAddDialog
+import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.sale.SaleFragment
 import com.kyawhtut.pos.ui.table.TableFragment
 import com.kyawhtut.pos.ui.table.TableType
+import com.kyawhtut.pos.utils.getInflateView
 import com.kyawhtut.pos.utils.isTablet
+import com.kyawhtut.pos.utils.showDialog
 import com.kyawhtut.pos.utils.startActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.dialog_code_add.view.*
 import moe.feng.common.view.breadcrumbs.DefaultBreadcrumbsCallback
 import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -43,8 +45,11 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
                 add(R.id.content_home, MainFragment.createInstance(viewModel.isLogin()))
             }
 
+        scanResult = {
+            (currentFragment as SaleFragment).addProduct(it)
+        }
+
         viewModel.getLoginState().observe(this) {
-            // fixme: need to change drawer disable
             supportFragmentManager.commit {
                 if (!it)
                     replace(R.id.content_home, LoginFragment())
@@ -131,13 +136,24 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
         mini_drawer.onMenuItemClick = { type, pos ->
             changeFragmentByTitle(pos)
         }
+
+        iv_menu.setOnClickListener {
+            if (mini_drawer.isDrawerOpen) mini_drawer.closeDrawer()
+            else mini_drawer.openDrawer()
+        }
     }
 
     private fun changeFragmentByTitle(pos: Int) {
         when (mini_drawer.getTitle(pos)) {
-            "Home" -> openScreen(MainFragment.createInstance(viewModel.isLogin()), pos)
-            "Sale" -> openScreen(SaleFragment(), pos)
-            "Logout" -> viewModel.logout()
+            "Home" -> openScreen(MainFragment.createInstance(viewModel.isLogin()), pos).run {
+                hideAllMenuItem()
+            }
+            "Sale" -> openScreen(SaleFragment(), pos).run {
+                showAllMenuItem()
+            }
+            "Logout" -> viewModel.logout().run {
+                hideAllMenuItem()
+            }
             else -> openScreen(
                 TableFragment.createInstance(
                     when (mini_drawer.getTitle(pos)) {
@@ -148,7 +164,10 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
                         else -> TableType.DEFAULT
                     }
                 ), pos
-            )
+            ).run {
+                showAllMenuItem()
+                menuCamera?.isVisible = false
+            }
         }
     }
 
@@ -202,21 +221,32 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
             }
             R.id.action_add -> {
                 when (currentFragment) {
-                    is SaleFragment -> {
-                        if (breadcrumbs_view.items.size > 1) ProductAddDialog.show(
-                            supportFragmentManager
-                        )
-                        else CategoryAddDialog.show(supportFragmentManager)
-                    }
-                    is CategoryFragment -> {
-                        if (breadcrumbs_view.items.size > 1) ProductAddDialog.show(
-                            supportFragmentManager
-                        )
-                        else CategoryAddDialog.show(supportFragmentManager)
-                    }
                     is TableFragment -> (currentFragment as TableFragment).addNewData()
+                    else -> {
+                        var edtCode: MMTextInputEditText? = null
+                        showDialog(
+                            getInflateView(R.layout.dialog_code_add),
+                            bindView = {
+                                edtCode = this.ed_product_code
+                            },
+                            onClickPositive = {
+                                text = "Ok"
+                                onClick = {
+                                    (currentFragment as SaleFragment).addProduct(
+                                        edtCode?.mText ?: ""
+                                    )
+                                }
+                            },
+                            onClickNegative = {
+                                text = "Cancel"
+                                onClick = {
+                                    it.dismiss()
+                                }
+                            })
+                    }
                 }
             }
+            R.id.action_camera -> openScanner()
         }
     }
 

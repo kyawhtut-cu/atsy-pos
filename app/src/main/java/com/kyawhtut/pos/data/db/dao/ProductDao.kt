@@ -35,6 +35,9 @@ abstract class ProductDao : BaseDao<ProductEntity> {
     @Query("select * from product_table where product_id = :productId")
     abstract fun get(productId: Int): ProductEntity
 
+    @Query("select product_id from product_table where product_code = :productCode")
+    abstract fun getProductIdByProductCode(productCode: String): Int
+
     @Query("update product_table set product_count = product_count - :productCount where product_id = :productId")
     abstract fun updateQuality(productCount: Int, productId: Int)
 

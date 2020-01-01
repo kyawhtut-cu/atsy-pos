@@ -25,6 +25,15 @@
                 android:layout_height="match_parent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+                <ImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="?attr/actionBarItemBackground"
+                    android:paddingStart="@dimen/margin_medium"
+                    android:paddingEnd="0dp"
+                    app:srcCompat="@drawable/awsb_ic_menu_white" />
+
                 <moe.feng.common.view.breadcrumbs.BreadcrumbsView
                     android:id="@+id/breadcrumbs_view"
                     android:layout_width="match_parent"

@@ -194,6 +194,7 @@ object AppInjection {
                 get(),
                 get(),
                 get(),
+                get(),
                 get()
             )
         }

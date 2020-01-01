@@ -89,9 +89,10 @@ class HomeRepositoryImpl(
                 description = "POS System"
             }
             drawerItem {
-                icon = R.drawable.ic_logout_black
-                title = "Login"
-                description = "Please Login."
+                icon = R.drawable.ic_setting_black
+                title = "Setting"
+                description =
+                    "Application နှင့်သက်ဆိုင်သည့် အချက်အလက်များပြင်ဆင်ရန် အတွက်အသုံးပြုပါသည်။"
                 showInMiniDrawer = false
             }
         }.run {

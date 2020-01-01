@@ -18,6 +18,8 @@ data class ProductEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "product_id")
     val id: Int,
+    @ColumnInfo(name = "product_code")
+    val productCode: String,
     @ColumnInfo(name = "product_name")
     val productName: String,
     @ColumnInfo(name = "product_price")
@@ -91,6 +93,7 @@ data class ProductEntity(
 
 class ProductBuilder {
     var id: Int = 0
+    var productCode: String = ""
     var productName: String = ""
     var productPrice: Long = 0
     var productColor: Int = 0
@@ -110,6 +113,7 @@ class ProductBuilder {
 
     fun build() = ProductEntity(
         id,
+        productCode,
         productName,
         productPrice,
         productColor,
@@ -131,6 +135,7 @@ class ProductBuilder {
 }
 
 class ProductColumn : BaseColumn(
+    "Product Code",
     "Product Name",
     "Product Price",
     "Color",
@@ -160,6 +165,10 @@ class ProductColumn : BaseColumn(
 
         private fun getTableCellList(list: ProductTable): List<TableCellVO> {
             tableCellList {
+                tableCell {
+                    cellId = "product_code"
+                    data = list.product.productCode
+                }
                 tableCell {
                     cellId = "product_name"
                     data = list.product.productName

@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.provider.Settings
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import java.io.Serializable
@@ -127,6 +128,18 @@ object IntentExtension {
         act.startActivityForResult(createIntent(act, activity, params), requestCode)
     }
 
+    fun startActivityForResult(
+        act: Fragment,
+        activity: Class<out Activity>,
+        requestCode: Int,
+        params: Array<out Pair<String, Any?>>
+    ) {
+        act.startActivityForResult(
+            createIntent(act.context.checkNull(), activity, params),
+            requestCode
+        )
+    }
+
     fun startService(
         ctx: Context,
         service: Class<out Service>,
@@ -149,10 +162,16 @@ fun DialogFragment.putArg(vararg params: Pair<String, Any?>) = this.apply {
     arguments = IntentExtension.getBundle(params)
 }
 
-inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, Any?>) =
-    IntentExtension.startActivity(this, T::class.java, params)
+inline fun <reified T : Activity> Context?.startActivity(vararg params: Pair<String, Any?>) =
+    IntentExtension.startActivity(checkNull(), T::class.java, params)
 
 inline fun <reified T : Activity> Activity.startActivityForResult(
+    requestCode: Int,
+    vararg params: Pair<String, Any?>
+) =
+    IntentExtension.startActivityForResult(this, T::class.java, requestCode, params)
+
+inline fun <reified T : Activity> Fragment.startActivityForResult(
     requestCode: Int,
     vararg params: Pair<String, Any?>
 ) =
@@ -304,4 +323,11 @@ fun Context.sendSMS(number: String, text: String = ""): Boolean {
         e.printStackTrace()
         false
     }
+}
+
+fun Context?.openPermission() {
+    checkNull().startActivity(Intent().apply {
+        action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        data = Uri.fromParts("package", checkNull().packageName, null)
+    })
 }

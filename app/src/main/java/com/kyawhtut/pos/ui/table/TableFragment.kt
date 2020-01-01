@@ -42,6 +42,8 @@ class TableFragment private constructor() :
 
     override fun onViewCreated(bundle: Bundle) {
 
+        Timber.d("TicketList -> %s", Gson().toJson(viewModel.getTicketList()))
+
         tableType = bundle.getSerializable(extraTableType) as TableType
         if (tableType is TableType.DEFAULT) return
         tableAdapter = TableAdapter(

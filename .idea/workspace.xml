@@ -6,13 +6,35 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TicketList" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a5e95d9-9eee-4587-aac4-36e7dfc60342" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_user_add.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_user_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_common_2_2_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_amitshekhar_android_debug_db_1_0_6_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_amitshekhar_android_debug_db_base_1_0_6_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_florent37_runtime_permission_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_florent37_runtime_permission_kotlin_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_zxing_core_3_3_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_14_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_17_2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_7_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_7_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_core_1_9_13_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_zxing_1_9_13_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/scanner/ScannerActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/AlertDialogExtension.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/animator/awsb_ic_menu_anim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-nodpi/ic_not_found.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_menu_animated.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_menu_white.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_camera_white.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_scanner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_code_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_choose.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_code_not_found.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -23,28 +45,75 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_0_rc03_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_0_rc04_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_0_rc03_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_0_rc04_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_common_2_2_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_2_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_2_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_rxjava2_2_2_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_rxjava2_2_2_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_2_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_2_0_alpha03_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_12_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_6_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_6_2_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/App.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/ProductDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/ProductDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/ProductEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/ProductEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/vo/PrintTotalVO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/vo/PrintTotalVO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/phone/home/PhoneHomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/phone/home/PhoneHomeActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/MiniDrawerTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/login/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/login/LoginRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/login/LoginRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/registration/Registration.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/customer/CustomerDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/customer/CustomerDialog.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductAddDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductAddDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/SaleFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/SaleFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserRepositoryImpl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepositoryImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepositoryImp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Extension.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Extension.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/IntentExtension.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/IntentExtension.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_category_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_category_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_customer_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_customer_add.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_product_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_product_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_user_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_user_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_category_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_category_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_add.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/mini_drawer_test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/res/layout/layout_minidrawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/layout_minidrawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_user_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_user_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_ticket_total_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ticket_total_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/phone_menu_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-my/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-my/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/lib/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lib.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/minidrawer/MiniDrawer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/minidrawer/MiniDrawer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_header.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_header.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_menu.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +127,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="63285e0d" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Android_TV_1080p_API_Q" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -74,38 +143,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepositoryImpl.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="44" column="27" lean-forward="true" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+            <state relative-caret-position="117">
+              <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+              <folding>
+                <element signature="e#4741#4785#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/RoleEntity.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="235">
+              <caret line="230" column="30" lean-forward="true" selection-start-line="230" selection-start-column="30" selection-end-line="230" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/main/res/layout/layout_minidrawer.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+            <state relative-caret-position="1531">
+              <caret line="99" column="37" selection-start-line="99" selection-start-column="37" selection-end-line="99" selection-end-column="37" />
+              <folding>
+                <element signature="e#31#704#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,44 +178,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="111" column="75" selection-start-line="111" selection-start-column="75" selection-end-line="111" selection-end-column="75" />
+            <state relative-caret-position="75">
+              <caret line="44" column="63" lean-forward="true" selection-start-line="44" selection-start-column="63" selection-end-line="44" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableViewModel.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+            <state relative-caret-position="273">
+              <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/App.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepository.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+            <state relative-caret-position="147">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="47" column="23" lean-forward="true" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginViewModel.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
+            <state relative-caret-position="252">
+              <caret line="18" column="38" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialog.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="79" column="9" selection-start-line="71" selection-start-column="8" selection-end-line="79" selection-end-column="9" />
+            <state relative-caret-position="663">
+              <caret line="68" column="32" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="79" column="48" lean-forward="true" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -161,12 +244,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="resourceFile" />
         <option value="Kotlin Interface" />
         <option value="layoutResourceFile_vertical" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin File" />
+        <option value="resourceFile" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -184,6 +267,12 @@
       <find>TicketFragment()</find>
       <find>PhoneH</find>
       <find>Login</find>
+      <find>8080</find>
+      <find>GONE</find>
+      <find>startActivity</find>
+      <find>lbl_tax</find>
+      <find>discountt</find>
+      <find>deleteItemById</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,73 +281,69 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/CartDao.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_ticket_header_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/CategoryViewModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_breadcrumbs_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/view/BreadcrumbsItem.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_phone_ticket.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/SaleFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/phone/ticket/TicketFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt" />
+        <option value="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_header.xml" />
+        <option value="$PROJECT_DIR$/lib/src/main/res/layout/item_drawer_menu.xml" />
+        <option value="$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/minidrawer/MiniDrawer.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Extension.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_scanner.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/scanner/ScannerActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/IntentExtension.kt" />
+        <option value="$PROJECT_DIR$/lib/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_camera_white.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeRepositoryImpl.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/ProductDao.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/SaleFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/phone_menu_main.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_arrow_back_white.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_menu_animated.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/animator/awsb_ic_menu_anim.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_code_not_found.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/CodeAddDialogFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_code_add.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/AlertDialogExtension.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/phone/home/PhoneHomeActivity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_voucher.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Constants.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepository.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_ticket.xml" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/rv/DividerItemDecoration.java" />
-        <option value="$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/rv/DividerItemDecoration.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_category_add_phone.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add_phone.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialog.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDialogFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_category_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/tableview_column_header_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_category_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/viewpod_tag_edittext.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_tag_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_customer_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_add.xml" />
-        <option value="$PROJECT_DIR$/app/.gitignore" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_product_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_user_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_user_add.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepository.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDao.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/UserDao.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_choose.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/App.kt" />
-        <option value="$PROJECT_DIR$/lib/src/main/res/layout/layout_minidrawer.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepositoryImpl.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/RoleEntity.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginViewModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepository.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepositoryImpl.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepositoryImp.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-my/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_ticket_total_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductAddDialog.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/vo/PrintTotalVO.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepository.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-239" />
-    <option name="y" value="-1080" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -309,39 +394,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pos" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="POS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pos" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pos" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="POS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pos" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pos" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="POS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pos" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pos" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -352,8 +404,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pos" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="POS" type="b2602c69:ProjectViewProjectNode" />
@@ -379,23 +430,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout-w600dp" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="63285e0d" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-12-19T09:08:09.986Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="HT58ZJT00343" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-12-30T03:58:18.463Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout-w600dp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-nodpi" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -403,10 +456,12 @@
     <property name="settings.editor.selected.configurable" value="instant.run" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-nodpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout-w600dp" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.kyawhtut.pos" />
@@ -420,11 +475,10 @@
       <recent name="com.kyawhtut.lib.minidrawer" />
       <recent name="com.kyawhtut.pos.base" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout-w600dp" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -524,7 +578,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-239" y="-1080" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -537,12 +591,12 @@
       <window_info id="Resources Explorer" order="7" weight="0.32960597" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" weight="0.32923076" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.74564105" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.70564103" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32923076" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32923076" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.6246154" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="6" weight="0.32820514" />
+      <window_info anchor="bottom" id="Build" order="6" weight="0.26666668" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.32923076" />
       <window_info anchor="bottom" id="Debug" order="9" />
@@ -557,370 +611,396 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/local.properties">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/function_permission.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="803">
+          <caret line="45" column="87" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="87" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.evrencoskun.library/tableview/0.8.8/cc45b3fa0ae02494f25296c6466239d5f1673700/tableview-0.8.8-sources.jar!/com/evrencoskun/tableview/handler/SelectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="338" column="43" lean-forward="true" selection-start-line="338" selection-start-column="43" selection-end-line="338" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_customer_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="e#410#432#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDialogFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Extension.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="148" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_product_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="75" column="43" lean-forward="true" selection-start-line="75" selection-start-column="43" selection-end-line="75" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/authentication/registration/Registration.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserActivity.kt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserRepositoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserViewModel.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserRepository.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_user_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding>
-            <element signature="e#359#381#0" expanded="true" />
-            <element signature="e#1007#1043#0" expanded="true" />
-            <element signature="e#2114#2142#0" expanded="true" />
-            <element signature="e#3215#3247#0" expanded="true" />
-            <element signature="e#3273#3302#0" expanded="true" />
-            <element signature="e#5919#5946#0" expanded="true" />
-            <element signature="e#6921#6953#0" expanded="true" />
-            <element signature="e#7045#7066#0" expanded="true" />
-            <element signature="e#7894#7914#0" expanded="true" />
-            <element signature="e#8554#8578#0" expanded="true" />
-            <element signature="e#9151#9175#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_user_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-w600dp/dialog_category_add.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginFragment.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/CategoryRepositoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialogRepositoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/CategoryDao.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseDao.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeRepositoryImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
-          <caret line="91" column="13" selection-start-line="86" selection-start-column="12" selection-end-line="91" selection-end-column="13" />
+          <caret line="95" column="40" selection-start-line="95" selection-start-column="35" selection-end-line="95" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/ProductEntity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeRepository.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-364">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="216">
+          <caret line="101" column="61" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="33" />
+        <state relative-caret-position="80">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_menu_white.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state relative-caret-position="231">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/SellEntity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/animator/awsb_ic_menu_anim.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/SellDao.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/awsb_ic_menu_animated.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/UserEntity.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="32" column="39" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="39" />
-          <caret line="34" column="39" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="39" />
+        <state relative-caret-position="281">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+          <folding>
+            <element signature="e#1359#1381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/ProductDao.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepository.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        <state relative-caret-position="210">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/phone_menu_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="58" lean-forward="true" selection-start-line="3" selection-start-column="58" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_product_code_not_found.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding>
+            <element signature="e#1341#1362#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/SaleFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/sale/CodeAddDialogFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="e#34#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_code_add.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="62" lean-forward="true" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+          <folding>
+            <element signature="e#1077#1108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/AlertDialogExtension.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="e#32#194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/phone/home/PhoneHomeActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="262" column="21" selection-start-line="262" selection-start-column="21" selection-end-line="262" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/utils/Constants.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_category_add.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_product_add.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="108" column="66" lean-forward="true" selection-start-line="88" selection-start-column="8" selection-end-line="108" selection-end-column="66" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_customer_choose.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+          <folding>
+            <element signature="e#438#467#0" expanded="true" />
+            <element signature="e#546#570#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="197" column="21" selection-start-line="197" selection-start-column="21" selection-end-line="197" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="116" column="11" selection-start-line="116" selection-start-column="11" selection-end-line="116" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CustomerEntity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepository.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepositoryImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="210">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/UserDao.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/CartDao.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        <state relative-caret-position="378">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-my/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="769">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_ticket_total_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+          <folding>
+            <element signature="e#3814#3838#0" expanded="true" />
+            <element signature="e#4927#4956#0" expanded="true" />
+            <element signature="e#5027#5051#0" expanded="true" />
+            <element signature="e#5606#5630#0" expanded="true" />
+            <element signature="e#6155#6189#0" expanded="true" />
+            <element signature="e#8243#8273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseViewModel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductViewModel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/product/ProductAddDialog.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="69" column="80" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/SellEntity.kt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/CartEntity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/vo/PrintTotalVO.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="35" column="27" lean-forward="true" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_ticket.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="96" column="34" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/vo/ProductSellVO.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseRepository.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketRepositoryImp.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="85" column="35" lean-forward="true" selection-start-line="85" selection-start-column="35" selection-end-line="85" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketViewModel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="79" column="48" lean-forward="true" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/ticket/TicketFragment.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding>
+            <element signature="e#4741#4785#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/home/HomeActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="230" column="30" lean-forward="true" selection-start-line="230" selection-start-column="30" selection-end-line="230" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/base/BaseActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1531">
+          <caret line="99" column="37" selection-start-line="99" selection-start-column="37" selection-end-line="99" selection-end-column="37" />
+          <folding>
+            <element signature="e#31#704#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="111" column="75" selection-start-line="111" selection-start-column="75" selection-end-line="111" selection-end-column="75" />
+        <state relative-caret-position="75">
+          <caret line="44" column="63" lean-forward="true" selection-start-line="44" selection-start-column="63" selection-end-line="44" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/App.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableViewModel.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+        <state relative-caret-position="273">
+          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/injection/AppInjection.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/TicketEntity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+        <state relative-caret-position="663">
+          <caret line="68" column="32" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepository.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/dao/TicketDao.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        <state relative-caret-position="252">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/category/dialog/CategoryAddDialog.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepository.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="79" column="9" selection-start-line="71" selection-start-column="8" selection-end-line="79" selection-end-column="9" />
+        <state relative-caret-position="147">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mini_drawer_test.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/table/TableRepositoryImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/java/com/kyawhtut/lib/minidrawer/MiniDrawer.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="64" column="64" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/main/res/layout/layout_minidrawer.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginRepositoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/data/db/entity/RoleEntity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.61/fe3b9d48f4c3947639b6b1760213c1b79281383e/kotlin-stdlib-common-1.3.61-sources.jar!/generated/_Collections.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="298" column="30" selection-start-line="298" selection-start-column="30" selection-end-line="298" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.arcadefire/nice-spinner/1.4.5/309aee26cc777587a3acea4f12dfdc335c95991b/nice-spinner-1.4.5-sources.jar!/org/angmarch/views/NiceSpinner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="317" column="16" selection-start-line="317" selection-start-column="16" selection-end-line="317" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/login/LoginViewModel.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kyawhtut/pos/ui/user/UserAddDialog.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="44" column="27" lean-forward="true" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+        <state relative-caret-position="182">
+          <caret line="47" column="23" lean-forward="true" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
         </state>
       </provider>
     </entry>

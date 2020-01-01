@@ -7,32 +7,29 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.observe
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.kyawhtut.fontchooserlib.component.MMTextInputEditText
 import com.kyawhtut.lib.minidrawer.UIUtils
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseActivityViewModel
-import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.category.CategoryFragment
-import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.home.HomeViewModel
 import com.kyawhtut.pos.ui.home.MainFragment
-import com.kyawhtut.pos.ui.product.ProductAddDialog
+import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.sale.SaleFragment
 import com.kyawhtut.pos.ui.table.TableFragment
 import com.kyawhtut.pos.ui.table.TableType
 import com.kyawhtut.pos.ui.ticket.TicketFragment
-import com.kyawhtut.pos.utils.close
-import com.kyawhtut.pos.utils.hide
-import com.kyawhtut.pos.utils.isOpen
-import com.kyawhtut.pos.utils.open
+import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
+import kotlinx.android.synthetic.main.dialog_code_add.view.*
 import moe.feng.common.view.breadcrumbs.DefaultBreadcrumbsCallback
 import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
     R.layout.activity_home,
-    R.menu.phone_menu_main,
+    R.menu.menu_main,
     toolbar = R.id.toolbar,
     isBackActivity = false
 ) {
@@ -52,10 +49,13 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
                 add(R.id.content_home, MainFragment.createInstance(viewModel.isLogin()))
             }
 
+        scanResult = {
+            ticketFragment.addProduct(it)
+        }
+
         mini_drawer.setMenuWidth(UIUtils.convertDpToPixel(260f, this))
 
         viewModel.getLoginState().observe(this) {
-            // fixme: need to change drawer disable
             supportFragmentManager.commit {
                 if (!it)
                     replace(R.id.content_home, LoginFragment())
@@ -67,7 +67,6 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
         }
 
         viewModel.isCartDataHas.observe(this) {
-            badgeCount = it
             if (viewModel.getIndex(
                     this,
                     "Sale"
@@ -143,6 +142,11 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
         mini_drawer.onMenuItemClick = { type, pos ->
             changeFragmentByTitle(pos)
         }
+
+        iv_menu.setOnClickListener {
+            if (mini_drawer.isDrawerOpen) mini_drawer.closeDrawer()
+            else mini_drawer.openDrawer()
+        }
     }
 
     private fun changeFragmentByTitle(pos: Int) {
@@ -152,18 +156,23 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
             hide()
         }
         when (mini_drawer.getTitle(pos)) {
-            "Home" -> openScreen(MainFragment.createInstance(viewModel.isLogin()), pos)
+            "Home" -> openScreen(MainFragment.createInstance(viewModel.isLogin()), pos).run {
+                hideAllMenuItem()
+            }
             "Sale" -> ticketFragmentBottomSheet.apply {
                 peekHeight = UIUtils.convertDpToPixel(56f, this@PhoneHomeActivity).toInt()
                 isHideable = false
             }.run {
+                showAllMenuItem()
                 openScreen(CategoryFragment().apply {
                     addProduct = {
                         ticketFragment.addProduct(it)
                     }
                 }, pos)
             }
-            "Logout" -> viewModel.logout()
+            "Logout" -> viewModel.logout().run {
+                hideAllMenuItem()
+            }
             else -> openScreen(
                 TableFragment.createInstance(
                     when (mini_drawer.getTitle(pos)) {
@@ -174,7 +183,10 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
                         else -> TableType.DEFAULT
                     }
                 ), pos
-            )
+            ).run {
+                showAllMenuItem()
+                menuCamera?.isVisible = false
+            }
         }
     }
 
@@ -228,24 +240,30 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
             }
             R.id.action_add -> {
                 when (currentFragment) {
-                    is SaleFragment -> {
-                        if (breadcrumbs_view.items.size > 1) ProductAddDialog.show(
-                            supportFragmentManager
-                        )
-                        else CategoryAddDialog.show(supportFragmentManager)
-                    }
-                    is CategoryFragment -> {
-                        if (breadcrumbs_view.items.size > 1) ProductAddDialog.show(
-                            supportFragmentManager
-                        )
-                        else CategoryAddDialog.show(supportFragmentManager)
-                    }
                     is TableFragment -> (currentFragment as TableFragment).addNewData()
+                    else -> {
+                        var edtCode: MMTextInputEditText? = null
+                        showDialog(
+                            getInflateView(R.layout.dialog_code_add),
+                            bindView = {
+                                edtCode = this.ed_product_code
+                            },
+                            onClickPositive = {
+                                text = "Ok"
+                                onClick = {
+                                    ticketFragment.addProduct(edtCode?.mText ?: "")
+                                }
+                            },
+                            onClickNegative = {
+                                text = "Cancel"
+                                onClick = {
+                                    it.dismiss()
+                                }
+                            })
+                    }
                 }
             }
-            R.id.action_cart -> {
-                ticketFragmentBottomSheet.open()
-            }
+            R.id.action_camera -> openScanner()
         }
     }
 

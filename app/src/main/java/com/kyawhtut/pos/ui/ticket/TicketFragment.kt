@@ -8,8 +8,11 @@ import com.kyawhtut.lib.rv.*
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseFragmentViewModel
 import com.kyawhtut.pos.data.db.entity.CartWithHeader
+import com.kyawhtut.pos.data.db.entity.customer
 import com.kyawhtut.pos.data.vo.*
 import com.kyawhtut.pos.utils.*
+import kotlinx.android.synthetic.main.dialog_customer_choose.view.*
+import kotlinx.android.synthetic.main.dialog_product_code_not_found.view.*
 import kotlinx.android.synthetic.main.fragment_ticket.*
 import kotlinx.android.synthetic.main.item_ticket_header_layout.view.*
 import kotlinx.android.synthetic.main.item_ticket_item_layout.view.*
@@ -19,7 +22,10 @@ import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_product_na
 import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_product_qty
 import kotlinx.android.synthetic.main.item_ticket_total_layout.view.*
 import kotlinx.android.synthetic.main.item_voucher.view.*
+import org.angmarch.views.NiceSpinner
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
+import java.util.*
 
 class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_ticket) {
 
@@ -44,9 +50,16 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             home()
         }
 
+        btn_create_new_voucher.setOnClickListener {
+            showCustomerSelectDialog()
+        }
+
+        fab_print.setOnClickListener {
+            viewModel.insertOrder()
+        }
+
         rv_voucher.bind(
-            emptyList(),
-            CartWithHeader.diffUtil,
+            emptyList<CartWithHeader>(),
             R.layout.item_voucher
         ) { item, pos ->
             this.btn_delete.setOnClickListener {
@@ -94,22 +107,41 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 { item, idx -> item.type is PrintType.TOTAL }
             ) { item, pos ->
                 val data = item.data as PrintTotalVO
+                Timber.d("Update -> %s", data)
                 this.tv_total_product_qty.text = "${data.totalQty}"
                 this.tv_total_price.text = data.getTotalPrice("Ks")
+                this.tv_tax_amount_title.mText = getString(R.string.lbl_tax_amount, data.tax)
                 this.tv_total_tax_amount.text = data.getTaxAmount("Ks")
                 this.tv_total_net_amount.text = data.getTotalNetAmount("Ks")
                 this.tv_total_change_amount.text = data.getTotalChangeAmount("Ks")
                 this.tv_total_paid_amount.text = data.getTotalPaidAmount("Ks")
+                this.tv_total_discount_amount.text = data.getDiscountAmount("Ks")
+                this.edt_discount_amount.setText(data.discountAmount.toString())
                 this.edt_paid_amount.setText(data.paidAmount.toString())
                 this.tv_total_paid_amount.setOnClickListener {
                     it.invisible()
                     this.edt_paid_amount.visible()
+                }
+                this.tv_total_discount_amount.setOnClickListener {
+                    it.invisible()
+                    this.edt_discount_amount.visible()
                 }
                 this.edt_paid_amount.setOnKeyListener { view, keyCode, event ->
                     if (this.edt_paid_amount.text.toString().isNotEmpty() && keyCode == 66) {
                         this.edt_paid_amount.invisible()
                         this.tv_total_paid_amount.visible()
                         data.paidAmount = this.edt_paid_amount.text.toString().toLong()
+                        item.data = data
+                        rv_cart.update(pos, item)
+                        (view as EditText).hideKeyBoard()
+                    }
+                    false
+                }
+                this.edt_discount_amount.setOnKeyListener { view, keyCode, event ->
+                    if (this.edt_discount_amount.text.toString().isNotEmpty() && keyCode == 66) {
+                        this.edt_discount_amount.invisible()
+                        this.tv_total_discount_amount.visible()
+                        data.discountAmount = this.edt_discount_amount.text.toString().toLong()
                         item.data = data
                         rv_cart.update(pos, item)
                         (view as EditText).hideKeyBoard()
@@ -168,14 +200,63 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
         fab_print.setImageResource(R.drawable.ic_add_white)
     }
 
+    fun addProduct(productCode: String) {
+        with(viewModel.getProductIdByProductCode(productCode)) {
+            Timber.d("Product code %s %s", productCode, this)
+            if (this > 0) addProduct(this)
+            else showNotFoundProductCode(productCode)
+        }
+    }
+
+    private fun showNotFoundProductCode(productCode: String) {
+        context?.showDialog(
+            context.getInflateView(R.layout.dialog_product_code_not_found),
+            {
+                this.tv_message.mText = "ပစ္စည်း ကုဒ်နံပါတ် {$productCode} ကို ရှာဖွေလို့မတွေ့ပါ။"
+            },
+            false,
+            true
+        )
+    }
+
+    private fun showCustomerSelectDialog(productId: Int = -1) {
+        var customerSpinner: NiceSpinner? = null
+        val customerList = viewModel.getCustomerList()
+        context?.showDialog(
+            context.getInflateView(R.layout.dialog_customer_choose),
+            {
+                this.sp_customer.apply {
+                    customerSpinner = this
+                    customerList.map {
+                        it.customerName
+                    }.also {
+                        attachDataSource(LinkedList(it))
+                    }
+                }
+            },
+            onClickPositive = {
+                text = "OK"
+                onClick = {
+                    viewModel.customerEntity = customerList[customerSpinner?.selectedIndex ?: 0]
+                    if (productId != -1) addProduct(productId)
+                    it.dismiss()
+                }
+            }
+        )
+    }
+
     fun addProduct(productId: Int) {
         if (!viewModel.isAddedHeader) {
+            if (viewModel.customerEntity.id == -1) {
+                showCustomerSelectDialog(productId)
+                return
+            }
             viewModel.isAddedHeader = true
             viewModel.setProduct(0, printVO {
                 type = PrintType.HEADER
                 data = printHeader {
-                    customerName = "Kyaw Htut"
-                    customerPhone = "09973419006, 09786596541"
+                    customerName = viewModel.customerEntity.customerName
+                    customerPhone = viewModel.customerEntity.customerPhone
                     ticketID = viewModel.generateNewTicketID()
                     waiterID = viewModel.getCurrentUser()?.id ?: 0
                     waiterName = viewModel.getCurrentUser()?.displayName ?: ""
@@ -211,7 +292,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 type = PrintType.TOTAL
                 data = printTotal {
                     totalAmount = viewModel.getTotalAmount()
-                    tax = 5
+                    tax = viewModel.taxAmount
                     paidAmount = 0
                     totalQty = viewModel.getTotalQty()
                 }
@@ -249,9 +330,11 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
         val oldData = viewModel._cartList[pos]
         var taxAmount: Int
         var paidAmount: Long
+        var discountAmount: Long
         (oldData.data as PrintTotalVO).apply {
             taxAmount = tax
             paidAmount = this.paidAmount
+            discountAmount = this.discountAmount
         }
         viewModel._cartList.removeAt(pos)
         viewModel._cartList.add(viewModel._cartList.size - 1, printVO {
@@ -259,6 +342,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             data = printTotal {
                 tax = taxAmount
                 this.paidAmount = paidAmount
+                this.discountAmount = discountAmount
                 totalAmount = viewModel.getTotalAmount()
                 totalQty = viewModel.getTotalQty()
             }
@@ -279,6 +363,9 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
     }
 
     private fun clearData() {
+        viewModel.customerEntity = customer {
+            id = -1
+        }
         viewModel.clearCartList()
         rv_cart.clear()
     }

@@ -1,9 +1,6 @@
 package com.kyawhtut.pos.data.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import org.joda.time.DateTime
 import java.util.*
 
@@ -23,6 +20,8 @@ data class TicketEntity(
     val totalPrice: Long,
     @ColumnInfo(name = "pay_amount")
     val payAmount: Long,
+    @ColumnInfo(name = "discount_amount")
+    val discountAmount: Long,
     @ColumnInfo(name = "created_user_id")
     @ForeignKey(
         entity = UserEntity::class,
@@ -48,6 +47,7 @@ class TicketBuilder {
     var customerId: Int = 0
     var totalPrice: Long = 0
     var payAmount: Long = 0
+    var discountAmount: Long = 0L
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
     var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
@@ -58,11 +58,19 @@ class TicketBuilder {
         customerId,
         totalPrice,
         payAmount,
+        discountAmount,
         createdUserId,
         updatedUserId,
         createdDate,
         updatedDate
     )
 }
+
+data class TicketWithProductList(
+    @Embedded
+    val ticketEntity: TicketEntity,
+    @Relation(entity = SellEntity::class, parentColumn = "ticket_id", entityColumn = "ticket_id")
+    val list: List<SellEntity>
+)
 
 fun ticket(block: TicketBuilder.() -> Unit) = TicketBuilder().apply(block).build()

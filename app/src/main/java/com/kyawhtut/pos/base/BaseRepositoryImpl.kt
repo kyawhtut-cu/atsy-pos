@@ -12,9 +12,17 @@ abstract class BaseRepositoryImpl(
     protected val rootUser: UserEntity
 ) : BaseRepository {
 
-    override fun getLimitAmount(): Int {
-        return sh.get(Constants.KEY_LIMIT_AMOUNT, 5)
-    }
+    override var taxAmount: Int
+        get() = sh.getInt(Constants.KEY_TAX_AMOUNT, 5)
+        set(value) {
+            sh.put(Constants.KEY_TAX_AMOUNT, value)
+        }
+
+    override var limitAmount: Int
+        get() = sh.get(Constants.KEY_LIMIT_AMOUNT, 5)
+        set(value) {
+            sh.put(Constants.KEY_LIMIT_AMOUNT, value)
+        }
 
     override fun isLogin() = sh.get(Constants.KEY_LOGIN, false)
 

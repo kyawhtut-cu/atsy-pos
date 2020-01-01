@@ -16,6 +16,19 @@
         android:layout_height="wrap_content">
 
         <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/lbl_category_new"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_heading_1x"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
             android:id="@+id/tv_category_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +97,7 @@
             android:hint="@string/lbl_hint_category_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title">
 
             <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
                 android:id="@+id/ed_category_name"

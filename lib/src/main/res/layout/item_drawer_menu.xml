@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_drawer_menu_default" />
 
-    <TextView
+    <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/iv_status"
         android:layout_width="15dp"
         android:layout_height="15dp"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_function_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_function_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/app_name" />
 
-    <TextView
+    <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_function_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_function_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_function_title" />
 
-    <TextView
+    <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/iv_status_right"
         android:layout_width="15dp"
         android:layout_height="15dp"

@@ -39,7 +39,7 @@
     <string name="dummy_store_address" translatable="false">30th Leikpayakan, Bago</string>
     <string name="dummy_store_phone" translatable="false">09973419006, 09786596541</string>
     <string name="lbl_total_amount">Total</string>
-    <string name="lbl_tax_amount">Tax Amount (%s)</string>
+    <string name="lbl_tax_amount">Tax Amount (%d%%)</string>
     <string name="lbl_net_amount">Net Amount</string>
     <string name="lbl_paid_amount">Paid By Cash</string>
     <string name="lbl_change_amount">Change</string>
@@ -51,4 +51,18 @@
     <string name="label_setting_title">Setting</string>
     <string name="lbl_search">Search</string>
     <string name="lbl_btn_new_voucher">Create new voucher.</string>
+    <string name="lbl_category_new">New Category</string>
+    <string name="lbl_category_edit">Edit Category</string>
+    <string name="lbl_customer_new">New Customer</string>
+    <string name="lbl_customer_edit">Edit Customer</string>
+    <string name="lbl_product_new">New Product</string>
+    <string name="lbl_hint_product_code">Product Code</string>
+    <string name="lbl_product_edit">Edit Product</string>
+    <string name="lbl_user_new">New User</string>
+    <string name="lbl_user_edit">Edit User</string>
+    <string name="lbl_scanner">Scan code</string>
+    <string name="lbl_choose_customer">Select Customer</string>
+    <string name="lbl_discount_amount">Discount</string>
+    <string name="lbl_hint_discount_amount">Discount Amount</string>
+    <string name="lbl_hint_paid_amount">Paid Amount</string>
 </resources>

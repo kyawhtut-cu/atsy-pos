@@ -120,7 +120,7 @@ data class CartWithHeader(
                 oldItem: CartWithHeader,
                 newItem: CartWithHeader
             ): Boolean {
-                return oldItem.cartHeader.id == newItem.cartHeader.id
+                return oldItem.cartHeader == newItem.cartHeader
             }
 
             override fun areContentsTheSame(

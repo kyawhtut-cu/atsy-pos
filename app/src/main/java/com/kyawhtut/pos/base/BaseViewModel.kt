@@ -8,6 +8,16 @@ abstract class BaseViewModel(private val repo: BaseRepository) :
 
     fun isLogin() = repo.isLogin()
 
+    var taxAmount = repo.taxAmount
+        set(value) {
+            repo.taxAmount = value
+        }
+
+    var limitAmount = repo.limitAmount
+        set(value) {
+            repo.limitAmount = value
+        }
+
     fun logout() {
         repo.logout()
     }

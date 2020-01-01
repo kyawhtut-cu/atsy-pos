@@ -49,6 +49,15 @@ class App : Application() {
     }
 
     private fun initializeDb() {
-
+        if (BuildConfig.DEBUG) {
+            try {
+                val debugDB = Class.forName("com.amitshekhar.DebugDB")
+                val getAddressLog = debugDB.getMethod("getAddressLog")
+                val value = getAddressLog.invoke(null)
+                Timber.d("Open Db -> %s", value as String)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 }

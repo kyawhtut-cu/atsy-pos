@@ -2,12 +2,18 @@ package com.kyawhtut.pos.ui.ticket
 
 import androidx.lifecycle.MutableLiveData
 import com.kyawhtut.pos.base.BaseViewModel
+import com.kyawhtut.pos.data.db.entity.customer
+import com.kyawhtut.pos.data.vo.PrintTotalVO
 import com.kyawhtut.pos.data.vo.PrintType
 import com.kyawhtut.pos.data.vo.PrintVO
 import com.kyawhtut.pos.data.vo.ProductSellVO
 import org.joda.time.DateTime
 
 class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) {
+
+    var customerEntity = customer {
+        id = -1
+    }
 
     var isAddedHeader = false
 
@@ -51,7 +57,11 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
         productCount = 1
     }
 
+    fun getCustomerList() = repo.getCustomerList()
+
     fun getProductById(pId: Int) = repo.getProductById(productCount++, pId)
+
+    fun getProductIdByProductCode(productCode: String) = repo.getProductIdByProductCode(productCode)
 
     fun getTotalAmount() = _cartList.filter {
         it.type is PrintType.ITEMS
@@ -67,20 +77,28 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
         (it.data as ProductSellVO).qty
     }
 
+    fun getValue(type: Int) = _cartList.filter {
+        it.type is PrintType.TOTAL
+    }.run {
+        return@run if (isEmpty()) 0 else if (type == 0) (first().data as PrintTotalVO).discountAmount else (first().data as PrintTotalVO).paidAmount
+    }
+
     fun insertOrder() {
         repo.insertTicket {
             ticketId = ticketID
-            customerId = 1
+            customerId = customerEntity.id
             totalPrice = getTotalAmount()
-            payAmount = 100
+            discountAmount = getValue(0)
+            payAmount = getValue(1)
             createdUserId = getCurrentUser()?.id ?: 0
             updatedUserId = getCurrentUser()?.id ?: 0
         }
         repo.insertSell(PrintVO.printVo2SellList(_cartList, ticketID))
+        deleteVoucherByTicketID(ticketID)
     }
 
     fun saveCacheCart() {
-        repo.saveCacheCart(ticketID, _cartList, 5)
+        repo.saveCacheCart(ticketID, _cartList, repo.taxAmount)
     }
 
     fun deleteVoucherByTicketID(ticketId: String) {

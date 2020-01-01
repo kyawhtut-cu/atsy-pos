@@ -80,8 +80,8 @@ class MiniDrawer : FrameLayout {
                 this.gp_full_view.visibility = View.VISIBLE
                 this.iv_app_logo_two.setImageResource(data.icon)
                 this.shadow_bottom.visibility = if (data.showShadow) View.VISIBLE else View.GONE
-                this.tv_header_title.text = data.title
-                this.tv_header_description.text = data.description
+                this.tv_header_title.mText = data.title
+                this.tv_header_description.mText = data.description
             }
             .map(
                 R.layout.item_drawer_menu,
@@ -94,12 +94,12 @@ class MiniDrawer : FrameLayout {
 
                 this.iv_status_right.apply {
                     visibility = if (data.showBadge) View.VISIBLE else View.GONE
-                    text = if (data.badgeCount == 0) "" else "${data.badgeCount}"
+                    mText = if (data.badgeCount == 0) "" else "${data.badgeCount}"
                 }
 
                 this.iv_function_icon.setImageResource(data.icon)
-                this.tv_function_title.text = data.title
-                this.tv_function_description.text = data.description
+                this.tv_function_title.mText = data.title
+                this.tv_function_description.mText = data.description
                 this.setOnClickListener {
                     if (lastSelectedIndex != pos)
                         onMenuItemClick(item.type, pos)
@@ -143,11 +143,11 @@ class MiniDrawer : FrameLayout {
 
                 this.iv_status.apply {
                     visibility = if (data.showBadge) View.VISIBLE else View.GONE
-                    text = if (data.badgeCount == 0) "" else "${data.badgeCount}"
+                    mText = if (data.badgeCount == 0) "" else "${data.badgeCount}"
                 }
                 this.iv_function_icon.setImageResource(data.icon)
-                this.tv_function_title.text = data.title
-                this.tv_function_description.text = data.description
+                this.tv_function_title.mText = data.title
+                this.tv_function_description.mText = data.description
                 this.setOnClickListener {
                     with(drawerMenuList.indexOf(item)) {
                         if (lastSelectedIndex != this)

@@ -1,18 +1,20 @@
 package com.kyawhtut.pos.ui.product
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
+import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.material.card.MaterialCardView
 import com.kyawhtut.fontchooserlib.FontChoose
 import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseDialogFragment
 import com.kyawhtut.pos.data.db.entity.CategoryEntity
-import com.kyawhtut.pos.utils.getColorValue
-import com.kyawhtut.pos.utils.gone
-import com.kyawhtut.pos.utils.putArg
-import com.kyawhtut.pos.utils.visible
+import com.kyawhtut.pos.ui.scanner.ScannerActivity
+import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.dialog_product_add.*
 import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 import me.jfenn.colorpickerdialog.views.picker.ImagePickerView
@@ -23,6 +25,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
 
     companion object {
         private const val extraProductId = "extra.productId"
+        private const val extraScannerRequestCode = 0x01
 
         fun show(fm: FragmentManager, productId: Int = 0) {
             ProductAddDialog().putArg(
@@ -40,6 +43,10 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         viewModel.productId = bundle.getInt(extraProductId)
 
         viewModel.getCategoryList().also {
+            if (it.isEmpty()) dismiss().run {
+                context.longToast("Please add new category before add new product.")
+                return
+            }
             categoryList.clear()
             categoryList.addAll(it)
             viewModel.cId = it.first().id
@@ -60,13 +67,51 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         sw_notification.isChecked = viewModel.remainAmountShow
 
         sw_notification.text =
-            String.format(sw_notification.text.toString(), viewModel.getLimitAmount())
+            String.format(sw_notification.text.toString(), viewModel.limitAmount)
 
-        if (viewModel.productId != 0)
+        if (viewModel.productId != 0) {
+            tv_dialog_title.mText = getString(R.string.lbl_product_edit)
             sp_category.selectedIndex = categoryList.indexOfFirst { it.id == viewModel.cId }
+        }
 
         cb_active_status.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.status = isChecked
+        }
+
+        edt_product_code.setEndIconOnClickListener {
+            askPermission(Manifest.permission.CAMERA) {
+                startActivityForResult<ScannerActivity>(extraScannerRequestCode)
+            }.onDeclined {
+                if (it.hasDenied()) {
+                    context.showDialog(
+                        message = "Please accept camera permission",
+                        isCancelable = false,
+                        onClickPositive = {
+                            text = "Ok"
+                            onClick = { _ ->
+                                it.askAgain()
+                            }
+                        }
+                    )
+                }
+                if (it.hasForeverDenied()) {
+                    context.showDialog(
+                        message = "Please open camera permission in application setting.",
+                        onClickPositive = {
+                            text = "Ok"
+                            onClick = {
+                                context.openPermission()
+                            }
+                        },
+                        onClickNegative = {
+                            text = "Cancel"
+                            onClick = {
+                                it.dismiss()
+                            }
+                        }
+                    )
+                }
+            }
         }
 
         sw_notification.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -87,6 +132,10 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
                 viewModel.retailPrice = ed_product_retail_price.text.toString().toLong()
                 edt_product_retail_price.error = ""
             }
+        }
+
+        ed_product_code.addTextChangedListener {
+            viewModel.code = ed_product_code.mText
         }
 
         ed_product_price.addTextChangedListener {
@@ -163,5 +212,12 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
                 view.setCardBackgroundColor(color)
             }
             .show(childFragmentManager, "colorPicker")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == extraScannerRequestCode && resultCode == RESULT_OK) {
+            ed_product_code.setText(data?.getStringExtra(ScannerActivity.extraProductCode) ?: "")
+        }
     }
 }

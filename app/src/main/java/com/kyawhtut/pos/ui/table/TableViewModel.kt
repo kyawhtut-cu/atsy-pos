@@ -15,6 +15,8 @@ class TableViewModel(private val repo: TableRepository) : BaseViewModel(repo) {
     val dataList =
         MediatorLiveData<Triple<List<TableColumnHeaderVO>, List<TableRowHeaderVO>, List<List<TableCellVO>>>>()
 
+    fun getTicketList() = repo.getTicketList()
+
     private fun removeSource() {
         dataList.removeSource(_categoryTable)
         dataList.removeSource(_userTable)

@@ -8,6 +8,14 @@
         android:orderInCategory="100"
         android:title="@string/lbl_btn_add"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@drawable/ic_camera_white"
+        android:orderInCategory="100"
+        android:title="@string/lbl_scanner"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search_white"

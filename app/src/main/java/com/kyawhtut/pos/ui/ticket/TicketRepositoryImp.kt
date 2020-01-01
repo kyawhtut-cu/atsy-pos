@@ -4,10 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.room.Transaction
 import com.kyawhtut.pos.base.BaseRepositoryImpl
-import com.kyawhtut.pos.data.db.dao.CartDao
-import com.kyawhtut.pos.data.db.dao.ProductDao
-import com.kyawhtut.pos.data.db.dao.SellDao
-import com.kyawhtut.pos.data.db.dao.TicketDao
+import com.kyawhtut.pos.data.db.dao.*
 import com.kyawhtut.pos.data.db.entity.*
 import com.kyawhtut.pos.data.vo.*
 
@@ -17,8 +14,22 @@ class TicketRepositoryImp(
     private val sellDao: SellDao,
     private val ticketDao: TicketDao,
     private val productDao: ProductDao,
-    private val cartDao: CartDao
+    private val cartDao: CartDao,
+    private val customerDao: CustomerDao
 ) : BaseRepositoryImpl(sh, rootUser), TicketRepository {
+
+    override fun getCustomerList(): List<CustomerEntity> {
+        customerDao.get().toMutableList().run {
+            add(
+                customer {
+                    id = 0
+                    customerName = "Other"
+                    customerAddress = "-"
+                }
+            )
+            return this
+        }
+    }
 
     override fun getCartList(ticketId: String): List<PrintVO> = cartDao.get(ticketId).run {
         this?.toPrintVOList() ?: printVOList { }
@@ -35,6 +46,9 @@ class TicketRepositoryImp(
             }
         }
     }
+
+    override fun getProductIdByProductCode(productCode: String): Int =
+        productDao.getProductIdByProductCode(productCode)
 
     override fun insertTicket(block: TicketBuilder.() -> Unit) {
         ticketDao.insert(TicketBuilder().apply(block).build())

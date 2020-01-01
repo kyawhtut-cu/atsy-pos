@@ -30,7 +30,7 @@
     <string name="lbl_hint_phone_number">ဖုန်းနံပါတ်</string>
     <string name="lbl_hint_user_address">လိပ်စာ</string>
     <string name="lbl_total_amount">စုစုပေါင်း</string>
-    <string name="lbl_tax_amount">အခွန်တန်ဖိုး (%s)</string>
+    <string name="lbl_tax_amount">အခွန်တန်ဖိုး (%d%%)</string>
     <string name="lbl_net_amount">အခွန် + စုစုပေါင်း</string>
     <string name="lbl_paid_amount">ပေးငွေ</string>
     <string name="lbl_change_amount">ပြန်အမ်းငွေ</string>
@@ -38,7 +38,22 @@
     <string name="pref_header_about">အကြောင်း</string>
     <string name="prefs_version_name">ဗားရှင်း</string>
     <string name="prefs_developed_by">Develop by</string>
+    <string name="lbl_search">ရှာဖွေရန်</string>
     <string name="prefs_developed_by_me">ကျော်ထွဋ်</string>
     <string name="label_setting_title">ပြင်ဆင်ရန်</string>
     <string name="lbl_btn_new_voucher">ဘောင်ချာအသစ်ဖွင့်မည်။</string>
+    <string name="lbl_category_new">အမျိုးအစားအသစ်ထည့်ရန်</string>
+    <string name="lbl_category_edit">အမျိုးအစားပြင်ရန်</string>
+    <string name="lbl_customer_new">New Customer</string>
+    <string name="lbl_customer_edit">Edit Customer</string>
+    <string name="lbl_product_new">ပစ္စည်းအသစ်ထည့်ရန်</string>
+    <string name="lbl_hint_product_code">ပစ္စည်း ကုဒ်နံပါတ်</string>
+    <string name="lbl_product_edit">Edit Product</string>
+    <string name="lbl_user_new">ဝန်ထမ်းအသစ်ထည့်ရန်</string>
+    <string name="lbl_user_edit">Edit User</string>
+    <string name="lbl_scanner">ကုဒ်နံပါတ် ဖတ်ရန်</string>
+    <string name="lbl_choose_customer">Customer ရွေးချယ်ပါ</string>
+    <string name="lbl_discount_amount">လျှော့စျေး</string>
+    <string name="lbl_hint_discount_amount">@string/lbl_discount_amount</string>
+    <string name="lbl_hint_paid_amount">ပေးငွေ</string>
 </resources>

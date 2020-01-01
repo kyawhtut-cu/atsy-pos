@@ -45,3 +45,4 @@ fun BottomSheetBehavior<*>.close() {
 fun BottomSheetBehavior<*>.hide() {
     this.state = BottomSheetBehavior.STATE_HIDDEN
 }
+

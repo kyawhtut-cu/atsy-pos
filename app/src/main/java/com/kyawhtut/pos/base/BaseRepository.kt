@@ -5,7 +5,9 @@ import com.kyawhtut.pos.ui.table.TableType
 
 interface BaseRepository {
 
-    fun getLimitAmount(): Int
+    var taxAmount: Int
+
+    var limitAmount: Int
 
     fun deleteItemById(id: Int) {}
 
