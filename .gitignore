@@ -5,7 +5,7 @@
 /build
 .externalNativeBuild
 /release
-/local.properties
+local.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
