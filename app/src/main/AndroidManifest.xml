@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.hardware.usb.UsbAccessory" />
 
     <application
         android:name=".App"
@@ -16,13 +20,14 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateAlwaysVisible"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="m">
+        tools:targetApi="q">
         <activity
             android:name=".ui.welcome.WelcomeActivity"
             android:label="@string/app_name"
@@ -37,7 +42,6 @@
 
         <activity
             android:name=".ui.home.HomeActivity"
-            android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -62,8 +66,19 @@
         <activity
             android:name=".ui.setting.SettingActivity"
             android:label="@string/label_setting_title"
-            android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".service.CoreService"
+            android:exported="false" />
+
+        <service android:name="net.posprinter.service.PosprinterService" />
+
+        <receiver android:name=".utils.notification.StopNotificationIntent">
+            <intent-filter>
+                <action android:name="com.kyawhtut.stop_notification" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

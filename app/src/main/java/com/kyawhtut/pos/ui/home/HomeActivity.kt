@@ -13,6 +13,7 @@ import com.kyawhtut.pos.phone.home.PhoneHomeActivity
 import com.kyawhtut.pos.ui.category.CategoryFragment
 import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.sale.SaleFragment
+import com.kyawhtut.pos.ui.setting.SettingActivity
 import com.kyawhtut.pos.ui.table.TableFragment
 import com.kyawhtut.pos.ui.table.TableType
 import com.kyawhtut.pos.utils.getInflateView
@@ -154,6 +155,7 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
             "Logout" -> viewModel.logout().run {
                 hideAllMenuItem()
             }
+            "Setting" -> startActivity<SettingActivity>()
             else -> openScreen(
                 TableFragment.createInstance(
                     when (mini_drawer.getTitle(pos)) {
@@ -183,7 +185,7 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
         )
     }
 
-    fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
+    private fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
         setBreadCrumbsTitle(pos, title)
         supportFragmentManager.commit {
             replace(R.id.content_home, fragment)

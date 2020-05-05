@@ -34,7 +34,7 @@ class MiniDrawer : FrameLayout {
         }
 
     var onMenuItemClick: (DrawerItemType, Int) -> Unit = { type, pos -> }
-    private var lastSelectedIndex = 0
+    var lastSelectedIndex = 0
 
     constructor(context: Context) : this(context, null)
 
@@ -65,6 +65,8 @@ class MiniDrawer : FrameLayout {
             LayoutInflater.from(context).inflate(R.layout.layout_minidrawer, this, false)
         this.addView(slidingLayout)
         content_panel.addView(contentView)
+
+        content_panel.setOnClickListener { }
 
         frame_first.layoutParams.width = menuWidth.toInt()
         frame_second.layoutParams.width = miniWidth.toInt()

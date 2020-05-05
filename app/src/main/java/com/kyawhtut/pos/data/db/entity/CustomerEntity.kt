@@ -5,6 +5,7 @@ import com.kyawhtut.pos.base.BaseColumn
 import com.kyawhtut.pos.data.vo.TableCellVO
 import com.kyawhtut.pos.data.vo.rowHeader
 import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import org.joda.time.DateTime
 import java.util.*
 
@@ -42,8 +43,7 @@ class CustomerBuilder {
     var customerAvailable: Int = 0
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
     fun build() = CustomerEntity(
         id,
@@ -55,7 +55,7 @@ class CustomerBuilder {
         createdUserId,
         updatedUserId,
         createdDate,
-        updatedDate
+        getCurrentTimeString()
     )
 }
 

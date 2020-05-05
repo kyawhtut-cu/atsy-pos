@@ -49,7 +49,6 @@ class CategoryAddDialogViewModel(private val repo: CategoryAddDialogRepository) 
             updatedUserId = repo.getCurrentUser()?.id ?: userId
             categoryAvailable = this@CategoryAddDialogViewModel.isActive.toInt()
             createdDate = this@CategoryAddDialogViewModel.createdDate
-            updatedDate = getCurrentTimeString()
         }
     }
 
@@ -62,7 +61,6 @@ class CategoryAddDialogViewModel(private val repo: CategoryAddDialogRepository) 
             updatedUserId = this@CategoryAddDialogViewModel.userId
             categoryAvailable = this@CategoryAddDialogViewModel.isActive.toInt()
             createdDate = getCurrentTimeString()
-            updatedDate = getCurrentTimeString()
         }
     }
 }

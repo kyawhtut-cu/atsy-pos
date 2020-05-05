@@ -8,7 +8,7 @@
     <string name="lbl_btn_login">အကောင့်ဝင်မည်</string>
     <string name="lbl_hint_user_name">အကောင့်နာမည်</string>
     <string name="lbl_hint_user_password">ပတ်စဝေါ့</string>
-    <string name="lbl_hint_user_display_name">သင့်နာမည်</string>
+    <string name="lbl_hint_user_display_name">နာမည်</string>
     <string name="lbl_btn_create">အကောင့်ဖွင့်မည်</string>
     <string name="lbl_hint_category_name">အမျိုးစား နာမည်</string>
     <string name="lbl_btn_ok">Ok</string>
@@ -56,4 +56,20 @@
     <string name="lbl_discount_amount">လျှော့စျေး</string>
     <string name="lbl_hint_discount_amount">@string/lbl_discount_amount</string>
     <string name="lbl_hint_paid_amount">ပေးငွေ</string>
+    <string name="lbl_hint_product_description">ပစ္စည်းအကြောင်းအရာ</string>
+    <string name="lbl_hint_percentage_title">Tax Percentage</string>
+    <string name="lbl_hint_percentage">Enter Tax Percentage(5)</string>
+    <string name="lbl_percentage_change_title">Tax Percentage</string>
+    <string name="lbl_hint_limitation_title">Limitation Alert</string>
+    <string name="lbl_hint_limitation">Enter Limitation Alert(5)</string>
+    <string name="lbl_limitation_change_title">Alert Limitation Amount</string>
+    <string name="lbl_paired_devices">ချိတ်ဆက်ပြီးသော ပစ္စည်းများ</string>
+    <string name="lbl_other_devices">ရနိုင်သော ပစ္စည်းများ</string>
+    <string name="lbl_scan_device">ရှာဖွေမည်</string>
+
+    <!--Empty data-->
+    <string name="lbl_empty_items">There is no Items.</string>
+    <string name="lbl_empty_products">There is no Products.</string>
+    <string name="lbl_empty_users">There is no Users.</string>
+    <string name="lbl_empty_customers">There is no Customers.</string>
 </resources>

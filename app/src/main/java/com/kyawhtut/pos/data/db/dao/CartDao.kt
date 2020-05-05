@@ -11,6 +11,12 @@ import io.reactivex.Flowable
 @Dao
 abstract class CartDao : BaseDao<CartEntity> {
 
+    @Query("select * from cart_header_table")
+    abstract fun getCartHeader(): List<CartHeaderEntity>
+
+    @Query("select * from cart_table")
+    abstract fun getCartList(): List<CartEntity>
+
     @Query("select count(*) from cart_header_table")
     abstract fun getCartCount(): Flowable<Int>
 
@@ -29,7 +35,7 @@ abstract class CartDao : BaseDao<CartEntity> {
     abstract fun get(): LiveData<List<CartWithHeader>>
 
     @Query("select cart_header_id from cart_header_table where ticket_id = :ticketID")
-    abstract fun getCartHeaderIDByTikcetID(ticketID: String): Int
+    abstract fun getCartHeaderIDByTicketID(ticketID: String): Int
 
     @Query("delete from cart_table")
     abstract fun deleteCartByHeaderId()

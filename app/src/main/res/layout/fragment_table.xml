@@ -57,5 +57,15 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_current_page"
             app:rippleColor="@color/colorAccent"
             app:strokeColor="@color/colorAccent" />
+
+        <com.kyawhtut.pos.ui.view.ComponentEmptyView
+            android:id="@+id/empty_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

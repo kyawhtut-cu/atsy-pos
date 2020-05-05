@@ -9,6 +9,7 @@ import com.kyawhtut.pos.data.db.entity.ProductEntity
 import com.kyawhtut.pos.data.db.entity.ProductTable
 import com.kyawhtut.pos.data.db.entity.SellEntity
 import io.reactivex.Flowable
+import timber.log.Timber
 
 @Dao
 abstract class ProductDao : BaseDao<ProductEntity> {
@@ -43,7 +44,7 @@ abstract class ProductDao : BaseDao<ProductEntity> {
 
     fun updateQuality(list: List<SellEntity>) {
         list.forEach {
-            updateQuality(it.productId, it.productQuality)
+            updateQuality(it.productQuality, it.productId)
         }
     }
 

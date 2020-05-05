@@ -6,6 +6,7 @@ import androidx.core.view.isGone
 import androidx.lifecycle.observe
 import com.kyawhtut.lib.rv.*
 import com.kyawhtut.pos.R
+import com.kyawhtut.pos.base.BaseActivity
 import com.kyawhtut.pos.base.BaseFragmentViewModel
 import com.kyawhtut.pos.data.db.entity.CartWithHeader
 import com.kyawhtut.pos.data.db.entity.customer
@@ -14,6 +15,7 @@ import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.dialog_customer_choose.view.*
 import kotlinx.android.synthetic.main.dialog_product_code_not_found.view.*
 import kotlinx.android.synthetic.main.fragment_ticket.*
+import kotlinx.android.synthetic.main.item_ticket_footer_layout.view.*
 import kotlinx.android.synthetic.main.item_ticket_header_layout.view.*
 import kotlinx.android.synthetic.main.item_ticket_item_layout.view.*
 import kotlinx.android.synthetic.main.item_ticket_item_layout.view.tv_price
@@ -31,6 +33,12 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
 
     override val viewModel: TicketViewModel by viewModel()
     private var isClickHome: Boolean = false
+    /*private val printer: PrintUtil by lazy {
+        PrintUtil.Builder().build(
+            fragment = this,
+            fail = {}
+        )
+    }*/
 
     override fun onViewCreated(bundle: Bundle) {
         viewModel.getDraftCartList().observe(this) {
@@ -42,10 +50,10 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             rv_cart.update(it)
         }
 
-        setHomeState(true, true)
+        setHomeState(isHome = true, isSelected = true)
         second.invisible()
         home.setOnClickListener {
-            setHomeState(true, true)
+            setHomeState(isHome = true, isSelected = true)
             second.invisible()
             home()
         }
@@ -55,7 +63,25 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
         }
 
         fab_print.setOnClickListener {
-            viewModel.insertOrder()
+            if (!viewModel.isAddedHeader) {
+                if (viewModel.customerEntity.id == -1) {
+                    showCustomerSelectDialog()
+                    return@setOnClickListener
+                }
+            }
+            rv_cart.getBitmap { _, _ ->
+                (requireActivity() as BaseActivity).printNow(
+                    this,
+                    success = {
+                        this.saveToFile(requireContext(), "${viewModel.ticketID}.png")
+                        viewModel.insertOrder()
+                        home.performClick()
+                    },
+                    fail = {
+                        longToast("Print Failed.")
+                    }
+                )
+            }
         }
 
         rv_voucher.bind(
@@ -83,7 +109,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             if (it == 0 && viewModel._cartList.size == 0) gp_empty.visible() else gp_empty.gone()
             changeFabStatus()
         }
-        rv_voucher.addItemDecoration(DividerItemDecoration(context!!, ignoreLastItem = true))
+        rv_voucher.addItemDecoration(DividerItemDecoration(requireContext(), ignoreLastItem = true))
 
         rv_cart.bind(emptyList<PrintVO>())
             .map(
@@ -91,16 +117,18 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 { item, idx -> item.type is PrintType.HEADER }
             ) { item, pos ->
                 val data = item.data as PrintHeader
+                this.tv_store_header.text = viewModel.printHeader
                 this.tv_customer_name.mText = data.customerName
                 this.tv_customer_phone.mText = data.customerPhone
                 this.tv_ticket_waiter.mText = String.format("%s/%s", data.waiterID, data.waiterName)
                 this.tv_ticket_number.mText = data.ticketID
-                this.tv_ticket_date.mText = getCurrentTimeString("dd-MM-yyyy h:m a")
+                this.tv_ticket_date.mText = getCurrentTimeString("dd-MM-yyyy hh:mm a")
             }
             .map(
                 R.layout.item_ticket_footer_layout,
                 { item, idx -> item.type is PrintType.FOOTER }
             ) { item, pos ->
+                this.tv_footer_message.text = viewModel.printFooter
             }
             .map(
                 R.layout.item_ticket_total_layout,
@@ -110,10 +138,12 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 Timber.d("Update -> %s", data)
                 this.tv_total_product_qty.text = "${data.totalQty}"
                 this.tv_total_price.text = data.getTotalPrice("Ks")
-                this.tv_tax_amount_title.mText = getString(R.string.lbl_tax_amount, data.tax)
-                this.tv_total_tax_amount.text = data.getTaxAmount("Ks")
-                this.tv_total_net_amount.text = data.getTotalNetAmount("Ks")
-                this.tv_total_change_amount.text = data.getTotalChangeAmount("Ks")
+                this.tv_tax_amount_title.mText =
+                    getString(R.string.lbl_tax_amount, viewModel.taxAmount)
+                this.tv_total_tax_amount.text = data.getTaxAmount(viewModel.taxAmount, "Ks")
+                this.tv_total_net_amount.text = data.getTotalNetAmount(viewModel.taxAmount, "Ks")
+                this.tv_total_change_amount.text =
+                    data.getTotalChangeAmount(viewModel.taxAmount, "Ks")
                 this.tv_total_paid_amount.text = data.getTotalPaidAmount("Ks")
                 this.tv_total_discount_amount.text = data.getDiscountAmount("Ks")
                 this.edt_discount_amount.setText(data.discountAmount.toString())
@@ -185,7 +215,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 isClickHome = false
                 if (it == 0) rv_cart.gone().run {
                     second.invisible()
-                    setHomeState(true, true)
+                    setHomeState(isHome = true, isSelected = true)
                 } else rv_cart.visible()
                 if (it == 0 && rv_voucher.size == 0) gp_empty.visible() else gp_empty.gone()
                 changeFabStatus()
@@ -211,11 +241,15 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
     private fun showNotFoundProductCode(productCode: String) {
         context?.showDialog(
             context.getInflateView(R.layout.dialog_product_code_not_found),
-            {
-                this.tv_message.mText = "ပစ္စည်း ကုဒ်နံပါတ် {$productCode} ကို ရှာဖွေလို့မတွေ့ပါ။"
+            bindView = { dialog ->
+                this.empty_view.text = "ပစ္စည်း ကုဒ်နံပါတ် {$productCode} ကို ရှာဖွေလို့မတွေ့ပါ။"
+                this.btn_close.setOnClickListener {
+                    dialog.dismiss()
+                }
             },
-            false,
-            true
+            isTransparent = true,
+            isCancelable = false,
+            autoDismiss = false
         )
     }
 
@@ -255,6 +289,7 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
             viewModel.setProduct(0, printVO {
                 type = PrintType.HEADER
                 data = printHeader {
+                    customerID = viewModel.customerEntity.id
                     customerName = viewModel.customerEntity.customerName
                     customerPhone = viewModel.customerEntity.customerPhone
                     ticketID = viewModel.generateNewTicketID()
@@ -262,8 +297,8 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                     waiterName = viewModel.getCurrentUser()?.displayName ?: ""
                 }
             })
-            setHomeState(false, false)
-            setSecondState(viewModel.ticketID, true, true)
+            setHomeState(isHome = false, isSelected = false)
+            setSecondState(viewModel.ticketID, isHome = true, isSelected = true)
             rv_cart.add(
                 viewModel._cartList.first()
             )
@@ -292,7 +327,6 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 type = PrintType.TOTAL
                 data = printTotal {
                     totalAmount = viewModel.getTotalAmount()
-                    tax = viewModel.taxAmount
                     paidAmount = 0
                     totalQty = viewModel.getTotalQty()
                 }
@@ -328,11 +362,9 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
         }
         val pos = viewModel._cartList.size - 2
         val oldData = viewModel._cartList[pos]
-        var taxAmount: Int
         var paidAmount: Long
         var discountAmount: Long
         (oldData.data as PrintTotalVO).apply {
-            taxAmount = tax
             paidAmount = this.paidAmount
             discountAmount = this.discountAmount
         }
@@ -340,7 +372,6 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
         viewModel._cartList.add(viewModel._cartList.size - 1, printVO {
             type = PrintType.TOTAL
             data = printTotal {
-                tax = taxAmount
                 this.paidAmount = paidAmount
                 this.discountAmount = discountAmount
                 totalAmount = viewModel.getTotalAmount()

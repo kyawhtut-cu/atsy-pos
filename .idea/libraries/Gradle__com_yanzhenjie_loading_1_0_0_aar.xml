@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.yanzhenjie:loading:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2946c4cf768b89866561934f18fd6c2f/jetified-loading-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2946c4cf768b89866561934f18fd6c2f/jetified-loading-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yanzhenjie/loading/1.0.0/90c056ac4ccc4f2094cdc3a9f39bcae78f912cfe/loading-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yanzhenjie/loading/1.0.0/a7cde597b113d2d426db48c1f74d1c8439220f74/loading-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseFragment
 import com.kyawhtut.pos.utils.putArg
+import com.kyawhtut.pos.utils.startActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment private constructor() : BaseFragment(R.layout.fragment_main) {

@@ -16,6 +16,7 @@ import com.kyawhtut.pos.ui.home.HomeViewModel
 import com.kyawhtut.pos.ui.home.MainFragment
 import com.kyawhtut.pos.ui.login.LoginFragment
 import com.kyawhtut.pos.ui.sale.SaleFragment
+import com.kyawhtut.pos.ui.setting.SettingActivity
 import com.kyawhtut.pos.ui.table.TableFragment
 import com.kyawhtut.pos.ui.table.TableType
 import com.kyawhtut.pos.ui.ticket.TicketFragment
@@ -150,10 +151,14 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
     }
 
     private fun changeFragmentByTitle(pos: Int) {
-        ticketFragmentBottomSheet.apply {
-            peekHeight = 0
-            isHideable = true
-            hide()
+        when (mini_drawer.getTitle(pos)) {
+            "Setting", "Sale", "Logout" -> {
+            }
+            else -> ticketFragmentBottomSheet.apply {
+                peekHeight = 0
+                isHideable = true
+                hide()
+            }
         }
         when (mini_drawer.getTitle(pos)) {
             "Home" -> openScreen(MainFragment.createInstance(viewModel.isLogin()), pos).run {
@@ -173,6 +178,7 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
             "Logout" -> viewModel.logout().run {
                 hideAllMenuItem()
             }
+            "Setting" -> startActivity<SettingActivity>()
             else -> openScreen(
                 TableFragment.createInstance(
                     when (mini_drawer.getTitle(pos)) {
@@ -202,7 +208,7 @@ class PhoneHomeActivity : BaseActivityViewModel<HomeViewModel>(
         )
     }
 
-    fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
+    private fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
         setBreadCrumbsTitle(pos, title)
         supportFragmentManager.commit {
             replace(R.id.content_home, fragment)

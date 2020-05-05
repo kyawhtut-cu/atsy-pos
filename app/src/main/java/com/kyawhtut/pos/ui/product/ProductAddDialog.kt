@@ -58,6 +58,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         }
 
         ed_product_name.setText(viewModel.name.toDisplay(FontChoose.isUnicode()))
+        ed_product_description.setText(viewModel.description.toDisplay(FontChoose.isUnicode()))
         ed_product_retail_price.setText("${viewModel.retailPrice}")
         ed_product_price.setText("${viewModel.price}")
         ed_product_count.setText("${viewModel.count}")
@@ -125,6 +126,9 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         ed_product_name.addTextChangedListener {
             viewModel.name = ed_product_name.mText
             if (ed_product_name.text.toString().isNotEmpty()) edt_product_name.error = ""
+        }
+        ed_product_description.addTextChangedListener {
+            viewModel.description = ed_product_description.mText
         }
 
         ed_product_retail_price.addTextChangedListener {
@@ -206,7 +210,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
             .withAlphaEnabled(false)
             .withPicker(ImagePickerView::class.java)
             .withPresets()
-            .withListener { pickerView, color ->
+            .withListener { _, color ->
                 if (view == cv_product_text_color) viewModel.textColor =
                     color else viewModel.color = color
                 view.setCardBackgroundColor(color)

@@ -6,6 +6,7 @@
     <string name="row_hide">Hide 5. Row</string>
 
     <string name="app_name">POS</string>
+    <string name="lbl_pos_web_config" translatable="false">POS-Admin</string>
     <string name="action_settings">Settings</string>
     <string name="lbl_welcome">Welcome</string>
     <string name="lbl_glad_to_see_you">glad to see you!</string>
@@ -35,6 +36,12 @@
     <string name="lbl_hint_product_count">Product count</string>
     <string name="lbl_hint_phone_number">Phone number</string>
     <string name="lbl_hint_user_address">Address</string>
+    <string name="lbl_hint_percentage_title">Tax Percentage</string>
+    <string name="lbl_hint_percentage">Enter Tax Percentage(5)</string>
+    <string name="lbl_percentage_change_title">Tax Percentage</string>
+    <string name="lbl_hint_limitation_title">Limitation Alert</string>
+    <string name="lbl_hint_limitation">Enter Limitation Alert(5)</string>
+    <string name="lbl_limitation_change_title">Alert Limitation Amount</string>
 
     <string name="dummy_store_address" translatable="false">30th Leikpayakan, Bago</string>
     <string name="dummy_store_phone" translatable="false">09973419006, 09786596541</string>
@@ -65,4 +72,14 @@
     <string name="lbl_discount_amount">Discount</string>
     <string name="lbl_hint_discount_amount">Discount Amount</string>
     <string name="lbl_hint_paid_amount">Paid Amount</string>
+    <string name="lbl_hint_product_description">Product Description</string>
+    <string name="lbl_paired_devices">Paired devices</string>
+    <string name="lbl_other_devices">Other devices</string>
+    <string name="lbl_scan_device">Scan Device</string>
+
+    <!--Empty data-->
+    <string name="lbl_empty_items">There is no Items.</string>
+    <string name="lbl_empty_products">There is no Products.</string>
+    <string name="lbl_empty_users">There is no Users.</string>
+    <string name="lbl_empty_customers">There is no Customers.</string>
 </resources>

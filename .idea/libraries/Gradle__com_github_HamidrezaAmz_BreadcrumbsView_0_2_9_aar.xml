@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.HamidrezaAmz:BreadcrumbsView:0.2.9@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/390fca3909e5377e2bf65e11c6023334/BreadcrumbsView-0.2.9/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/390fca3909e5377e2bf65e11c6023334/BreadcrumbsView-0.2.9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4a106a677d6947bdb51c9c72cb19adb9/jetified-BreadcrumbsView-0.2.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4a106a677d6947bdb51c9c72cb19adb9/jetified-BreadcrumbsView-0.2.9/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

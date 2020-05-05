@@ -80,5 +80,4 @@ class CustomerDialog : BaseDialogFragment(R.layout.dialog_customer_add) {
             dismiss()
         }
     }
-
 }

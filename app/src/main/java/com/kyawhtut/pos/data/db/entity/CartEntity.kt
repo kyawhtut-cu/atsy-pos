@@ -9,20 +9,21 @@ data class CartHeaderEntity(
     @ColumnInfo(name = "cart_header_id")
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    @ColumnInfo(name = "customer_id")
+    val customerID: Int,
     @ColumnInfo(name = "customer_name")
     val customerName: String,
     @ColumnInfo(name = "customer_phone")
     val customerPhone: String,
     @ColumnInfo(name = "ticket_id")
     val ticketId: String,
-    @ColumnInfo(name = "tax")
-    val tax: Int,
     @ColumnInfo(name = "sale_man_id")
     val saleManId: Int,
     @ColumnInfo(name = "sale_name")
     val saleName: String
 ) {
     fun toPrintHeader() = printHeader {
+        customerID = this@CartHeaderEntity.customerID
         customerName = this@CartHeaderEntity.customerName
         customerPhone = this@CartHeaderEntity.customerPhone
         ticketID = this@CartHeaderEntity.ticketId
@@ -33,15 +34,23 @@ data class CartHeaderEntity(
 
 class CartHeaderBuilder {
     var id: Int = 0
+    var customerID: Int = 0
     var customerName = ""
     var customerPhone = ""
     var ticketId = ""
-    var tax: Int = 0
     var saleManId: Int = 0
     var saleName = ""
 
     fun build() =
-        CartHeaderEntity(id, customerName, customerPhone, ticketId, tax, saleManId, saleName)
+        CartHeaderEntity(
+            id,
+            customerID,
+            customerName,
+            customerPhone,
+            ticketId,
+            saleManId,
+            saleName
+        )
 }
 
 fun cartHeader(block: CartHeaderBuilder.() -> Unit) = CartHeaderBuilder().apply(block).build()
@@ -134,6 +143,7 @@ data class CartWithHeader(
 
     @Ignore
     val totalQty = cartList.sumBy { it.cartEntity.productQty }
+
     @Ignore
     private val totalAmount =
         cartList.sumByDouble { it.productEntity.productRetailPrice * it.cartEntity.productQty.toDouble() }
@@ -157,7 +167,6 @@ data class CartWithHeader(
             type = PrintType.TOTAL
             data = printTotal {
                 totalAmount = this@CartWithHeader.totalAmount
-                tax = cartHeader.tax
                 totalQty = this@CartWithHeader.totalQty
             }
         }

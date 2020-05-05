@@ -14,6 +14,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         }
     var code = ""
     var name = ""
+    var description = ""
     var price = 0L
     var color = 0
     var textColor = 0
@@ -29,6 +30,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         with(repo.getProductById(productId)!!) {
             code = productCode
             name = productName
+            description = productDescription
             price = productPrice
             color = productColor
             textColor = productTextColor
@@ -50,6 +52,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         repo.insertProduct {
             productCode = code
             productName = name
+            productDescription = description
             productPrice = price
             productColor = color
             productTextColor = textColor

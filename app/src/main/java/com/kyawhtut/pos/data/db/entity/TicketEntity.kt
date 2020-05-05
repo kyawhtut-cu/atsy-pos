@@ -1,6 +1,8 @@
 package com.kyawhtut.pos.data.db.entity
 
 import androidx.room.*
+import com.google.gson.annotations.SerializedName
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import org.joda.time.DateTime
 import java.util.*
 
@@ -50,8 +52,7 @@ class TicketBuilder {
     var discountAmount: Long = 0L
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
     fun build() = TicketEntity(
         ticketId,
@@ -62,14 +63,16 @@ class TicketBuilder {
         createdUserId,
         updatedUserId,
         createdDate,
-        updatedDate
+        getCurrentTimeString()
     )
 }
 
 data class TicketWithProductList(
     @Embedded
+    @SerializedName("header")
     val ticketEntity: TicketEntity,
     @Relation(entity = SellEntity::class, parentColumn = "ticket_id", entityColumn = "ticket_id")
+    @SerializedName("sellEntities")
     val list: List<SellEntity>
 )
 

@@ -3,7 +3,6 @@ package com.kyawhtut.pos.ui.table
 import android.os.Bundle
 import androidx.lifecycle.observe
 import com.evrencoskun.tableview.filter.Filter
-import com.google.gson.Gson
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.adapter.TableAdapter
 import com.kyawhtut.pos.base.BaseFragmentViewModel
@@ -16,7 +15,6 @@ import com.kyawhtut.pos.utils.listeners.TablePagination
 import com.kyawhtut.pos.utils.listeners.TableViewClickListener
 import kotlinx.android.synthetic.main.fragment_table.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class TableFragment private constructor() :
     BaseFragmentViewModel<TableViewModel>(R.layout.fragment_table) {
@@ -33,7 +31,9 @@ class TableFragment private constructor() :
         }
     }
 
-    private var tableType: TableType = TableType.ITEMS
+    private val tableType: TableType by lazy {
+        arguments?.getSerializable(extraTableType) as TableType
+    }
     private lateinit var tableAdapter: TableAdapter
     private lateinit var tableFilter: Filter
     private lateinit var tablePagination: TablePagination
@@ -42,9 +42,6 @@ class TableFragment private constructor() :
 
     override fun onViewCreated(bundle: Bundle) {
 
-        Timber.d("TicketList -> %s", Gson().toJson(viewModel.getTicketList()))
-
-        tableType = bundle.getSerializable(extraTableType) as TableType
         if (tableType is TableType.DEFAULT) return
         tableAdapter = TableAdapter(
             context!!,
@@ -80,6 +77,15 @@ class TableFragment private constructor() :
             tv_current_page.currentPage = tablePagination.currentPage
         }
 
+        empty_view.text = getString(
+            when (tableType) {
+                is TableType.ITEMS -> R.string.lbl_empty_items
+                is TableType.USERS -> R.string.lbl_empty_users
+                is TableType.CUSTOMER -> R.string.lbl_empty_customers
+                else -> R.string.lbl_empty_products
+            }
+        )
+
         btn_next.setOnClickListener {
             tablePagination.nextPage()
         }
@@ -97,12 +103,17 @@ class TableFragment private constructor() :
         }
 
         viewModel.dataList.observe(this) {
-            Timber.d("Query -> %s", Gson().toJson(it))
+            if (it.third.isEmpty()) {
+                empty_view.visible()
+                return@observe
+            }
+            empty_view.gone()
             tableAdapter.setAllItems(
                 it.first,
                 it.second,
                 it.third
             ).run {
+                tablePagination.refreshPagination()
                 tv_current_page.pageCount = tablePagination.pageCount
             }
         }

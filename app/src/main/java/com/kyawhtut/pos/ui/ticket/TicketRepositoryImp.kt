@@ -72,10 +72,10 @@ class TicketRepositoryImp(
             (list.first().data as PrintHeader).also {
                 headerId = cartDao.insertCartHeader(
                     cartHeader {
+                        customerID = it.customerID
                         customerName = it.customerName
                         customerPhone = it.customerPhone
                         ticketId = it.ticketID
-                        tax = taxAmount
                         saleManId = it.waiterID
                         saleName = it.waiterName
                     }
@@ -99,7 +99,7 @@ class TicketRepositoryImp(
 
     @Transaction
     override fun deleteItemById(id: String) {
-        cartDao.deleteCartByCartHeaderID(cartDao.getCartHeaderIDByTikcetID(id))
+        cartDao.deleteCartByCartHeaderID(cartDao.getCartHeaderIDByTicketID(id))
         cartDao.deleteCartHeaderByTicketID(id)
     }
 }

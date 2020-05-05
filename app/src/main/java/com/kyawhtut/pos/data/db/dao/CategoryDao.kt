@@ -17,7 +17,7 @@ abstract class CategoryDao : BaseDao<CategoryEntity> {
     abstract fun get(): List<CategoryEntity>
 
     @Query("select * from category_table where category_id = :categoryId limit 1")
-    abstract fun get(categoryId: Int): CategoryEntity
+    abstract fun get(categoryId: Int): CategoryEntity?
 
     @Query("select * from category_table")
     abstract fun liveData(): LiveData<List<CategoryEntity>>

@@ -22,6 +22,8 @@ data class ProductEntity(
     val productCode: String,
     @ColumnInfo(name = "product_name")
     val productName: String,
+    @ColumnInfo(name = "product_description")
+    val productDescription: String,
     @ColumnInfo(name = "product_price")
     val productPrice: Long,
     @ColumnInfo(name = "product_color")
@@ -95,6 +97,7 @@ class ProductBuilder {
     var id: Int = 0
     var productCode: String = ""
     var productName: String = ""
+    var productDescription: String = ""
     var productPrice: Long = 0
     var productColor: Int = 0
     var productTextColor: Int = 0
@@ -115,6 +118,7 @@ class ProductBuilder {
         id,
         productCode,
         productName,
+        productDescription,
         productPrice,
         productColor,
         productTextColor,
@@ -137,6 +141,7 @@ class ProductBuilder {
 class ProductColumn : BaseColumn(
     "Product Code",
     "Product Name",
+    "Product Description",
     "Product Price",
     "Color",
     "Text Color",
@@ -172,6 +177,10 @@ class ProductColumn : BaseColumn(
                 tableCell {
                     cellId = "product_name"
                     data = list.product.productName
+                }
+                tableCell {
+                    cellId = "product_description"
+                    data = list.product.productDescription
                 }
                 tableCell {
                     cellId = "product_price"

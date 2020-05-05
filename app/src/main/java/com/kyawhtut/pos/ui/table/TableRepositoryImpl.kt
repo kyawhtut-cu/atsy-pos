@@ -18,8 +18,6 @@ class TableRepositoryImpl(
     private val db: AppDatabase
 ) : BaseRepositoryImpl(sh, rootUser), TableRepository {
 
-    override fun getTicketList() = db.ticketDao().getTicketWithSellList()
-
     override fun getCategoryList(): LiveData<Triple<List<TableColumnHeaderVO>, List<TableRowHeaderVO>, List<List<TableCellVO>>>> =
         db.categoryDao().getCategoryTable()
             .map { data ->

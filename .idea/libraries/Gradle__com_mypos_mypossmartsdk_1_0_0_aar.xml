@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mypos:mypossmartsdk:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/89251d6184e617cf37fe6a9178f6eec7/jetified-mypossmartsdk-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/89251d6184e617cf37fe6a9178f6eec7/jetified-mypossmartsdk-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mypos/mypossmartsdk/1.0.0/966821977805a9456117878b7347d49e9e5a85a/mypossmartsdk-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mypos/mypossmartsdk/1.0.0/8c881fcebf3b0ac160c20ae34d3577d8ab2d1cdd/mypossmartsdk-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.core.text.HtmlCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.joda.time.DateTime
 import java.util.*
@@ -46,3 +47,4 @@ fun BottomSheetBehavior<*>.hide() {
     this.state = BottomSheetBehavior.STATE_HIDDEN
 }
 
+fun String.toHtml() = HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_COMPACT)

@@ -42,7 +42,6 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
             createdUserId = getCurrentUser()?.id ?: 0
             updatedUserId = getCurrentUser()?.id ?: 0
             createdDate = getCurrentTimeString()
-            updatedDate = getCurrentTimeString()
         }
     }
 
@@ -56,7 +55,6 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
             createdUserId = createdUser
             updatedUserId = getCurrentUser()?.id ?: 0
             createdDate = createDate
-            updatedDate = getCurrentTimeString()
         }
     }
 

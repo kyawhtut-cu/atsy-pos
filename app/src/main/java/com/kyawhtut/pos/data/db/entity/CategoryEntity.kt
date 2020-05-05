@@ -8,6 +8,7 @@ import com.kyawhtut.pos.data.vo.TableRowHeaderVO
 import com.kyawhtut.pos.data.vo.rowHeader
 import com.kyawhtut.pos.data.vo.tableCellList
 import com.kyawhtut.pos.utils.ProductType
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import com.kyawhtut.pos.utils.toColor
 
 @Entity(tableName = "category_table")
@@ -96,8 +97,7 @@ class CategoryBuilder {
     var updatedUserId: Int = 0
     var categoryAvailable: Int = 1
     var categoryCount: Int = 0
-    var createdDate = ""
-    var updatedDate = ""
+    var createdDate = getCurrentTimeString()
 
     fun build() =
         CategoryEntity(
@@ -110,7 +110,7 @@ class CategoryBuilder {
             updatedUserId,
             categoryAvailable,
             createdDate,
-            updatedDate
+            getCurrentTimeString()
         ).apply {
             this.categoryItemCount = categoryCount
         }

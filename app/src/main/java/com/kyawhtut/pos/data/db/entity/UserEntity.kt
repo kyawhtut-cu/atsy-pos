@@ -8,6 +8,7 @@ import com.kyawhtut.pos.data.vo.TableCellVO
 import com.kyawhtut.pos.data.vo.TableRowHeaderVO
 import com.kyawhtut.pos.data.vo.rowHeader
 import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import org.jetbrains.annotations.NotNull
 import org.joda.time.DateTime
 import java.io.Serializable
@@ -60,8 +61,7 @@ class UserBuilder {
     var userAvailable: Int = 1
     var createdUserId = 0
     var updatedUserId = 0
-    var createdDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate = getCurrentTimeString()
 
     fun build(): UserEntity =
         UserEntity(
@@ -74,7 +74,7 @@ class UserBuilder {
             createdUserId,
             updatedUserId,
             createdDate,
-            updatedDate
+            getCurrentTimeString()
         )
 }
 

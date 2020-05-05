@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.aevi.print:print-api:1.1.5@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.aevi.print/print-api/1.1.5/9d0f3eba798c9671ce00d785e19cbb924a8fda20/print-api-1.1.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.aevi.print/print-api/1.1.5/2461189d3e1dc25791d13946a1e33e88f545b21/print-api-1.1.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.aevi.print/print-api/1.1.5/f079baeaae5b0cce2b67d1f8b71a1bae58d6b16d/print-api-1.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

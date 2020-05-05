@@ -1,5 +1,7 @@
 package com.kyawhtut.pos.ui.category
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.lifecycle.observe
 import com.google.android.flexbox.FlexDirection
@@ -15,7 +17,7 @@ import com.kyawhtut.pos.data.db.entity.ProductEntity
 import com.kyawhtut.pos.phone.home.PhoneHomeActivity
 import com.kyawhtut.pos.ui.category.dialog.CategoryAddDialog
 import com.kyawhtut.pos.ui.product.ProductAddDialog
-import com.kyawhtut.pos.utils.ProductType
+import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.item_category.view.*
 import kotlinx.android.synthetic.main.item_category.view.divider
@@ -24,7 +26,6 @@ import kotlinx.android.synthetic.main.item_category.view.iv_bundle
 import kotlinx.android.synthetic.main.item_product.view.*
 import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragment_category) {
 
@@ -73,9 +74,24 @@ class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragm
             }.map(
                 R.layout.item_product,
                 { item, idx -> item.type == ProductType.Product }) { item, pos ->
-                Timber.d("Product bind -> %s", item)
                 this.setOnClickListener {
                     addProduct(item.id)
+                }
+                this.view_low_item.apply {
+                    when {
+                        item.productCount <= 0 -> {
+                            visible()
+                            backgroundTintList = ColorStateList.valueOf(Color.RED)
+                        }
+                        item.productCount < 5 && item.productRemainAmountShow.toBoolean() -> {
+                            visible()
+                            backgroundTintList =
+                                ColorStateList.valueOf(getColorValue(R.color.colorWarning))
+                        }
+                        else -> {
+                            gone()
+                        }
+                    }
                 }
                 this.setOnLongClickListener {
                     ProductAddDialog.show(parentFragmentManager, item.id)

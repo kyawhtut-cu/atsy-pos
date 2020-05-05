@@ -8,10 +8,12 @@ import com.kyawhtut.fontchooserlib.FontChoose
 import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseDialogFragment
+import com.kyawhtut.pos.data.db.AppDatabase
 import com.kyawhtut.pos.data.db.entity.RoleEntity
 import com.kyawhtut.pos.ui.login.LoginViewModel
 import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.dialog_user_add.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
@@ -31,6 +33,7 @@ class UserAddDialog private constructor() : BaseDialogFragment(R.layout.dialog_u
     }
 
     private val viewModel: LoginViewModel by viewModel()
+    private val db: AppDatabase by inject()
     private var roleList = mutableListOf<RoleEntity>()
 
     override fun setup(bundle: Bundle) {

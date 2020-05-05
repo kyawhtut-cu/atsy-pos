@@ -11,6 +11,7 @@ sealed class PrintType {
 }
 
 data class PrintHeader private constructor(
+    val customerID: Int,
     val customerName: String,
     val customerPhone: String,
     val ticketID: String,
@@ -19,13 +20,15 @@ data class PrintHeader private constructor(
 ) {
 
     class Builder {
+        var customerID: Int = 0
         var customerName: String = ""
         var customerPhone: String = ""
         var ticketID: String = ""
         var waiterName: String = ""
         var waiterID: Int = 0
 
-        fun build() = PrintHeader(customerName, customerPhone, ticketID, waiterName, waiterID)
+        fun build() =
+            PrintHeader(customerID, customerName, customerPhone, ticketID, waiterName, waiterID)
     }
 }
 
@@ -44,8 +47,10 @@ data class PrintVO private constructor(
                 val data = it.data as ProductSellVO
                 sell {
                     productId = data.productID
+                    productName = data.name
                     ticketId = ticketID
                     productQuality = data.qty
+                    productPrice = data.price
                 }
             }.run {
                 return this

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.florent37:runtime-permission-kotlin:1.1.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/282093136fc327a6e669e784debcd720/runtime-permission-kotlin-1.1.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/282093136fc327a6e669e784debcd720/runtime-permission-kotlin-1.1.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/09f7dbb11e366e5178809ff47a67a4fa/jetified-runtime-permission-kotlin-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/09f7dbb11e366e5178809ff47a67a4fa/jetified-runtime-permission-kotlin-1.1.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
