@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hhl:gridpagersnaphelper:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5614303d11d25c679e661199ed3fc1dc/jetified-gridpagersnaphelper-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5614303d11d25c679e661199ed3fc1dc/jetified-gridpagersnaphelper-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hhl/gridpagersnaphelper/1.0.0/893df8ccae4c5fe43cd90f0bbeedd57fde3dbf16/gridpagersnaphelper-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hhl/gridpagersnaphelper/1.0.0/db8ad29e30e89bf842e446b6abb37fda89f9c53f/gridpagersnaphelper-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
