@@ -1,13 +1,11 @@
 package com.kyawhtut.pos.data.db.entity
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
 import com.kyawhtut.pos.base.BaseColumn
-import com.kyawhtut.pos.data.vo.TableCellVO
-import com.kyawhtut.pos.data.vo.rowHeader
-import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.data.vo.*
 import com.kyawhtut.pos.utils.getCurrentTimeString
-import org.joda.time.DateTime
-import java.util.*
+import com.kyawhtut.pos.utils.toThousandSeparator
 
 @Entity(tableName = "customer_table")
 data class CustomerEntity(
@@ -117,7 +115,7 @@ class CustomerColumn : BaseColumn(
             }
             tableCell {
                 cellId = "${table.customer.id}"
-                data = table.ticketCount.size
+                data = table.ticketEntities.size
             }
         }
 
@@ -147,10 +145,99 @@ data class CustomerTable(
     @Relation(
         parentColumn = "customer_id",
         entityColumn = "customer_id",
-        entity = TicketEntity::class,
-        projection = ["ticket_id"]
+        entity = TicketEntity::class
     )
-    val ticketCount: List<String>
+    val ticketEntities: List<TicketEntity>
+) {
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<CustomerTable>() {
+            override fun areItemsTheSame(oldItem: CustomerTable, newItem: CustomerTable): Boolean {
+                return oldItem.customer.id == newItem.customer.id
+            }
+
+            override fun areContentsTheSame(
+                oldItem: CustomerTable,
+                newItem: CustomerTable
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+}
+
+data class TicketWithSell(
+    @Embedded
+    val ticketEntities: TicketEntity,
+    @Relation(
+        parentColumn = "ticket_id",
+        entityColumn = "ticket_id",
+        entity = SellEntity::class
+    )
+    val sellItemList: List<SellEntity>
 )
 
+data class CustomerWithTicket(
+    @Embedded
+    val customer: CustomerEntity,
+    @Relation(
+        parentColumn = "created_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var createdUser: String?,
+    @Relation(
+        parentColumn = "updated_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var updatedUser: String?,
+    @Relation(
+        parentColumn = "customer_id",
+        entityColumn = "customer_id",
+        entity = TicketEntity::class
+    )
+    val ticketWithSell: List<TicketWithSell>
+) {
+    val debt: String
+        get() = (ticketWithSell.sumByDouble { it.ticketEntities.totalPrice.toDouble() } - ticketWithSell.sumByDouble { it.ticketEntities.payAmount.toDouble() } - customer.customerDebit).toThousandSeparator()
+}
+
 fun customer(block: CustomerBuilder.() -> Unit) = CustomerBuilder().apply(block).build()
+
+fun List<SellEntity>.toPrintVOList(ticketEntities: TicketEntity) = printVOList {
+    printVO {
+        type = PrintType.HEADER
+        data = printHeader {
+            ticketID = ticketEntities.ticketId
+            waiterID = ticketEntities.waiterID
+            waiterName = ticketEntities.waiterName
+            ticketDate = ticketEntities.createdDate
+        }
+    }
+    this@toPrintVOList.mapIndexed { index, it ->
+        printVO {
+            type = PrintType.ITEMS
+            data = productSell {
+                productID = it.productId
+                count = index + 1
+                name = it.productName
+                qty = it.productQuality
+                price = it.productPrice
+            }
+        }
+    }
+    printVO {
+        type = PrintType.TOTAL
+        data = printTotal {
+            totalAmount =
+                this@toPrintVOList.sumByDouble { (it.productPrice * it.productQuality).toDouble() }
+                    .toLong()
+            paidAmount = ticketEntities.payAmount
+            discountAmount = ticketEntities.discountAmount
+            totalQty = this@toPrintVOList.sumByDouble { it.productQuality.toDouble() }.toInt()
+            taxAmount = 100 - ((100 * totalAmount) / ticketEntities.totalPrice).toInt()
+        }
+    }
+}

@@ -18,8 +18,7 @@ fun Int.toBoolean() = this == 1
 fun getCurrentTimeString(
     format: String = "h:mm a,dd-MM-yyyy",
     locale: Locale = Locale.ENGLISH
-): String =
-    DateTime.now().toString(format, locale).replace(",", " at ")
+): String = DateTime.now().toString(format, locale).replace(",", " at ")
 
 /*Hide Keyboard*/
 fun EditText.hideKeyBoard() {
@@ -48,3 +47,48 @@ fun BottomSheetBehavior<*>.hide() {
 }
 
 fun String.toHtml() = HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+fun Int.toThousandSeparator(locale: Locale = Locale.getDefault()) =
+    String.format(locale, "%,d", this)
+
+fun Double.toThousandSeparator(locale: Locale = Locale.getDefault()) =
+    this.toInt().toThousandSeparator()
+
+fun Long.toThousandSeparator(locale: Locale = Locale.getDefault()) =
+    String.format(locale, "%,d", this)
+
+fun String.toThousandSeparator(locale: Locale = Locale.getDefault()) =
+    String.format(locale, "%,d", this.toLong())
+
+infix fun <T> Collection<T>.deepEqualTo(other: Collection<T>): Boolean {
+    // check collections aren't same
+    if (this !== other) {
+        // fast check of sizes
+        if (this.size != other.size) return false
+        val areNotEqual = this.asSequence()
+            .zip(other.asSequence())
+            // check this and other contains same elements at position
+            .map { (fromThis, fromOther) -> fromThis == fromOther }
+            // searching for first negative answer
+            .contains(false)
+        if (areNotEqual) return false
+    }
+    // collections are same or they are contains same elements with same order
+    return true
+}
+
+infix fun <T> Collection<T>.deepEqualToIgnoreOrder(other: Collection<T>): Boolean {
+    // check collections aren't same
+    if (this !== other) {
+        // fast check of sizes
+        if (this.size != other.size) return false
+        val areNotEqual = this.asSequence()
+            // check other contains next element from this
+            .map { it in other }
+            // searching for first negative answer
+            .contains(false)
+        if (areNotEqual) return false
+    }
+    // collections are same or they are contains same elements
+    return true
+}

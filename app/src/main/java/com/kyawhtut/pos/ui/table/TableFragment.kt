@@ -44,7 +44,7 @@ class TableFragment private constructor() :
 
         if (tableType is TableType.DEFAULT) return
         tableAdapter = TableAdapter(
-            context!!,
+            requireContext(),
             getDatePosition(tableType),
             getColorPosition(tableType),
             getTextColorPosition(tableType),

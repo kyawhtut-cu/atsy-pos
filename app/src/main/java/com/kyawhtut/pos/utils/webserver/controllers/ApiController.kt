@@ -1,41 +1,74 @@
 package com.kyawhtut.pos.utils.webserver.controllers
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.kyawhtut.pos.data.db.AppDatabase
+import com.kyawhtut.pos.utils.toBoolean
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 abstract class ApiController : KoinComponent {
 
+    companion object {
+        private const val DEFAULT_PAGE = 0
+        private const val DEFAULT_LIMIT = 10
+    }
+
     protected val db: AppDatabase by inject()
 
-    abstract fun get(page: String, limit: String): Any?
+    abstract fun get(page: String, limit: String, filter: String): Any?
 
-    abstract fun delete(id: String): String
+    open fun delete(id: String): String {
+        return "Delete successfully."
+    }
 
+    protected fun getSimpleQuery(
+        tableName: String,
+        page: Int = -1,
+        limit: Int = -1,
+        filter: String = ""
+    ): SimpleSQLiteQuery {
+        var query = "select * from ${tableName}_table"
 
-    /*@GetMapping(
-        path = ["/get/{tableName}"],
-        produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
-    )
-    fun getTableData(@PathVariable(name = "tableName") tableName: String): Any? {
-        return when (String.format("%s_table", tableName)) {
-            "user_table" -> db.categoryDao().get()
-            "role_table" -> db.roleDao().get()
-            "category_table" -> db.categoryDao().get()
-            "product_table" -> db.productDao().get()
-            "customer_table" -> db.customerDao().get()
-            "sell_table" -> db.sellDao().get()
-            "ticket_table" -> db.ticketDao().get()
-            "cart_header_table" -> db.cartDao().getCartHeader()
-            "cart" -> db.cartDao().getCartList()
-            else -> throw BasicException(404, "Table not found.")
+        // todo: adding page limit
+        query += when {
+            page == -1 && limit != -1 -> " limit $limit offset $DEFAULT_PAGE"
+            page != -1 && limit == -1 -> " limit $DEFAULT_LIMIT offset $page"
+            page != -1 && limit != -1 -> " limit $limit offset $page"
+            else -> ""
         }
-    }*/
+
+        query += getFilter(filter)
+
+        return SimpleSQLiteQuery(query)
+    }
+
+    private fun getFilter(filter: String): String {
+        return " where %s".format(filter).takeIf { filter.isNotEmpty() } ?: filter
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
 infix fun <T> T.swipe(new: String): T {
     return if (new.isEmpty()) this
+    else when (this) {
+        is Long -> new.toLong() as T
+        is Int -> new.toInt() as T
+        is Double -> new.toDouble() as T
+        is Float -> new.toFloat() as T
+        is Boolean -> new.toInt().toBoolean() as T
+        else -> new as T
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+infix fun <T> T.swipe(new: Long): T {
+    return if (new.toString().isEmpty()) this
+    else new as T
+}
+
+@Suppress("UNCHECKED_CAST")
+infix fun <T> T.swipe(new: Int): T {
+    return if (new.toString().isEmpty()) this
     else new as T
 }
 

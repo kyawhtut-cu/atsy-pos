@@ -16,7 +16,8 @@ data class PrintHeader private constructor(
     val customerPhone: String,
     val ticketID: String,
     val waiterName: String,
-    val waiterID: Int
+    val waiterID: Int,
+    val ticketDate: String = ""
 ) {
 
     class Builder {
@@ -26,9 +27,18 @@ data class PrintHeader private constructor(
         var ticketID: String = ""
         var waiterName: String = ""
         var waiterID: Int = 0
+        var ticketDate: String = ""
 
         fun build() =
-            PrintHeader(customerID, customerName, customerPhone, ticketID, waiterName, waiterID)
+            PrintHeader(
+                customerID,
+                customerName,
+                customerPhone,
+                ticketID,
+                waiterName,
+                waiterID,
+                ticketDate
+            )
     }
 }
 

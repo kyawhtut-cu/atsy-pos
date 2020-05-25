@@ -14,4 +14,9 @@ public class PageController {
         // Equivalent to [return "/index"].
         return "forward:/index.html";
     }
+
+    @GetMapping(path = "/api")
+    public String api() {
+        return "forward:/api/index.html";
+    }
 }

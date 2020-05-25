@@ -98,6 +98,10 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
     fun insertOrder() {
         repo.insertTicket {
             ticketId = ticketID
+            waiterID =
+                (_cartList.first { it.type == PrintType.HEADER }.data as PrintHeader).waiterID
+            waiterName =
+                (_cartList.first { it.type == PrintType.HEADER }.data as PrintHeader).waiterName
             customerId = customerEntity.id
             totalPrice = getTotalAmount() + (getTotalAmount() * taxAmount / 100f).toInt()
             discountAmount = getValue(0)

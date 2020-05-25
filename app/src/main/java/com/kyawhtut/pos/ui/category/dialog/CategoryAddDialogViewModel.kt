@@ -2,6 +2,8 @@ package com.kyawhtut.pos.ui.category.dialog
 
 import androidx.annotation.ColorRes
 import androidx.lifecycle.ViewModel
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.getCurrentTimeString
 import com.kyawhtut.pos.utils.toBoolean
 import com.kyawhtut.pos.utils.toInt
@@ -14,10 +16,8 @@ class CategoryAddDialogViewModel(private val repo: CategoryAddDialogRepository) 
             if (value != 0)
                 getCategoryById()
         }
-    @ColorRes
-    var categoryColor: Int = 0
-    @ColorRes
-    var categoryTextColor: Int = 0
+    var categoryColor: String = DEFAULT_BG_COLOR
+    var categoryTextColor: String = DEFAULT_TEXT_COLOR
     var categoryName = ""
     private var userId: Int = repo.getCurrentUser()?.id ?: 0
     var isActive = true

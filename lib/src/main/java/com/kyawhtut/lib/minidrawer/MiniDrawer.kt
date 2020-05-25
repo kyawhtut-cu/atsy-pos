@@ -33,7 +33,7 @@ class MiniDrawer : FrameLayout {
             rv_mini_menu.update(getMiniDrawerItemList().toMutableList())
         }
 
-    var onMenuItemClick: (DrawerItemType, Int) -> Unit = { type, pos -> }
+    var onMenuItemClick: (DrawerItemType, Int) -> Unit = { _, _ -> }
     var lastSelectedIndex = 0
 
     constructor(context: Context) : this(context, null)
@@ -76,7 +76,7 @@ class MiniDrawer : FrameLayout {
         rv_full_menu.bind(drawerMenuList)
             .map(
                 R.layout.item_drawer_header,
-                { item, idx -> item.type is DrawerItemType.HEADER }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.HEADER }) { item, _ ->
                 val data = item.data as DrawerHeader
                 this.iv_app_logo.visibility = View.GONE
                 this.gp_full_view.visibility = View.VISIBLE
@@ -87,7 +87,7 @@ class MiniDrawer : FrameLayout {
             }
             .map(
                 R.layout.item_drawer_menu,
-                { item, idx -> item.type is DrawerItemType.ITEM }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.ITEM }) { item, pos ->
                 val data = item.data as DrawerItem
                 this.iv_status.visibility = View.GONE
                 this.divider_view_one.visibility = View.GONE
@@ -111,11 +111,11 @@ class MiniDrawer : FrameLayout {
             }
             .map(
                 R.layout.item_drawer_divider,
-                { item, idx -> item.type is DrawerItemType.DIVIDER }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.DIVIDER }) { _, _ ->
             }
             .map(
                 R.layout.item_drawer_title,
-                { item, idx -> item.type is DrawerItemType.TITLE }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.TITLE }) { item, _ ->
                 val data = item.data as DrawerTitle
                 this.tv_title.text = data.title
             }
@@ -123,7 +123,7 @@ class MiniDrawer : FrameLayout {
         rv_mini_menu.bind(getMiniDrawerItemList())
             .map(
                 R.layout.item_drawer_header,
-                { item, idx -> item.type is DrawerItemType.HEADER }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.HEADER }) { item, _ ->
                 val data = item.data as DrawerHeader
                 this.gp_full_view.visibility = View.GONE
                 this.iv_app_logo.apply {
@@ -135,7 +135,7 @@ class MiniDrawer : FrameLayout {
             }
             .map(
                 R.layout.item_drawer_menu,
-                { item, idx -> item.type is DrawerItemType.ITEM }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.ITEM }) { item, _ ->
                 val data = item.data as DrawerItem
                 this.gp_function.visibility = View.GONE
                 this.iv_status_right.visibility = View.GONE
@@ -160,7 +160,7 @@ class MiniDrawer : FrameLayout {
             }
             .map(
                 R.layout.item_drawer_divider,
-                { item, idx -> item.type is DrawerItemType.DIVIDER }) { item, pos ->
+                { item, _ -> item.type is DrawerItemType.DIVIDER }) { _, _ ->
             }
     }
 

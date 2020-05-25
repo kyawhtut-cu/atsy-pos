@@ -8,7 +8,11 @@ import com.kyawhtut.pos.base.BaseRepository
 
 interface HomeRepository : BaseRepository {
 
-    fun getSharedPreference(): SharedPreferences
+    val isLowerItem: LiveData<Int>
+
+    fun registerSharedPreference(listener: SharedPreferences.OnSharedPreferenceChangeListener)
+
+    fun unregisterSharedPreference(listener: SharedPreferences.OnSharedPreferenceChangeListener)
 
     val isCartDataHas: LiveData<Int>
 

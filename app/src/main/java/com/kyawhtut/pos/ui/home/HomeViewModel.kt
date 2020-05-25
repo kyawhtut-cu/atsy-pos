@@ -11,19 +11,22 @@ import com.kyawhtut.pos.utils.Constants
 
 class HomeViewModel(private val repo: HomeRepository) : BaseViewModel(repo) {
 
-    private val sharedPreferenceListener =
-        SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
+    private val sharedPreferenceListener by lazy {
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             if (key == Constants.KEY_LOGIN)
                 _loginState.postValue(repo.isLogin())
         }
-
-    init {
-        repo.getSharedPreference()
-            .registerOnSharedPreferenceChangeListener(sharedPreferenceListener)
     }
 
-    private val _loginState = MutableLiveData<Boolean>(isLogin())
+    init {
+        repo.registerSharedPreference(sharedPreferenceListener)
+    }
+
+    private val _loginState = MutableLiveData(isLogin())
     fun getLoginState() = _loginState
+
+    val isLowerItem: LiveData<Int>
+        get() = repo.isLowerItem
 
     fun getDrawerMenu(context: Context) = repo.getDrawerMenuList(context, true)
 
@@ -37,8 +40,7 @@ class HomeViewModel(private val repo: HomeRepository) : BaseViewModel(repo) {
     val isCartDataHas: LiveData<Int> = repo.isCartDataHas
 
     override fun onCleared() {
+        repo.unregisterSharedPreference(sharedPreferenceListener)
         super.onCleared()
-        repo.getSharedPreference()
-            .unregisterOnSharedPreferenceChangeListener(sharedPreferenceListener)
     }
 }

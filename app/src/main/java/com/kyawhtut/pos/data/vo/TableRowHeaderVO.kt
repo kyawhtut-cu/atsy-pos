@@ -1,13 +1,15 @@
 package com.kyawhtut.pos.data.vo
 
 data class TableRowHeaderVO private constructor(
-    val data: String
+    val data: String,
+    val color: Int
 ) {
 
     class Builder {
         var data: String = ""
+        var color: Int = android.R.color.transparent
 
-        fun build() = TableRowHeaderVO(data)
+        fun build() = TableRowHeaderVO(data, color)
     }
 }
 

@@ -1,9 +1,11 @@
 package com.kyawhtut.pos.ui.view
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import com.kyawhtut.pos.R
 import kotlinx.android.synthetic.main.view_pod_menu_item.view.*
 
@@ -23,10 +25,13 @@ class ViewPodMenuItem : FrameLayout {
         val a = context.obtainStyledAttributes(attrs, R.styleable.ViewPodMenuItem, defStyleAttr, 0)
         try {
             icon = a.getResourceId(R.styleable.ViewPodMenuItem_icon, icon)
+            iconTint = a.getResourceId(R.styleable.ViewPodMenuItem_iconTintColor, iconTint)
             background = a.getResourceId(R.styleable.ViewPodMenuItem_background, background)
         } finally {
             a.recycle()
         }
+
+//        iv_background.setOnClickListener { }
     }
 
     var icon: Int = R.drawable.ic_delete_black
@@ -34,9 +39,19 @@ class ViewPodMenuItem : FrameLayout {
             field = value
             iv_icon.setImageResource(value)
         }
-    var background: Int = R.drawable.bg_outline_box_active
+
+    var iconTint: Int = R.color.colorWhite
         set(value) {
             field = value
-            iv_background.setBackgroundResource(value)
+            iv_icon.setColorFilter(
+                ContextCompat.getColor(context, value),
+                PorterDuff.Mode.SRC_IN
+            )
+        }
+
+    var background: Int = R.drawable.ic_circle_accent
+        set(value) {
+            field = value
+            iv_icon.setBackgroundResource(value)
         }
 }

@@ -12,8 +12,11 @@ object Constants {
     const val SERVER_CHANNEL_NAME = "Running Server"
     const val SERVER_NOTIFICATION_ID = 0x001
 
+    const val DEFAULT_TEXT_COLOR = "#ffffff"
+    const val DEFAULT_BG_COLOR = "#8090fd"
+
     const val DEFAULT_HEADER =
-        "<h2 style=\"text-align: center;\">POS</h2><h4 style=\"text-align: center; \">30th Leikpayakan, Bago</h4><div style=\"text-align: center; \">09973419006, 09786596541</div>"
+        "<h2 style=\"text-align: center;\">Athone Sayin | POS</h2><h4 style=\"text-align: center; \">30th Leikpayakan, Bago</h4><div style=\"text-align: center; \">09973419006, 09786596541</div>"
     const val DEFAULT_FOOTER =
         "<h6 style=\"text-align: center;\">\u200Cဝယ်ယူအား\u200Cပေးမှုအတွက် ကျေးဇူးတင်ရှိပါသည်။</h6>"
 }

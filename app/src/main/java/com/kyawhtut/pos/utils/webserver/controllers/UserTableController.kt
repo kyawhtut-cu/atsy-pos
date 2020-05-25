@@ -14,7 +14,8 @@ class UserTableController : ApiController() {
     )
     override fun get(
         @RequestParam(name = "page", required = false, defaultValue = "0") page: String,
-        @RequestParam(name = "limit", required = false, defaultValue = "10") limit: String
+        @RequestParam(name = "limit", required = false, defaultValue = "10") limit: String,
+        @RequestParam(name = "filter", required = false, defaultValue = "") filter: String
     ): Any? {
         return db.userDao().get()
     }

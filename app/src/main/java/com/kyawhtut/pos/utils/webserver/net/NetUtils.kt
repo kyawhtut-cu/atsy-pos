@@ -22,7 +22,7 @@ object NetUtils {
      *
      * @return True if the input parameter is a valid IPv4 address.
      */
-    fun isIPv4Address(input: String?): Boolean {
+    private fun isIPv4Address(input: String?): Boolean {
         return IPV4_PATTERN.matcher(input).matches()
     }
 

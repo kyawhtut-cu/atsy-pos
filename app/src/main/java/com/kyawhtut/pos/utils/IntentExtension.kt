@@ -1,3 +1,4 @@
+
 @file:Suppress("UNCHECKED_CAST")
 
 package com.kyawhtut.pos.utils

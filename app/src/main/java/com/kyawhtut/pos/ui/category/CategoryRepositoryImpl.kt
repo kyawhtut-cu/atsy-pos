@@ -20,6 +20,12 @@ class CategoryRepositoryImpl(
 
     override var categoryId: Int = 0
 
+    override val isEditAllow: Boolean
+        get() = when (getCurrentUser()?.roleId ?: 5) {
+            -1, 1, 2, 3 -> true
+            else -> false
+        }
+
     override fun getCategory(): LiveData<List<ProductEntity>> = categoryDao.flowable().map {
         CategoryEntity.categoryList2ProductList(it)
     }.toLiveData()

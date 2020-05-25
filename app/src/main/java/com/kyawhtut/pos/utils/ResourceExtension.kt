@@ -13,6 +13,8 @@ fun Context?.checkNull() =
 
 fun String.toColor() = Color.parseColor(this)
 
+fun Int.toHexString() = "#%06X".format((0xFFFFFF and this))
+
 fun Context?.getStringList(@ArrayRes res: Int): Array<String> =
     checkNull().resources.getStringArray(res)
 

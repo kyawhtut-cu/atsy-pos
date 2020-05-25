@@ -1,5 +1,7 @@
 package com.kyawhtut.pos.data.injection
 
+import com.kyawhtut.pos.data.api.network.ApiRetrofit
+import com.kyawhtut.pos.data.api.network.InternetConnectivityInterceptor
 import com.kyawhtut.pos.data.db.*
 import com.kyawhtut.pos.data.db.entity.user
 import com.kyawhtut.pos.ui.category.CategoryRepository
@@ -14,9 +16,7 @@ import com.kyawhtut.pos.ui.customer.CustomerViewModel
 import com.kyawhtut.pos.ui.function.FunctionRepository
 import com.kyawhtut.pos.ui.function.FunctionRepositoryImpl
 import com.kyawhtut.pos.ui.function.FunctionViewModel
-import com.kyawhtut.pos.ui.home.HomeRepository
-import com.kyawhtut.pos.ui.home.HomeRepositoryImpl
-import com.kyawhtut.pos.ui.home.HomeViewModel
+import com.kyawhtut.pos.ui.home.*
 import com.kyawhtut.pos.ui.login.LoginRepository
 import com.kyawhtut.pos.ui.login.LoginRepositoryImpl
 import com.kyawhtut.pos.ui.login.LoginViewModel
@@ -32,6 +32,9 @@ import com.kyawhtut.pos.ui.table.TableViewModel
 import com.kyawhtut.pos.ui.ticket.TicketRepository
 import com.kyawhtut.pos.ui.ticket.TicketRepositoryImp
 import com.kyawhtut.pos.ui.ticket.TicketViewModel
+import com.kyawhtut.pos.ui.welcome.WelcomeRepository
+import com.kyawhtut.pos.ui.welcome.WelcomeRepositoryImpl
+import com.kyawhtut.pos.ui.welcome.WelcomeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
@@ -50,6 +53,18 @@ object AppInjection {
             }
         }
     }
+
+    val network = module {
+
+        single {
+            InternetConnectivityInterceptor(get())
+        }
+
+        single {
+            ApiRetrofit().provideApi(get(), "http://kyawhtut.com/", get())
+        }
+    }
+
     val database = module {
         single {
             provideDB(androidContext())
@@ -96,11 +111,30 @@ object AppInjection {
 
     val main = module {
         single<HomeRepository> {
-            HomeRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
+            HomeRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get(), get())
+        }
+
+        single<MainRepository> {
+            MainRepositoryImpl(get { parametersOf(null) }, get(named("rootUser")), get())
         }
 
         viewModel {
             HomeViewModel(get())
+        }
+
+        viewModel {
+            MainViewModel(get())
+        }
+    }
+
+    val welcome = module {
+
+        single<WelcomeRepository> {
+            WelcomeRepositoryImpl(get { parametersOf(null) }, get())
+        }
+
+        viewModel {
+            WelcomeViewModel(get())
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.kyawhtut.fontchooserlib.FontChoose
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.data.sharedpreference.get
 import com.kyawhtut.pos.data.sharedpreference.put
@@ -23,6 +24,8 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
     private var prefsPrintHeader: Preference? = null
     private var prefsPrintFooter: Preference? = null
     private var prefsRunAsServer: Preference? = null
+    private var prefsFontChange: Preference? = null
+
     private var prefsTax: Preference? = null
     private var prefsLimitAmount: Preference? = null
     private var taxAmount: Int = 0
@@ -40,6 +43,7 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
         prefsRunAsServer = findPreference("pref_run_as_server")
         prefsTax = findPreference("pref_tax_key")
         prefsLimitAmount = findPreference("pref_alert_amount_key")
+        prefsFontChange = findPreference("pref_font_key")
 
         setVersion()
 
@@ -48,6 +52,7 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
         prefsRunAsServer?.onPreferenceClickListener = this
         prefsTax?.onPreferenceClickListener = this
         prefsLimitAmount?.onPreferenceClickListener = this
+        prefsFontChange?.onPreferenceClickListener = this
 
         bindTaxAmount()
         bindLimitAmount()
@@ -87,6 +92,9 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
                 (requireActivity() as SettingActivity).startServer()
                     .takeUnless { CoreService.mServer?.isRunning ?: false }
                     ?: (requireActivity() as SettingActivity).stopServer()
+            }
+            prefsFontChange -> {
+                FontChoose.change(requireActivity() as SettingActivity)
             }
             prefsLimitAmount -> {
                 requireContext().showDialog(

@@ -42,9 +42,11 @@ class App : Application() {
                 listOf(
                     AppInjection.rootUser,
                     AppInjection.preference,
+                    AppInjection.network,
                     AppInjection.database,
                     AppInjection.function,
                     AppInjection.authentication,
+                    AppInjection.welcome,
                     AppInjection.main,
                     AppInjection.home,
                     AppInjection.category,

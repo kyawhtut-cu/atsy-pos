@@ -38,8 +38,6 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
     private val categoryList = mutableListOf<CategoryEntity>()
 
     override fun setup(bundle: Bundle) {
-        viewModel.color = context.getColorValue(R.color.colorAccent)
-        viewModel.textColor = context.getColorValue(R.color.colorWhite)
         viewModel.productId = bundle.getInt(extraProductId)
 
         viewModel.getCategoryList().also {
@@ -62,8 +60,8 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         ed_product_retail_price.setText("${viewModel.retailPrice}")
         ed_product_price.setText("${viewModel.price}")
         ed_product_count.setText("${viewModel.count}")
-        cv_product_color.setCardBackgroundColor(viewModel.color)
-        cv_product_text_color.setCardBackgroundColor(viewModel.textColor)
+        cv_product_color.setCardBackgroundColor(viewModel.color.toColor())
+        cv_product_text_color.setCardBackgroundColor(viewModel.textColor.toColor())
         cb_active_status.isChecked = viewModel.status
         sw_notification.isChecked = viewModel.remainAmountShow
 
@@ -158,7 +156,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
             showColorPickerDialog(
                 cv_product_color,
                 tv_product_color.mText.toString(),
-                viewModel.color
+                viewModel.color.toColor()
             )
         }
 
@@ -166,7 +164,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
             showColorPickerDialog(
                 cv_product_text_color,
                 tv_product_text_color.mText.toString(),
-                viewModel.textColor
+                viewModel.textColor.toColor()
             )
         }
 
@@ -186,8 +184,10 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
         }
 
         btn_ok.setOnClickListener {
-            if (viewModel.name.isEmpty()) edt_product_name.setError("Please enter category name").run { return@setOnClickListener }
-            if (viewModel.retailPrice == 0L) edt_product_retail_price.setError("Please enter retail price").run { return@setOnClickListener }
+            if (viewModel.name.isEmpty()) edt_product_name.setError("Please enter category name")
+                .run { return@setOnClickListener }
+            if (viewModel.retailPrice == 0L) edt_product_retail_price.setError("Please enter retail price")
+                .run { return@setOnClickListener }
             if (viewModel.productId == 0) viewModel.insert() else viewModel.update()
             dismiss()
         }
@@ -212,7 +212,7 @@ class ProductAddDialog : BaseDialogFragment(R.layout.dialog_product_add, true) {
             .withPresets()
             .withListener { _, color ->
                 if (view == cv_product_text_color) viewModel.textColor =
-                    color else viewModel.color = color
+                    color.toHexString() else viewModel.color = color.toHexString()
                 view.setCardBackgroundColor(color)
             }
             .show(childFragmentManager, "colorPicker")

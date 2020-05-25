@@ -64,6 +64,7 @@ class UserAddDialog private constructor() : BaseDialogFragment(R.layout.dialog_u
                 }
                 viewModel.getUserById(this).run {
                     viewModel.userRole = roleId
+                    viewModel.userDisplayName = displayName
                     viewModel.userName = userName
                     viewModel.createdDate = createdDate
                     viewModel.createdUserId = createdUserId
@@ -108,14 +109,16 @@ class UserAddDialog private constructor() : BaseDialogFragment(R.layout.dialog_u
             ).run {
                 return@setOnClickListener
             }
-            if (viewModel.userName.isEmpty()) edt_create_user_name.setError("Please enter user name").run { return@setOnClickListener }
+            if (viewModel.userName.isEmpty()) edt_create_user_name.setError("Please enter user name")
+                .run { return@setOnClickListener }
             if (viewModel.userPassword.isEmpty()) edt_create_user_password.setError(
                 "Please enter user password"
             ).run { return@setOnClickListener }
             if (viewModel.userId == 0)
                 viewModel.createUser {
                     if (it) btn_ok.longSnackBar("Account create successful.").run { dismiss() }
-                    else btn_ok.longSnackBar("User name or password already exist.").run { createDataClear() }
+                    else btn_ok.longSnackBar("User name or password already exist.")
+                        .run { createDataClear() }
                 }
             else
                 viewModel.updateUser {

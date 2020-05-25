@@ -8,10 +8,7 @@ import com.kyawhtut.fontchooserlib.FontChoose
 import com.kyawhtut.fontchooserlib.util.toDisplay
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseDialogFragment
-import com.kyawhtut.pos.utils.getColorValue
-import com.kyawhtut.pos.utils.gone
-import com.kyawhtut.pos.utils.putArg
-import com.kyawhtut.pos.utils.visible
+import com.kyawhtut.pos.utils.*
 import kotlinx.android.synthetic.main.dialog_category_add.*
 import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 import me.jfenn.colorpickerdialog.views.picker.ImagePickerView
@@ -35,13 +32,11 @@ class CategoryAddDialog : BaseDialogFragment(
     private val viewModel: CategoryAddDialogViewModel by viewModel()
 
     override fun setup(bundle: Bundle) {
-        viewModel.categoryColor = context.getColorValue(R.color.colorAccent)
-        viewModel.categoryTextColor = context.getColorValue(R.color.colorWhite)
         viewModel.categoryId = bundle.getInt(extraCategoryId)
 
         ed_category_name.setText(viewModel.categoryName.toDisplay(FontChoose.isUnicode()))
-        cv_category_color.setCardBackgroundColor(viewModel.categoryColor)
-        cv_category_text_color.setCardBackgroundColor(viewModel.categoryTextColor)
+        cv_category_color.setCardBackgroundColor(viewModel.categoryColor.toColor())
+        cv_category_text_color.setCardBackgroundColor(viewModel.categoryTextColor.toColor())
         cb_active_status.isChecked = viewModel.isActive
 
         cb_active_status.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -57,7 +52,7 @@ class CategoryAddDialog : BaseDialogFragment(
             showColorPickerDialog(
                 cv_category_color,
                 tv_category_color.mText.toString(),
-                viewModel.categoryColor
+                viewModel.categoryColor.toColor()
             )
         }
 
@@ -65,7 +60,7 @@ class CategoryAddDialog : BaseDialogFragment(
             showColorPickerDialog(
                 cv_category_text_color,
                 tv_category_text_color.mText.toString(),
-                viewModel.categoryTextColor
+                viewModel.categoryTextColor.toColor()
             )
         }
 
@@ -86,7 +81,8 @@ class CategoryAddDialog : BaseDialogFragment(
         }
 
         btn_ok.setOnClickListener {
-            if (viewModel.categoryName.isEmpty()) edt_category_name.setError("Please enter category name").run { return@setOnClickListener }
+            if (viewModel.categoryName.isEmpty()) edt_category_name.setError("Please enter category name")
+                .run { return@setOnClickListener }
             if (viewModel.categoryId == 0) viewModel.insertCategory() else viewModel.updateCategory()
             dismiss()
         }
@@ -111,7 +107,7 @@ class CategoryAddDialog : BaseDialogFragment(
             .withPresets()
             .withListener { pickerView, color ->
                 if (view == cv_category_text_color) viewModel.categoryTextColor =
-                    color else viewModel.categoryColor = color
+                    color.toHexString() else viewModel.categoryColor = color.toHexString()
                 view.setCardBackgroundColor(color)
             }
             .show(childFragmentManager, "colorPicker")

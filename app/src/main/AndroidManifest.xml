@@ -42,12 +42,16 @@
 
         <activity
             android:name=".ui.home.HomeActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".phone.home.PhoneHomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".ui.scanner.ScannerActivity"

@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.item_category.view.iv_bundle
 import kotlinx.android.synthetic.main.item_product.view.*
 import moe.feng.common.view.breadcrumbs.model.BreadcrumbItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragment_category) {
 
@@ -57,19 +58,21 @@ class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragm
                     itemClick(item.productName.toDisplay(FontChoose.isUnicode()))
                 }
                 this.item_card_view.setOnLongClickListener {
-                    CategoryAddDialog.show(parentFragmentManager, item.id)
+                    if (viewModel.isEditAllow) {
+                        CategoryAddDialog.show(parentFragmentManager, item.id)
+                    }
                     true
                 }
-                this.iv_bundle.setColorFilter(item.productTextColor)
-                this.item_card_view.setCardBackgroundColor(item.productColor)
-                this.divider.setBackgroundColor(item.productTextColor)
+                this.iv_bundle.setColorFilter(item.productTextColor.toColor())
+                this.item_card_view.setCardBackgroundColor(item.productColor.toColor())
+                this.divider.setBackgroundColor(item.productTextColor.toColor())
                 this.tv_category_name.apply {
                     mText = item.productName
-                    setTextColor(item.productTextColor)
+                    setTextColor(item.productTextColor.toColor())
                 }
                 this.tv_category_count.apply {
                     mText = item.getProductCountValue()
-                    setTextColor(item.productTextColor)
+                    setTextColor(item.productTextColor.toColor())
                 }
             }.map(
                 R.layout.item_product,
@@ -94,23 +97,25 @@ class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragm
                     }
                 }
                 this.setOnLongClickListener {
-                    ProductAddDialog.show(parentFragmentManager, item.id)
+                    if (viewModel.isEditAllow) {
+                        ProductAddDialog.show(parentFragmentManager, item.id)
+                    }
                     true
                 }
-                this.item_card_view.setCardBackgroundColor(item.productColor)
+                this.item_card_view.setCardBackgroundColor(item.productColor.toColor())
                 this.tv_product_name.apply {
                     mText = item.productName
-                    setTextColor(item.productTextColor)
+                    setTextColor(item.productTextColor.toColor())
                 }
-                this.iv_bundle.setColorFilter(item.productTextColor)
-                this.divider.setBackgroundColor(item.productTextColor)
+                this.iv_bundle.setColorFilter(item.productTextColor.toColor())
+                this.divider.setBackgroundColor(item.productTextColor.toColor())
                 this.tv_product_count.apply {
                     mText = item.getProductCountValue()
-                    setTextColor(item.productTextColor)
+                    setTextColor(item.productTextColor.toColor())
                 }
                 this.tv_product_price.apply {
                     mText = "${item.productRetailPrice} Ks"
-                    setTextColor(item.productTextColor)
+                    setTextColor(item.productTextColor.toColor())
                 }
             }.layoutManager(FlexboxLayoutManager(context).apply {
                 flexDirection = FlexDirection.ROW
@@ -127,7 +132,8 @@ class CategoryFragment : BaseFragmentViewModel<CategoryViewModel>(R.layout.fragm
 
     fun filter(query: String) {
         viewModel.dataList.value?.filter {
-            it.productName.toLowerCase().contains(query.toLowerCase()) || "${it.id}" == query
+            it.productName.toLowerCase(Locale.ENGLISH)
+                .contains(query.toLowerCase(Locale.ENGLISH)) || "${it.id}" == query
         }.run {
             rv_category.update(this?.toMutableList() ?: mutableListOf())
         }

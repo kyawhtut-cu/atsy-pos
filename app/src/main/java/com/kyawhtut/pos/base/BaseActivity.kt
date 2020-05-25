@@ -41,9 +41,6 @@ abstract class BaseActivity(
     companion object {
         private const val extraScannerRequest = 0x001
         private const val extraBluetoothEnable = 0x002
-
-        const val DISCONNECT = "com.posconsend.net.disconnetct"
-
         var binder: IMyBinder? = null
         var isConnect: Boolean = false
     }
@@ -80,7 +77,10 @@ abstract class BaseActivity(
 
         setup(savedInstanceState, intent.extras ?: Bundle())
 
-        bindService(intentFor<PosprinterService>(), conn, Context.BIND_AUTO_CREATE)
+        /*if (!isServiceRun) {
+            isServiceRun = true
+            bindService(intentFor<PosprinterService>(), conn, Context.BIND_AUTO_CREATE)
+        }*/
     }
 
     override fun attachBaseContext(newBase: Context?) {

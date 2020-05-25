@@ -33,12 +33,6 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
 
     override val viewModel: TicketViewModel by viewModel()
     private var isClickHome: Boolean = false
-    /*private val printer: PrintUtil by lazy {
-        PrintUtil.Builder().build(
-            fragment = this,
-            fail = {}
-        )
-    }*/
 
     override fun onViewCreated(bundle: Bundle) {
         viewModel.getDraftCartList().observe(this) {
@@ -70,6 +64,10 @@ class TicketFragment : BaseFragmentViewModel<TicketViewModel>(R.layout.fragment_
                 }
             }
             rv_cart.getBitmap { _, _ ->
+                this.saveToFile(requireContext(), "${viewModel.ticketID}.png")
+                viewModel.insertOrder()
+                home.performClick()
+                return@getBitmap
                 (requireActivity() as BaseActivity).printNow(
                     this,
                     success = {

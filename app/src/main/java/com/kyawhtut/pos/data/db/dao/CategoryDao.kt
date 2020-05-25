@@ -19,6 +19,9 @@ abstract class CategoryDao : BaseDao<CategoryEntity> {
     @Query("select * from category_table where category_id = :categoryId limit 1")
     abstract fun get(categoryId: Int): CategoryEntity?
 
+    @Query("select * from category_table order by category_sell_count desc limit :limit offset :page")
+    abstract fun get(page: Int, limit: Int): List<CategoryEntity>
+
     @Query("select * from category_table")
     abstract fun liveData(): LiveData<List<CategoryEntity>>
 

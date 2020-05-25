@@ -7,40 +7,42 @@ import com.yanzhenjie.andserver.error.BasicException
 import com.yanzhenjie.andserver.util.MediaType
 
 @RestController
-@RequestMapping("/api.v1")
+@RequestMapping("/api/v1")
 class CategoryTableController : ApiController() {
 
+    // todo: get
     @GetMapping(
         path = ["/category"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
     )
     override fun get(
-        @RequestParam(name = "page", required = false, defaultValue = "0") page: String,
-        @RequestParam(name = "limit", required = false, defaultValue = "10") limit: String
+        @RequestParam(name = "page", required = false, defaultValue = "-1") page: String,
+        @RequestParam(name = "limit", required = false, defaultValue = "-1") limit: String,
+        @RequestParam(name = "filter", required = false, defaultValue = "") filter: String
     ): Any? {
-        db.categoryDao().get().run {
-            return when {
-                page == "0" -> this
-                page.toInt() < this.size / limit.toInt() -> this.subList(
-                    limit.toInt() + page.toInt(),
-                    limit.toInt()
-                )
-                else -> throw BasicException(500, "Page not found.")
-            }
-        }
+        return db.categoryDao().get(
+            getSimpleQuery(
+                "category",
+                page = page.toInt(),
+                limit = limit.toInt(),
+                filter = filter
+            )
+        )
     }
 
+    // todo: get by id
     @GetMapping(
         path = ["/category/{categoryId}"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
     )
-    fun getUserById(@PathVariable(name = "categoryId") userId: String): Any? {
-        db.categoryDao().get(userId.toInt()).run {
+    fun getCategoryById(@PathVariable(name = "categoryId") categoryId: String): Any? {
+        db.categoryDao().get(categoryId.toInt()).run {
             if (this != null) return this
             else throw BasicException(404, "Category not found")
         }
     }
 
+    // todo : update
     @PutMapping(
         path = ["/category/{categoryId}"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
@@ -68,14 +70,16 @@ class CategoryTableController : ApiController() {
                     this.categoryColor = data.categoryColor swipe categoryColor
                     this.categoryTextColor = data.categoryTextColor swipe categoryTextColor
                     this.categorySellCount = data.categorySellCount swipe categorySellCount
+                    this.createdDate = data.createdDate
+                    this.createdUserId = data.createdUserId
                     this.updatedUserId = updatedUserId.toInt()
-                    this.createdDate = getCurrentTimeString()
                 }
             )
             return "Update successfully."
         }
     }
 
+    // todo: save
     @PostMapping(
         path = ["/category"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
@@ -91,8 +95,8 @@ class CategoryTableController : ApiController() {
         db.categoryDao().insert(
             category {
                 this.categoryName = categoryName
-                this.categoryColor = categoryColor.toInt()
-                this.categoryTextColor = categoryTextColor.toInt()
+                this.categoryColor = categoryColor
+                this.categoryTextColor = categoryTextColor
                 this.categorySellCount = categorySellCount.toInt()
                 this.createdUserId = createdUserId.toInt()
                 this.updatedUserId = updatedUserId.toInt()
@@ -102,6 +106,7 @@ class CategoryTableController : ApiController() {
         return "Insert successfully."
     }
 
+    // todo: delete
     @DeleteMapping(
         path = ["/category/{categoryId}"],
         produces = [MediaType.APPLICATION_JSON_UTF8_VALUE, "application/json; charset=utf-8"]
@@ -116,6 +121,6 @@ class CategoryTableController : ApiController() {
             "Category can't find."
         )
         db.categoryDao().delete(id.toInt())
-        return "Delete successfully."
+        return super.delete(id)
     }
 }

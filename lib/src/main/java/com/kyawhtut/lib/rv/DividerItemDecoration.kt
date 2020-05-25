@@ -17,7 +17,7 @@ class DividerItemDecoration(
     private val paddingBottom: Int = 0,
     private val paddingRight: Int = 0,
     private val paddingLeft: Int = 0,
-    private val padding: Int = 0
+    private val padding: Int = -1
 ) : ItemDecoration() {
 
     init {
@@ -35,7 +35,8 @@ class DividerItemDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val left = parent.paddingLeft + convertDpToPixel(16f, parent.context).toInt()
+        val left = parent.paddingLeft + convertDpToPixel((padding.takeIf { it != -1 }
+            ?: paddingLeft).toFloat(), parent.context).toInt()
         val right = parent.width - parent.paddingRight
         val childCount = if (ignoreLastItem) parent.childCount - 1 else parent.childCount
         loop@ for (i in 0 until childCount) {
@@ -48,7 +49,8 @@ class DividerItemDecoration(
             divider!!.setBounds(
                 left,
                 top,
-                right - convertDpToPixel(16f, parent.context).toInt(),
+                right - convertDpToPixel((padding.takeIf { it != -1 } ?: paddingRight).toFloat(),
+                    parent.context).toInt(),
                 bottom
             )
             divider!!.draw(c)

@@ -4,7 +4,8 @@ data class PrintTotalVO private constructor(
     var totalAmount: Long,
     var paidAmount: Long,
     var totalQty: Int,
-    var discountAmount: Long
+    var discountAmount: Long,
+    var taxAmount: Int = 0
 ) {
     fun getTotalPrice(prefix: String = "") = String.format("%s %s", totalAmount, prefix)
 
@@ -34,8 +35,9 @@ data class PrintTotalVO private constructor(
         var paidAmount = 0L
         var totalQty = 0
         var discountAmount: Long = 0L
+        var taxAmount: Int = 0
 
-        fun build() = PrintTotalVO(totalAmount, paidAmount, totalQty, discountAmount)
+        fun build() = PrintTotalVO(totalAmount, paidAmount, totalQty, discountAmount, taxAmount)
     }
 }
 

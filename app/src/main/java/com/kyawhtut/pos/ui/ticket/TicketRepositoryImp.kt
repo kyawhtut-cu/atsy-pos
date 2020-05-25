@@ -7,6 +7,7 @@ import com.kyawhtut.pos.base.BaseRepositoryImpl
 import com.kyawhtut.pos.data.db.dao.*
 import com.kyawhtut.pos.data.db.entity.*
 import com.kyawhtut.pos.data.vo.*
+import com.kyawhtut.pos.utils.toBoolean
 
 class TicketRepositoryImp(
     sh: SharedPreferences,
@@ -19,23 +20,24 @@ class TicketRepositoryImp(
 ) : BaseRepositoryImpl(sh, rootUser), TicketRepository {
 
     override fun getCustomerList(): List<CustomerEntity> {
-        customerDao.get().toMutableList().run {
-            add(
-                customer {
-                    id = 0
-                    customerName = "Other"
-                    customerAddress = "-"
-                }
-            )
-            return this
-        }
+        customerDao.get().toMutableList()
+            .filter { it.customerAvailable.toBoolean() }.toMutableList().run {
+                add(
+                    customer {
+                        id = 0
+                        customerName = "Other"
+                        customerAddress = "-"
+                    }
+                )
+                return this
+            }
     }
 
     override fun getCartList(ticketId: String): List<PrintVO> = cartDao.get(ticketId).run {
         this?.toPrintVOList() ?: printVOList { }
     }
 
-    override fun getProductById(role: Int, pId: Int): PrintVO = productDao.get(pId).run {
+    override fun getProductById(role: Int, pId: Int): PrintVO = productDao.get(pId)?.run {
         return printVO {
             data = productSell {
                 count = role
@@ -45,7 +47,7 @@ class TicketRepositoryImp(
                 price = productRetailPrice
             }
         }
-    }
+    } ?: printVO { }
 
     override fun getProductIdByProductCode(productCode: String): Int =
         productDao.getProductIdByProductCode(productCode)
