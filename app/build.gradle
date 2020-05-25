@@ -20,9 +20,9 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
 
-        versionCode 1
+//        versionCode 1
         versionName androidGitVersion.name()
-//        versionCode androidGitVersion.code()
+        versionCode androidGitVersion.code()
         archivesBaseName = "POS-$versionName"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
