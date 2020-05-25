@@ -1,11 +1,13 @@
 package com.kyawhtut.pos.base
 
 import android.content.SharedPreferences
+import android.text.Spannable
 import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.data.sharedpreference.clear
 import com.kyawhtut.pos.data.sharedpreference.get
 import com.kyawhtut.pos.data.sharedpreference.put
 import com.kyawhtut.pos.utils.Constants
+import net.nightwhistler.htmlspanner.HtmlSpanner
 
 abstract class BaseRepositoryImpl(
     protected val sh: SharedPreferences,
@@ -23,6 +25,22 @@ abstract class BaseRepositoryImpl(
         set(value) {
             sh.put(Constants.KEY_LIMIT_AMOUNT, value)
         }
+
+    override val printHeader: Spannable
+        get() = HtmlSpanner().fromHtml(
+            sh.get(
+                Constants.KEY_PRINT_HEADER,
+                Constants.DEFAULT_HEADER
+            )
+        )
+
+    override val printFooter: Spannable
+        get() = HtmlSpanner().fromHtml(
+            sh.get(
+                Constants.KEY_PRINT_FOOTER,
+                Constants.DEFAULT_FOOTER
+            )
+        )
 
     override fun isLogin() = sh.get(Constants.KEY_LOGIN, false)
 

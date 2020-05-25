@@ -1,14 +1,19 @@
 package com.kyawhtut.pos.data.db.entity
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
-import org.joda.time.DateTime
-import java.util.*
+import com.google.gson.annotations.SerializedName
+import com.kyawhtut.pos.utils.getCurrentTimeString
 
 @Entity(tableName = "ticket_table")
 data class TicketEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "ticket_id")
     val ticketId: String,
+    @ColumnInfo(name = "waiter_id")
+    val waiterID: Int,
+    @ColumnInfo(name = "waiter_name")
+    val waiterName: String,
     @ColumnInfo(name = "customer_id")
     @ForeignKey(
         entity = CustomerEntity::class,
@@ -40,21 +45,36 @@ data class TicketEntity(
     val createdDate: String,
     @ColumnInfo(name = "updated_date")
     val updatedDate: String
-)
+) {
+    companion object {
+        val diff = object : DiffUtil.ItemCallback<TicketEntity>() {
+            override fun areItemsTheSame(oldItem: TicketEntity, newItem: TicketEntity): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: TicketEntity, newItem: TicketEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+}
 
 class TicketBuilder {
     var ticketId: String = ""
+    var waiterID: Int = 0
+    var waiterName: String = ""
     var customerId: Int = 0
     var totalPrice: Long = 0
     var payAmount: Long = 0
     var discountAmount: Long = 0L
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
     fun build() = TicketEntity(
         ticketId,
+        waiterID,
+        waiterName,
         customerId,
         totalPrice,
         payAmount,
@@ -62,14 +82,16 @@ class TicketBuilder {
         createdUserId,
         updatedUserId,
         createdDate,
-        updatedDate
+        getCurrentTimeString()
     )
 }
 
 data class TicketWithProductList(
     @Embedded
+    @SerializedName("header")
     val ticketEntity: TicketEntity,
     @Relation(entity = SellEntity::class, parentColumn = "ticket_id", entityColumn = "ticket_id")
+    @SerializedName("sellEntities")
     val list: List<SellEntity>
 )
 

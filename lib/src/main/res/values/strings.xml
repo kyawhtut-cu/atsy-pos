@@ -2,4 +2,16 @@
     <string name="app_name">lib</string>
     <string name="lbl_btn_next_page">Next</string>
     <string name="lbl_btn_previous_page">Previous</string>
+
+    <string name="headline">Head Line</string>
+    <string name="textSize">Size</string>
+    <string name="textColor">Color</string>
+    <string name="textBold">Text Bold</string>
+    <string name="textItalic">Italic</string>
+    <string name="textStrike">Strike</string>
+    <string name="textAlign">Align</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="ImageUpload">Image Upload</string>
+    <string name="videoUpload">Video Upload</string>
 </resources>

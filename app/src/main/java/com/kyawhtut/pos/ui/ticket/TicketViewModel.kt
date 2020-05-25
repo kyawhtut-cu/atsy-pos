@@ -1,12 +1,10 @@
 package com.kyawhtut.pos.ui.ticket
 
+import android.text.Spannable
 import androidx.lifecycle.MutableLiveData
 import com.kyawhtut.pos.base.BaseViewModel
 import com.kyawhtut.pos.data.db.entity.customer
-import com.kyawhtut.pos.data.vo.PrintTotalVO
-import com.kyawhtut.pos.data.vo.PrintType
-import com.kyawhtut.pos.data.vo.PrintVO
-import com.kyawhtut.pos.data.vo.ProductSellVO
+import com.kyawhtut.pos.data.vo.*
 import org.joda.time.DateTime
 
 class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) {
@@ -23,6 +21,12 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
 
     var ticketID = String.format("TICKET-%s", DateTime.now().millis.toString().substring(6))
 
+    val printFooter: Spannable
+        get() = repo.printFooter
+
+    val printHeader: Spannable
+        get() = repo.printHeader
+
     fun generateNewTicketID(): String {
         ticketID = String.format("TICKET-%s", DateTime.now().millis.toString().substring(6))
         return ticketID
@@ -35,6 +39,14 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
         ticketID = ticketId
         _cartList.clear()
         with(repo.getCartList(ticketId)) {
+            if (this.isNotEmpty())
+                customerEntity = customer {
+                    with(this@with.first { it.type == PrintType.HEADER }.data as PrintHeader) {
+                        this@customer.id = customerID
+                        this@customer.customerName = customerName
+                        this@customer.customerPhone = customerPhone
+                    }
+                }
             _cartList.addAll(this)
             cartList.postValue(this.toMutableList())
             isAddedHeader = this.isNotEmpty()
@@ -86,8 +98,12 @@ class TicketViewModel(private val repo: TicketRepository) : BaseViewModel(repo) 
     fun insertOrder() {
         repo.insertTicket {
             ticketId = ticketID
+            waiterID =
+                (_cartList.first { it.type == PrintType.HEADER }.data as PrintHeader).waiterID
+            waiterName =
+                (_cartList.first { it.type == PrintType.HEADER }.data as PrintHeader).waiterName
             customerId = customerEntity.id
-            totalPrice = getTotalAmount()
+            totalPrice = getTotalAmount() + (getTotalAmount() * taxAmount / 100f).toInt()
             discountAmount = getValue(0)
             payAmount = getValue(1)
             createdUserId = getCurrentUser()?.id ?: 0

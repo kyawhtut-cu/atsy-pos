@@ -8,6 +8,7 @@ import com.kyawhtut.lib.minidrawer.*
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseRepositoryImpl
 import com.kyawhtut.pos.data.db.dao.CartDao
+import com.kyawhtut.pos.data.db.dao.ProductDao
 import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.utils.getIntList
 import com.kyawhtut.pos.utils.getStringList
@@ -16,11 +17,21 @@ import com.kyawhtut.pos.utils.toBoolean
 class HomeRepositoryImpl(
     sh: SharedPreferences,
     rootUser: UserEntity,
-    private val cartDao: CartDao
+    private val cartDao: CartDao,
+    private val productDao: ProductDao
 ) : BaseRepositoryImpl(sh, rootUser), HomeRepository {
 
-    override fun getSharedPreference(): SharedPreferences {
-        return sh
+    override val isLowerItem: LiveData<Int>
+        get() = productDao.getLowerItemList(limitAmount).map {
+            it.size
+        }.toLiveData()
+
+    override fun registerSharedPreference(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        sh.registerOnSharedPreferenceChangeListener(listener)
+    }
+
+    override fun unregisterSharedPreference(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
+        sh.unregisterOnSharedPreferenceChangeListener(listener)
     }
 
     private var functionIconList = arrayOf(

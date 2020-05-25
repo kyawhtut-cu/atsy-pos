@@ -2,24 +2,24 @@ package com.kyawhtut.pos.data.vo
 
 data class PrintTotalVO private constructor(
     var totalAmount: Long,
-    var tax: Int,
     var paidAmount: Long,
     var totalQty: Int,
-    var discountAmount: Long
+    var discountAmount: Long,
+    var taxAmount: Int = 0
 ) {
     fun getTotalPrice(prefix: String = "") = String.format("%s %s", totalAmount, prefix)
 
-    fun getTaxAmount(prefix: String = "") =
+    fun getTaxAmount(tax: Int, prefix: String = "") =
         String.format("%s %s", (totalAmount * tax / 100f).toInt(), prefix)
 
-    fun getTotalNetAmount(prefix: String = "") =
+    fun getTotalNetAmount(tax: Int, prefix: String = "") =
         String.format(
             "%s %s",
             totalAmount + (totalAmount * tax / 100f).toInt() - discountAmount,
             prefix
         )
 
-    fun getTotalChangeAmount(prefix: String = "") =
+    fun getTotalChangeAmount(tax: Int, prefix: String = "") =
         String.format(
             "%s %s",
             totalAmount + (totalAmount * tax / 100f).toInt() - paidAmount - discountAmount,
@@ -32,12 +32,12 @@ data class PrintTotalVO private constructor(
 
     class Builder {
         var totalAmount: Long = 0
-        var tax = 0
         var paidAmount = 0L
         var totalQty = 0
         var discountAmount: Long = 0L
+        var taxAmount: Int = 0
 
-        fun build() = PrintTotalVO(totalAmount, tax, paidAmount, totalQty, discountAmount)
+        fun build() = PrintTotalVO(totalAmount, paidAmount, totalQty, discountAmount, taxAmount)
     }
 }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="filter_array">
+        <item>အားလုံး</item>
+        <item>တစ်ပါတ်အတွင်း</item>
+        <item>တစ်လအတွင်း</item>
+        <item>တစ်နှစ်အတွင်း</item>
+    </string-array>
+</resources>

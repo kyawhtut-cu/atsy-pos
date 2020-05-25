@@ -2,16 +2,20 @@ package com.kyawhtut.pos.data.db.entity
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
+import com.google.gson.Gson
+import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseColumn
 import com.kyawhtut.pos.data.vo.TableCellVO
 import com.kyawhtut.pos.data.vo.TableRowHeaderVO
 import com.kyawhtut.pos.data.vo.rowHeader
 import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.ProductType
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import com.kyawhtut.pos.utils.toBoolean
 import com.kyawhtut.pos.utils.toInt
-import org.joda.time.DateTime
-import java.util.*
+import timber.log.Timber
 
 @Entity(tableName = "product_table")
 data class ProductEntity(
@@ -22,12 +26,14 @@ data class ProductEntity(
     val productCode: String,
     @ColumnInfo(name = "product_name")
     val productName: String,
+    @ColumnInfo(name = "product_description")
+    val productDescription: String,
     @ColumnInfo(name = "product_price")
     val productPrice: Long,
     @ColumnInfo(name = "product_color")
-    val productColor: Int,
+    val productColor: String,
     @ColumnInfo(name = "product_text_color")
-    val productTextColor: Int,
+    val productTextColor: String,
     @ColumnInfo(name = "product_unit")
     val productUnit: String,
     @ColumnInfo(name = "product_count")
@@ -70,7 +76,7 @@ data class ProductEntity(
     @Ignore
     var type: ProductType = ProductType.Product
 
-    fun getProductCountValue() = if (productCount == 0) "Empty" else "$productCount"
+    fun getProductCountValue() = if (productCount <= 0) "Empty" else "$productCount"
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ProductEntity>() {
@@ -95,9 +101,10 @@ class ProductBuilder {
     var id: Int = 0
     var productCode: String = ""
     var productName: String = ""
+    var productDescription: String = ""
     var productPrice: Long = 0
-    var productColor: Int = 0
-    var productTextColor: Int = 0
+    var productColor: String = DEFAULT_BG_COLOR
+    var productTextColor: String = DEFAULT_TEXT_COLOR
     var productUnit: String = ""
     var productCount: Int = 0
     var productRetailPrice: Long = 0
@@ -108,13 +115,13 @@ class ProductBuilder {
     var createdUserId = 0
     var updatedUserId = 0
     var type: ProductType = ProductType.Product
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
     fun build() = ProductEntity(
         id,
         productCode,
         productName,
+        productDescription,
         productPrice,
         productColor,
         productTextColor,
@@ -128,7 +135,7 @@ class ProductBuilder {
         createdUserId,
         updatedUserId,
         createdDate,
-        updatedDate
+        getCurrentTimeString()
     ).apply {
         type = this@ProductBuilder.type
     }
@@ -137,6 +144,7 @@ class ProductBuilder {
 class ProductColumn : BaseColumn(
     "Product Code",
     "Product Name",
+    "Product Description",
     "Product Price",
     "Color",
     "Text Color",
@@ -153,10 +161,16 @@ class ProductColumn : BaseColumn(
     "Action"
 ) {
     companion object {
-        fun getRowHeaderList(list: List<ProductTable>): List<TableRowHeaderVO> {
-            list.map {
+        fun getRowHeaderList(
+            list: List<ProductTable>,
+            isOverLimit: List<Boolean>
+        ): List<TableRowHeaderVO> {
+            Timber.d("isOverLimit => %s", Gson().toJson(isOverLimit))
+            list.mapIndexed { index, it ->
                 rowHeader {
                     data = "${it.product.id}"
+                    color = android.R.color.transparent.takeUnless { isOverLimit[index] }
+                        ?: R.color.colorWarning
                 }
             }.run {
                 return this
@@ -172,6 +186,10 @@ class ProductColumn : BaseColumn(
                 tableCell {
                     cellId = "product_name"
                     data = list.product.productName
+                }
+                tableCell {
+                    cellId = "product_description"
+                    data = list.product.productDescription
                 }
                 tableCell {
                     cellId = "product_price"
@@ -190,12 +208,12 @@ class ProductColumn : BaseColumn(
                     data = "${list.product.productCount}"
                 }
                 tableCell {
-                    cellId = "product_sell_count"
-                    data = "${list.product.productSellCount}"
-                }
-                tableCell {
                     cellId = "product_retail_Price"
                     data = "${list.product.productRetailPrice}"
+                }
+                tableCell {
+                    cellId = "product_sell_count"
+                    data = "${list.product.productSellCount}"
                 }
                 tableCell {
                     cellId = "category_name"

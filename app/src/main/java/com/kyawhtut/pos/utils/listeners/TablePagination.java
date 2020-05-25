@@ -89,13 +89,18 @@ public class TablePagination implements IPagination {
         tableView.getColumnSortHandler().addColumnSortStateChangedListener(columnSortStateChangedListener);
         tableView.getAdapter().addAdapterDataSetChangedListener(adapterDataSetChangedListener);
         tableView.getFilterHandler().addFilterChangedListener(filterChangedListener);
+        this.currentPage = 1;
+        refreshPagination();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void refreshPagination() {
         this.originalCellData = tableView.getAdapter().getCellRecyclerViewAdapter().getItems();
         this.originalRowData = tableView.getAdapter().getRowHeaderRecyclerViewAdapter().getItems();
-        this.currentPage = 1;
         reloadPages();
     }
 
-    private void reloadPages() {
+    public void reloadPages() {
         paginateData();
         goToPage(currentPage);
     }
@@ -198,13 +203,13 @@ public class TablePagination implements IPagination {
                 @Override
                 public void onRowHeaderItemsChanged(@NonNull List rowHeaderItems) {
                     originalRowData = new ArrayList<>(rowHeaderItems);
-                    reloadPages();
+                    /*reloadPages();*/
                 }
 
                 @Override
                 public void onCellItemsChanged(@NonNull List cellItems) {
                     originalCellData = new ArrayList<>(cellItems);
-                    reloadPages();
+                    /*reloadPages();*/
                 }
             };
 

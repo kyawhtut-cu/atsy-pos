@@ -7,6 +7,8 @@ import com.kyawhtut.pos.data.db.entity.ProductEntity
 
 interface CategoryRepository : BaseRepository {
 
+    val isEditAllow: Boolean
+
     var categoryId: Int
 
     fun getCategory(): LiveData<List<ProductEntity>>

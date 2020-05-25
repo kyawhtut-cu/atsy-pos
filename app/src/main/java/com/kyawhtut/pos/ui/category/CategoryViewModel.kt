@@ -18,6 +18,9 @@ class CategoryViewModel(private val repo: CategoryRepository) : BaseViewModel(re
 
     val dataList = MediatorLiveData<List<ProductEntity>>()
 
+    val isEditAllow: Boolean
+        get() = repo.isEditAllow
+
     private fun removeSource() {
         dataList.removeSource(_categoryData)
         dataList.removeSource(_productData)

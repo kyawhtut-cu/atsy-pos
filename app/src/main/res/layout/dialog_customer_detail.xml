@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/view_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="56dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ripple_selector"
+                android:padding="@dimen/margin_medium_2"
+                android:src="@drawable/ic_close_white"
+                android:tint="@color/colorBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_customer_image"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_customer_name" />
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:fontFamily="serif"
+                android:text="@string/lbl_hint_user_name"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                app:layout_constraintEnd_toStartOf="@+id/btn_close"
+                app:layout_constraintStart_toEndOf="@+id/iv_customer_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_customer_debt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="serif"
+                android:text="@string/lbl_hint_user_name"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="@+id/tv_customer_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_customer_name" />
+
+            <TextView
+                android:id="@+id/tv_customer_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                android:fontFamily="serif"
+                android:text="@string/lbl_hint_user_name"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_customer_debt"
+                app:layout_constraintTop_toBottomOf="@+id/tv_customer_debt" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_customer_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="@+id/tv_customer_address"
+                app:layout_constraintStart_toStartOf="@+id/iv_customer_image"
+                app:layout_constraintTop_toBottomOf="@+id/tv_customer_address" />
+
+            <TextView
+                android:id="@+id/tv_ticket_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:padding="@dimen/margin_medium_2"
+                android:text="@string/lbl_ticket_history"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_customer_phone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_customer_ticket"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ticket_history" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_add_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/margin_medium_2"
+        android:text="@string/lbl_add_payment"
+        app:icon="@drawable/ic_add_white" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

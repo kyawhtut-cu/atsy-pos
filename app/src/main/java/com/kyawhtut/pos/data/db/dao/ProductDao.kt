@@ -33,22 +33,28 @@ abstract class ProductDao : BaseDao<ProductEntity> {
     abstract fun getProductTable(): Flowable<List<ProductTable>>
 
     @Query("select * from product_table where product_id = :productId")
-    abstract fun get(productId: Int): ProductEntity
+    abstract fun get(productId: Int): ProductEntity?
 
     @Query("select product_id from product_table where product_code = :productCode")
     abstract fun getProductIdByProductCode(productCode: String): Int
 
-    @Query("update product_table set product_count = product_count - :productCount where product_id = :productId")
+    @Query("update product_table set product_count = product_count - :productCount, product_sell_count = product_sell_count + :productCount where product_id = :productId")
     abstract fun updateQuality(productCount: Int, productId: Int)
 
     fun updateQuality(list: List<SellEntity>) {
         list.forEach {
-            updateQuality(it.productId, it.productQuality)
+            updateQuality(it.productQuality, it.productId)
         }
     }
 
     @Query("select count(*) from sell_table where product_id = :productId")
     abstract fun canDeleteProductById(productId: Int): Int
+
+    @Query("select * from product_table where show_alert_remain_amount = 1 and product_count <= :limitAmount")
+    abstract fun getLowerItemList(limitAmount: Int): Flowable<List<ProductEntity>>
+
+    @Query("select count(*) from product_table where show_alert_remain_amount = 1 and product_count <= :limitAmount")
+    abstract fun getLowerItemCount(limitAmount: Int): Int
 
     @Query("delete from product_table where product_id = :productId")
     abstract fun delete(productId: Int)

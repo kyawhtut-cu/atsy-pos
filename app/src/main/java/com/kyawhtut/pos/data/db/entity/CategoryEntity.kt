@@ -7,8 +7,10 @@ import com.kyawhtut.pos.data.vo.TableCellVO
 import com.kyawhtut.pos.data.vo.TableRowHeaderVO
 import com.kyawhtut.pos.data.vo.rowHeader
 import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.ProductType
-import com.kyawhtut.pos.utils.toColor
+import com.kyawhtut.pos.utils.getCurrentTimeString
 
 @Entity(tableName = "category_table")
 data class CategoryEntity(
@@ -18,9 +20,9 @@ data class CategoryEntity(
     @ColumnInfo(name = "category_name")
     val categoryName: String,
     @ColumnInfo(name = "category_color")
-    val categoryColor: Int,
+    val categoryColor: String,
     @ColumnInfo(name = "category_text_color")
-    val categoryTextColor: Int,
+    val categoryTextColor: String,
     @ColumnInfo(name = "category_sell_count")
     val categorySellCount: Int,
     @ColumnInfo(name = "created_user_id")
@@ -89,15 +91,14 @@ data class CategoryEntity(
 class CategoryBuilder {
     var id: Int = 0
     var categoryName: String = ""
-    var categoryColor: Int = "#8090fd".toColor()
-    var categoryTextColor = "#ffffff".toColor()
+    var categoryColor: String = DEFAULT_BG_COLOR
+    var categoryTextColor = DEFAULT_TEXT_COLOR
     var categorySellCount = 0
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
     var categoryAvailable: Int = 1
-    var categoryCount: Int = 0
-    var createdDate = ""
-    var updatedDate = ""
+    private var categoryCount: Int = 0
+    var createdDate = getCurrentTimeString()
 
     fun build() =
         CategoryEntity(
@@ -110,7 +111,7 @@ class CategoryBuilder {
             updatedUserId,
             categoryAvailable,
             createdDate,
-            updatedDate
+            getCurrentTimeString()
         ).apply {
             this.categoryItemCount = categoryCount
         }

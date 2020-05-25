@@ -2,6 +2,8 @@ package com.kyawhtut.pos.utils
 
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -60,19 +62,22 @@ fun Context?.showDialog(
 
 fun Context?.showDialog(
     view: View,
-    bindView: View.() -> Unit = {},
+    bindView: View.(AlertDialog) -> Unit = {},
     isCancelable: Boolean = true,
     autoDismiss: Boolean = false,
+    isTransparent: Boolean = false,
     onClickPositive: (DialogClick.Builder.() -> Unit)? = null,
     onClickNegative: (DialogClick.Builder.() -> Unit)? = null
 ) {
     val dialog = AlertDialog.Builder(checkNull()).apply {
         setView(view)
-        view.bindView()
         setCancelable(isCancelable)
         setPositiveButton(onClickPositive)
         setNegativeButton(onClickNegative)
     }.create()
+
+    if (isTransparent)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
     if (autoDismiss) {
         Handler().postDelayed(
@@ -82,6 +87,8 @@ fun Context?.showDialog(
             2000
         )
     }
+
+    view.bindView(dialog)
 
     dialog.show()
 }

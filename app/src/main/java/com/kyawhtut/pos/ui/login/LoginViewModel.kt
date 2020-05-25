@@ -51,7 +51,6 @@ class LoginViewModel(private val repo: LoginRepository) : BaseViewModel(repo) {
             createdUserId = this@LoginViewModel.createdUserId
             updatedUserId = getCurrentUser()?.id ?: this@LoginViewModel.createdUserId
             createdDate = this@LoginViewModel.createdDate
-            updatedDate = getCurrentTimeString()
         }
         callback()
     }

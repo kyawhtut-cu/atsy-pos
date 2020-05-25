@@ -14,8 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.kyawhtut.fontchooserlib.component.MMTextView
-        android:id="@+id/tv_message"
+    <TextView
+        android:id="@+id/tv_footer_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

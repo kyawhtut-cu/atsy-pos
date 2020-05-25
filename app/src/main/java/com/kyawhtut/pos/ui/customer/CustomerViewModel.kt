@@ -20,7 +20,10 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
     var createdUser = getCurrentUser()?.id ?: 0
     var createDate = getCurrentTimeString()
 
-    fun getCustomer() {
+    fun getCustomerList() = repo.getCustomerList()
+    fun getCustomerDetail(cId: Int) = repo.getCustomerDetail(cId)
+
+    private fun getCustomer() {
         with(repo.getCustomerById(cId)) {
             name = customerName
             phone = customerPhone.split(",").toMutableList()
@@ -31,7 +34,7 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
         }
     }
 
-    fun canDeleteCustomer() = repo.canDeleteCustomer(cId)
+    fun canDeleteCustomer(cId: Int = this.cId) = repo.canDeleteCustomer(cId)
 
     fun insert() {
         repo.insertCustomer {
@@ -42,7 +45,6 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
             createdUserId = getCurrentUser()?.id ?: 0
             updatedUserId = getCurrentUser()?.id ?: 0
             createdDate = getCurrentTimeString()
-            updatedDate = getCurrentTimeString()
         }
     }
 
@@ -56,11 +58,14 @@ class CustomerViewModel(private val repo: CustomerRepository) : BaseViewModel(re
             createdUserId = createdUser
             updatedUserId = getCurrentUser()?.id ?: 0
             createdDate = createDate
-            updatedDate = getCurrentTimeString()
         }
     }
 
-    fun delete() {
+    fun addPayAmount(cId: Int, amount: Int) {
+        repo.addPayMoney(cId, amount.toLong())
+    }
+
+    fun delete(cId: Int = this.cId) {
         repo.deleteItemById(cId)
     }
 }

@@ -1,6 +1,8 @@
 package com.kyawhtut.pos.ui.product
 
 import com.kyawhtut.pos.base.BaseViewModel
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.getCurrentTimeString
 import com.kyawhtut.pos.utils.toBoolean
 import com.kyawhtut.pos.utils.toInt
@@ -14,9 +16,10 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         }
     var code = ""
     var name = ""
+    var description = ""
     var price = 0L
-    var color = 0
-    var textColor = 0
+    var color: String = DEFAULT_BG_COLOR
+    var textColor: String = DEFAULT_TEXT_COLOR
     var count = 0
     var retailPrice = 0L
     var cId = 0
@@ -29,6 +32,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         with(repo.getProductById(productId)!!) {
             code = productCode
             name = productName
+            description = productDescription
             price = productPrice
             color = productColor
             textColor = productTextColor
@@ -50,6 +54,7 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
         repo.insertProduct {
             productCode = code
             productName = name
+            productDescription = description
             productPrice = price
             productColor = color
             productTextColor = textColor
@@ -80,7 +85,6 @@ class ProductViewModel(private val repo: ProductRepository) : BaseViewModel(repo
             createdUserId = createUser
             updatedUserId = getCurrentUser()?.id ?: createUser
             createdDate = createDate
-            updatedDate = getCurrentTimeString()
         }
     }
 

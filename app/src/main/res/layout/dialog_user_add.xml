@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_xlarge"
+    android:layout_marginEnd="@dimen/margin_xlarge"
     app:cardBackgroundColor="@color/colorWhite"
     app:cardCornerRadius="@dimen/margin_medium"
     app:cardUseCompatPadding="true"

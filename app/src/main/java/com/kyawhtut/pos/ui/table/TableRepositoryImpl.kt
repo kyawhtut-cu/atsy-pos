@@ -10,6 +10,7 @@ import com.kyawhtut.pos.data.db.entity.*
 import com.kyawhtut.pos.data.vo.TableCellVO
 import com.kyawhtut.pos.data.vo.TableColumnHeaderVO
 import com.kyawhtut.pos.data.vo.TableRowHeaderVO
+import com.kyawhtut.pos.utils.toBoolean
 import timber.log.Timber
 
 class TableRepositoryImpl(
@@ -17,8 +18,6 @@ class TableRepositoryImpl(
     rootUser: UserEntity,
     private val db: AppDatabase
 ) : BaseRepositoryImpl(sh, rootUser), TableRepository {
-
-    override fun getTicketList() = db.ticketDao().getTicketWithSellList()
 
     override fun getCategoryList(): LiveData<Triple<List<TableColumnHeaderVO>, List<TableRowHeaderVO>, List<List<TableCellVO>>>> =
         db.categoryDao().getCategoryTable()
@@ -63,7 +62,9 @@ class TableRepositoryImpl(
                 }
                 Triple(
                     ProductColumn().getColumnHeaderList(),
-                    ProductColumn.getRowHeaderList(data),
+                    ProductColumn.getRowHeaderList(data, data.map {
+                        it.product.productRemainAmountShow.toBoolean() && it.product.productCount <= limitAmount
+                    }),
                     ProductColumn.getTableCellList(data)
                 )
             }.toLiveData()

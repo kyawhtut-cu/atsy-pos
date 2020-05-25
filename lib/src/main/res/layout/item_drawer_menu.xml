@@ -30,8 +30,10 @@
         android:text="1"
         android:textColor="#ffffff"
         android:textSize="8sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/iv_function_icon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <com.kyawhtut.fontchooserlib.component.MMTextView
         android:id="@+id/tv_function_title"

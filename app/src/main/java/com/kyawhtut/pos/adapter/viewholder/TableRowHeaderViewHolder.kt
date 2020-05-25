@@ -15,7 +15,10 @@ class TableRowHeaderViewHolder(private val view: View) : AbstractViewHolder(view
     }
 
     fun bind(data: TableRowHeaderVO) {
-        tvRowData.mText = data.data
+        tvRowData.apply {
+            mText = data.data
+            setBackgroundColor(context.getColorValue(data.color))
+        }
     }
 
     override fun setSelected(selectionState: SelectionState?) {

@@ -11,14 +11,19 @@ import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseActivityViewModel
 import com.kyawhtut.pos.phone.home.PhoneHomeActivity
 import com.kyawhtut.pos.ui.category.CategoryFragment
+import com.kyawhtut.pos.ui.customer.CustomerDialog
+import com.kyawhtut.pos.ui.customer.CustomerFragment
 import com.kyawhtut.pos.ui.login.LoginFragment
+import com.kyawhtut.pos.ui.report.ReportFragment
 import com.kyawhtut.pos.ui.sale.SaleFragment
+import com.kyawhtut.pos.ui.setting.SettingActivity
 import com.kyawhtut.pos.ui.table.TableFragment
 import com.kyawhtut.pos.ui.table.TableType
 import com.kyawhtut.pos.utils.getInflateView
 import com.kyawhtut.pos.utils.isTablet
 import com.kyawhtut.pos.utils.showDialog
 import com.kyawhtut.pos.utils.startActivity
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.dialog_code_add.view.*
 import moe.feng.common.view.breadcrumbs.DefaultBreadcrumbsCallback
@@ -66,6 +71,14 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
                     "Sale"
                 ) != -1
             ) mini_drawer.setBadge(viewModel.getIndex(this, "Sale"), it, it != 0)
+        }
+
+        viewModel.isLowerItem.observe(this) {
+            if (viewModel.getIndex(
+                    this,
+                    "Products"
+                ) != -1
+            ) mini_drawer.setBadge(viewModel.getIndex(this, "Products"), it, it != 0)
         }
 
         breadcrumbs_view.setCallback(object : DefaultBreadcrumbsCallback<BreadcrumbItem>() {
@@ -154,6 +167,23 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
             "Logout" -> viewModel.logout().run {
                 hideAllMenuItem()
             }
+            "Setting" -> {
+                if (!viewModel.isLogin()) Toasty.error(
+                    this,
+                    "ကျေးဇူပြု၍ အကောင့်ဝင်ပေးပါ။",
+                    Toasty.LENGTH_LONG
+                ).show().also {
+                    return
+                }
+                startActivity<SettingActivity>()
+            }
+            "Customer" -> openScreen(CustomerFragment(), pos).run {
+                showAllMenuItem()
+                menuCamera?.isVisible = false
+            }
+            "Report" -> openScreen(ReportFragment.newInstance(), pos).run {
+                hideAllMenuItem()
+            }
             else -> openScreen(
                 TableFragment.createInstance(
                     when (mini_drawer.getTitle(pos)) {
@@ -175,15 +205,16 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
         breadcrumbs_view.setItems(
             mutableListOf(
                 BreadcrumbItem.createSimpleItem(
-                    if (pos != -1) mini_drawer.getTitle(
-                        pos
-                    ) else title
+                    getString(R.string.lbl_btn_login).takeUnless { viewModel.isLogin() }
+                        ?: mini_drawer.getTitle(
+                            pos
+                        ).takeIf { pos != -1 } ?: title
                 )
             )
         )
     }
 
-    fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
+    private fun openScreen(fragment: Fragment, pos: Int = -1, title: String = "") {
         setBreadCrumbsTitle(pos, title)
         supportFragmentManager.commit {
             replace(R.id.content_home, fragment)
@@ -222,6 +253,7 @@ class HomeActivity : BaseActivityViewModel<HomeViewModel>(
             R.id.action_add -> {
                 when (currentFragment) {
                     is TableFragment -> (currentFragment as TableFragment).addNewData()
+                    is CustomerFragment -> CustomerDialog.show(supportFragmentManager)
                     else -> {
                         var edtCode: MMTextInputEditText? = null
                         showDialog(
