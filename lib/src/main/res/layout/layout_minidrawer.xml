@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kyawhtut.lib.minidrawer.CrossFadeSlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame_first"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_full_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="56dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_second"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mini_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="56dp" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/content_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="56dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/shadow_left" />
+    </LinearLayout>
+</com.kyawhtut.lib.minidrawer.CrossFadeSlidingPaneLayout>

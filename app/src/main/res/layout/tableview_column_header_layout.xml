@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/column_header_container"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/table_view_cell_height"
-    android:background="@color/unselected_header_background_color"
-    android:orientation="vertical">
+    android:background="@color/unselected_header_background_color">
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/column_header_textView"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:textColor="@color/unselected_text_color"
+        android:textSize="@dimen/table_view_default_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/column_header_sort_imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Header Data" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/column_header_sort_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/actionBarItemBackground"
+        android:padding="@dimen/margin_medium_2"
+        android:tint="@color/colorBlack"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_down_black"
+        tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/column_header_textView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:textColor="@color/unselected_text_color"
-                android:textSize="@dimen/table_view_default_text_size"
-                tools:text="Header Data" />
-
-            <ImageButton
-                android:id="@+id/column_header_sort_imageButton"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="end|center"
-                android:layout_marginStart="4dp"
-                android:background="@android:color/transparent"
-                android:paddingEnd="-5dp"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_gravity="bottom"
-            android:background="@color/separator_color" />
-    </FrameLayout>
-</LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_gravity="bottom"
+        android:background="@color/separator_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

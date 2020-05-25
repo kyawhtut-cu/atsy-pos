@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="bold"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_bold_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="italic"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_italic_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="underline"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_underlined_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="strikethrough"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_strikethrough_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="removeFormat"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_remove_format"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="normal"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_normal"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h1"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h1"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h2"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h2"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h3"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h3"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h4"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h4"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h5"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h5"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="h6"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_h6"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="superscript"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_super_script"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="subscript"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_subscript"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/btn_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="textForceColor"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_color_text_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/btn_text_back_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="textBackColor"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_color_fill_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="unordered"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_list_bulleted"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="ordered"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_list_numbered"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="blockQuote"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_quote"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="blockCode"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_code"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="alignLeft"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_align_left_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="alignCenter"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_align_center_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="alignRight"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_align_right_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="alignJustify"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_format_align_justify_black"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="horizontalRule"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_insert_line"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="indent"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_indent_increase"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="outdent"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_format_indent_decrease"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/btn_insert_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="table"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_insert_table"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/btn_insert_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="link"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_insert_link"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="unlink"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_insert_link_off"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="clear"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_clear"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_selector"
+            android:contentDescription="editHtml"
+            android:padding="@dimen/margin_medium_2"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_view_code"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+</HorizontalScrollView>

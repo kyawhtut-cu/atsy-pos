@@ -1,22 +1,38 @@
+plugins {
+    id 'com.gladed.androidgitversion' version '0.4.10'
+}
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.kyawhtut.pos"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 29
+
         versionCode 1
-        versionName "1.0"
+        versionName androidGitVersion.name()
+//        versionCode androidGitVersion.code()
+        archivesBaseName = "POS-$versionName"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
     buildTypes {
+        debug {
+            resValue("string", "PORT_NUMBER", "8081")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -29,26 +45,33 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            output.outputFileName = new File("../../release/${defaultConfig.versionName}", outputFileName)
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.preference:preference:1.1.0'
-    implementation 'androidx.fragment:fragment-ktx:1.2.0-rc02'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.fragment:fragment-ktx:1.3.0-alpha05'
+    implementation "androidx.slidingpanelayout:slidingpanelayout:1.0.0"
 
     //multi dex
     implementation 'com.android.support:multidex:1.0.3'
 
     //custom crash activity
-    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 
     //Timber(Logging)
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -69,46 +92,97 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     //Architecture
-    def lifecycle_version = "2.2.0-rc02"
+    def lifecycle_version = "2.3.0-alpha03"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 
     //Room
-    def room_version = "2.2.2"
+    def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
-    implementation 'androidx.work:work-runtime-ktx:2.2.0'
-
-    // font choose
-    implementation 'com.github.kyawhtut-cu:FontChoose:1.0.0'
+    implementation 'androidx.work:work-runtime-ktx:2.3.4'
 
     // date util
     implementation 'net.danlew:android.joda:2.10.1.1'
-    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+    implementation 'com.github.arcadefire:nice-spinner:1.4.5'
 
     // gson
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
+    //Network
+    implementation 'com.squareup.okhttp3:okhttp:4.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 
     // breadcrumbsview
     implementation 'com.github.HamidrezaAmz:BreadcrumbsView:0.2.9'
 
     // SimpleSearchView
-    implementation 'com.github.Ferfalk:SimpleSearchView:0.1.4'
+    implementation 'com.github.Ferfalk:SimpleSearchView:0.1.5'
 
     // color picker - https://github.com/fennifith/ColorPickerDialog
     implementation 'me.jfenn.ColorPickerDialog:base:0.2.1'
     implementation 'me.jfenn.ColorPickerDialog:imagepicker:0.2.1'
 
-    // text drawable
+    // text drawable - https://github.com/amulyakhare/TextDrawable
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
     // tableview https://github.com/evrencoskun/TableView
     implementation 'com.evrencoskun.library:tableview:0.8.8'
 
     // kotlin coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
     implementation project(path: ':lib')
+
+    // Android-ActionItemBadge - https://github.com/mikepenz/Android-ActionItemBadge
+    implementation 'com.mikepenz:actionitembadge:4.0.0'
+
+    //qr scanner - https://github.com/dm77/barcodescanner
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+
+    //android debug databases - https://github.com/amitshekhariitbhu/Android-Debug-Database
+    implementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    //runtime permission - https://github.com/florent37/RuntimePermission
+    implementation 'com.github.florent37:runtime-permission-kotlin:1.1.2'
+
+    // android web server - https://github.com/yanzhenjie/AndServer
+    implementation 'com.yanzhenjie.andserver:api:2.0.5'
+    kapt 'com.yanzhenjie.andserver:processor:2.0.5'
+
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+
+    // loading dialog - https://github.com/yanzhenjie/Loading
+    implementation 'com.yanzhenjie:loading:1.0.0'
+    /*implementation 'com.alibaba:fastjson:1.1.70.android'*/
+
+    // lottieAnimation - https://github.com/airbnb/lottie-android
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
+    implementation 'com.github.NightWhistler:HtmlSpanner:0.4'
+
+    // bluetooth printer -
+    implementation 'com.zxy.android:tiny:1.1.0'
+    implementation files('libs/posprinterconnectandsendsdk.jar')
+
+    //Reactive Programming
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'com.github.simbiose:Encryption:2.0.1'
+
+    // toast - https://github.com/GrenderG/Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

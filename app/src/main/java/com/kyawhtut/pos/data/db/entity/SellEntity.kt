@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.kyawhtut.pos.utils.getCurrentTimeString
 import org.joda.time.DateTime
 import java.util.*
 
@@ -19,8 +20,17 @@ data class SellEntity(
         childColumns = ["product_id"]
     )
     val productId: Int,
+    @ColumnInfo(name = "product_name")
+    val productName: String,
+    @ColumnInfo(name = "product_price")
+    val productPrice: Long,
     @ColumnInfo(name = "ticket_id")
-    val ticketId: Int,
+    @ForeignKey(
+        entity = TicketEntity::class,
+        parentColumns = ["ticket_id"],
+        childColumns = ["ticket_id"]
+    )
+    val ticketId: String,
     @ColumnInfo(name = "product_quality")
     val productQuality: Int,
     @ColumnInfo(name = "created_date")
@@ -32,12 +42,30 @@ data class SellEntity(
 class SellBuilder {
     var id: Int = 0
     var productId: Int = 0
-    var ticketId: Int = 0
+    var productName: String = ""
+    var productPrice: Long = 0
+    var ticketId: String = ""
     var productQuality: Int = 0
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    val updateDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
-    fun build() = SellEntity(id, productId, ticketId, productQuality, createdDate, updateDate)
+    fun build() =
+        SellEntity(
+            id,
+            productId,
+            productName,
+            productPrice,
+            ticketId,
+            productQuality,
+            createdDate,
+            getCurrentTimeString()
+        )
+}
+
+class SellList : ArrayList<SellEntity>() {
+
+    fun sell(block: SellBuilder.() -> Unit) {
+        add(SellBuilder().apply(block).build())
+    }
 }
 
 fun sell(block: SellBuilder.() -> Unit) = SellBuilder().apply(block).build()

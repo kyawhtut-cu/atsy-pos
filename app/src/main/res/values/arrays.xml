@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="filter_array">
+        <item>All</item>
+        <item>One Week</item>
+        <item>One Month</item>
+        <item>One Year</item>
+    </string-array>
+</resources>

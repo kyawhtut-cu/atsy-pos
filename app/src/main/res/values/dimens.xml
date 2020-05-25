@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="table_view_cell_height">28dp</dimen>
-    <dimen name="table_view_row_header_width">28dp</dimen>
-    <dimen name="table_view_default_text_size">11sp</dimen>
+    <dimen name="table_view_cell_height">56dp</dimen>
+    <dimen name="table_view_row_header_width">32dp</dimen>
+    <dimen name="table_view_default_text_size">@dimen/text_regular_2x</dimen>
 </resources>

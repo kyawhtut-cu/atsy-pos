@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_tag"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_small"
+    android:layout_marginEnd="@dimen/margin_small"
+    android:checkable="false"
+    android:textColor="@color/colorWhite"
+    app:checkedIcon="@drawable/ic_close_white"
+    app:chipBackgroundColor="@color/colorAccent"
+    app:closeIcon="@drawable/ic_close_white"
+    app:closeIconEnabled="true"
+    app:closeIconTint="@color/colorWhite"
+    tools:text="@string/app_name" />

@@ -2,10 +2,15 @@ package com.kyawhtut.pos.data.db.entity
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
+import com.kyawhtut.pos.base.BaseColumn
+import com.kyawhtut.pos.data.vo.TableCellVO
+import com.kyawhtut.pos.data.vo.TableRowHeaderVO
+import com.kyawhtut.pos.data.vo.rowHeader
+import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.ProductType
-import com.kyawhtut.pos.utils.toColor
-import org.joda.time.DateTime
-import java.util.*
+import com.kyawhtut.pos.utils.getCurrentTimeString
 
 @Entity(tableName = "category_table")
 data class CategoryEntity(
@@ -15,9 +20,9 @@ data class CategoryEntity(
     @ColumnInfo(name = "category_name")
     val categoryName: String,
     @ColumnInfo(name = "category_color")
-    val categoryColor: Int,
+    val categoryColor: String,
     @ColumnInfo(name = "category_text_color")
-    val categoryTextColor: Int,
+    val categoryTextColor: String,
     @ColumnInfo(name = "category_sell_count")
     val categorySellCount: Int,
     @ColumnInfo(name = "created_user_id")
@@ -86,15 +91,14 @@ data class CategoryEntity(
 class CategoryBuilder {
     var id: Int = 0
     var categoryName: String = ""
-    var categoryColor: Int = "#8090fd".toColor()
-    var categoryTextColor = "#ffffff".toColor()
+    var categoryColor: String = DEFAULT_BG_COLOR
+    var categoryTextColor = DEFAULT_TEXT_COLOR
     var categorySellCount = 0
     var createdUserId: Int = 0
     var updatedUserId: Int = 0
     var categoryAvailable: Int = 1
-    var categoryCount: Int = 0
-    var createdDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    private var categoryCount: Int = 0
+    var createdDate = getCurrentTimeString()
 
     fun build() =
         CategoryEntity(
@@ -107,10 +111,131 @@ class CategoryBuilder {
             updatedUserId,
             categoryAvailable,
             createdDate,
-            updatedDate
+            getCurrentTimeString()
         ).apply {
             this.categoryItemCount = categoryCount
         }
+}
+
+class CategoryColumn : BaseColumn(
+    "Category Name",
+    "Color",
+    "Text Color",
+    "Sell Count",
+    "Created User Name",
+    "Updated User Name",
+    "Status",
+    "Product Count",
+    "Created Date",
+    "Updated Date",
+    "Action"
+) {
+
+    companion object {
+        fun getRowHeaderList(
+            list: List<CategoryTable>
+        ): List<TableRowHeaderVO> {
+            list.map {
+                rowHeader {
+                    data = "${it.categoryEntity.id}"
+                }
+            }.run {
+                return this
+            }
+        }
+
+        private fun getTableCellList(cat: CategoryTable): MutableList<TableCellVO> = tableCellList {
+            tableCell {
+                cellId = "Category Name"
+                data = cat.categoryEntity.categoryName
+            }
+            tableCell {
+                cellId = "Category color"
+                data = cat.categoryEntity.categoryColor
+            }
+            tableCell {
+                cellId = "Category Text Color"
+                data = cat.categoryEntity.categoryTextColor
+            }
+            tableCell {
+                cellId = "Category Count"
+                data = "${cat.categoryEntity.categorySellCount}"
+            }
+            tableCell {
+                cellId = "Created User"
+                data = cat.createdUser ?: ""
+            }
+            tableCell {
+                cellId = "Update User"
+                data = cat.updatedUser ?: ""
+            }
+            tableCell {
+                cellId = "Category Available"
+                data = cat.categoryEntity.categoryAvailable
+            }
+            tableCell {
+                cellId = "Category count"
+                data = "${cat.productCount.size}"
+            }
+            tableCell {
+                cellId = "Created Date"
+                data = cat.categoryEntity.createdDate
+            }
+            tableCell {
+                cellId = "Update Date"
+                data = cat.categoryEntity.updatedDate
+            }
+            tableCell {
+                cellId = "${cat.categoryEntity.id}"
+                data = cat.productCount.size
+            }
+        }
+
+        fun getTableCellList(
+            list: List<CategoryTable>
+        ): List<List<TableCellVO>> {
+            list.map {
+                getTableCellList(it)
+            }.run {
+                return this
+            }
+        }
+    }
+}
+
+data class CategoryTable(
+    @Embedded
+    val categoryEntity: CategoryEntity,
+    @Relation(
+        parentColumn = "category_id",
+        entityColumn = "category_id",
+        entity = ProductEntity::class,
+        projection = ["product_name"]
+    )
+    val productCount: List<String>,
+    @Relation(
+        parentColumn = "created_user_id",
+        entityColumn = "user_id",
+        projection = ["user_display_name"],
+        entity = UserEntity::class
+    )
+    var createdUser: String?,
+    @Relation(
+        parentColumn = "updated_user_id",
+        entityColumn = "user_id",
+        projection = ["user_display_name"],
+        entity = UserEntity::class
+    )
+    var updatedUser: String?
+)
+
+class CategoryTableBuilder {
+    var categoryEntity = CategoryBuilder().build()
+    var productCount = mutableListOf<String>()
+    var createUser = ""
+    var updatedUser = ""
+
+    fun build() = CategoryTable(categoryEntity, productCount, createUser, updatedUser)
 }
 
 fun category(block: CategoryBuilder.() -> Unit): CategoryEntity =

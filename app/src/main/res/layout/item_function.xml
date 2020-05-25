@@ -9,7 +9,7 @@
     app:cardCornerRadius="@dimen/margin_medium"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true"
-    tools:context=".ui.superadmin.FunctionActivity">
+    tools:context=".ui.function.FunctionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +30,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:background="@color/colorDivider">
+
+                <ImageView
+                    android:id="@+id/iv_warning"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/bg_active"
+                    android:tint="@color/colorDeleteUnavailable"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.kyawhtut.fontchooserlib.component.MMTextView
                     android:id="@+id/tv_function_title"
@@ -55,7 +67,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
             android:ellipsize="end"
-            android:lineSpacingMultiplier="1.2"
+            android:lineSpacingMultiplier="1.4"
             android:maxLines="5"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_regular"

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_usage_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:canRightSwipe="false"
+    app:contentView="@+id/content"
+    app:rightMenuView="@+id/right_view">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right_view"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.kyawhtut.pos.ui.view.ViewPodMenuItem
+            android:id="@+id/btn_product_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_ripple_selector"
+            app:background="@android:color/transparent"
+            app:icon="@drawable/ic_delete_black"
+            app:iconTintColor="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:longClickable="true"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium">
+
+        <TextView
+            android:id="@+id/tv_product_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_name"
+            tools:text="100" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+            app:layout_constraintStart_toStartOf="@+id/guideline_id"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_product_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
+            app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2" />
+
+        <EditText
+            android:id="@+id/edt_product_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_tag_ed_bg"
+            android:gravity="center"
+            android:hint="@string/lbl_hint_product_count"
+            android:inputType="number"
+            android:padding="2dp"
+            android:textColor="@color/default_textColor"
+            android:textColorHint="@color/colorDivider"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
+            app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:maxLines="1"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10,000 Ks" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_product_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.09" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorDivider"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>

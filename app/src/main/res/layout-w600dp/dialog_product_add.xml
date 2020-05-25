@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/colorWhite"
+    app:cardCornerRadius="@dimen/margin_medium"
+    app:cardUseCompatPadding="true"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="1dp"
+    tools:context=".ui.product.ProductAddDialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/lbl_product_new"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_heading_1x"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_product_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="@string/lbl_product_color"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title" />
+
+        <com.kyawhtut.fontchooserlib.component.MMTextView
+            android:id="@+id/tv_product_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_product_text_color"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_regular_2x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_color" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_product_color"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_color"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_product_text_color"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardCornerRadius="@dimen/margin_medium"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_text_color"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="1dp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            app:layout_constraintBottom_toTopOf="@+id/btn_ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_category_text_color"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <org.angmarch.views.NiceSpinner
+                    android:id="@+id/sp_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:textColor="@color/default_textColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:popupTextAlignment="start" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_outline_box"
+                    app:layout_constraintBottom_toBottomOf="@+id/sp_category"
+                    app:layout_constraintEnd_toEndOf="@+id/sp_category"
+                    app:layout_constraintStart_toStartOf="@+id/sp_category"
+                    app:layout_constraintTop_toTopOf="@+id/sp_category" />
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_code"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:hint="@string/lbl_hint_product_code"
+                    app:endIconDrawable="@drawable/ic_camera_white"
+                    app:endIconMode="custom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sp_category">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:hint="@string/lbl_hint_product_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_product_code">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:hint="@string/lbl_hint_product_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_product_name">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_price"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:hint="@string/lbl_hint_product_price"
+                    app:layout_constraintEnd_toStartOf="@+id/edt_product_retail_price"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_product_description">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLines="1" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_retail_price"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:hint="@string/lbl_hint_product_retail_price"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_product_count"
+                    app:layout_constraintStart_toEndOf="@+id/edt_product_price"
+                    app:layout_constraintTop_toTopOf="@+id/edt_product_price">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_retail_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLines="1" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <com.kyawhtut.fontchooserlib.component.MMTextInputLayout
+                    android:id="@+id/edt_product_count"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:hint="@string/lbl_hint_product_count"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/edt_product_retail_price"
+                    app:layout_constraintTop_toTopOf="@+id/edt_product_price">
+
+                    <com.kyawhtut.fontchooserlib.component.MMTextInputEditText
+                        android:id="@+id/ed_product_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLines="1" />
+                </com.kyawhtut.fontchooserlib.component.MMTextInputLayout>
+
+                <Switch
+                    android:id="@+id/sw_notification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@string/lbl_show_low_balance"
+                    android:textColor="@color/default_textColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_product_price" />
+
+                <CheckBox
+                    android:id="@+id/cb_active_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:checked="true"
+                    android:text="@string/lbl_active_status"
+                    android:textColor="@color/default_textColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sw_notification" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_unavailable"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:tint="@color/colorDeleteUnavailable"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_delete_unavailable_message"
+                    app:layout_constraintStart_toStartOf="@+id/cb_active_status"
+                    app:layout_constraintTop_toTopOf="@+id/tv_delete_unavailable_message"
+                    app:srcCompat="@drawable/ic_warning_white" />
+
+                <TextView
+                    android:id="@+id/tv_delete_unavailable_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:text="@string/lbl_delete_unavailable"
+                    android:textColor="@color/colorDeleteUnavailable"
+                    android:textSize="@dimen/text_regular"
+                    app:layout_constraintStart_toEndOf="@+id/iv_delete_unavailable"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_active_status" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/gp_delete_unavailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tv_delete_unavailable_message,iv_delete_unavailable" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_category_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_category_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.46" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ok"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="@string/lbl_btn_ok"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="@string/lbl_btn_cancel"
+            android:textColor="@color/default_textColor"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
+            app:layout_constraintEnd_toStartOf="@+id/btn_ok"
+            app:rippleColor="@color/colorAccent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="@string/lbl_btn_delete"
+            android:textColor="@color/colorDeleteUnavailable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
+            app:rippleColor="@color/colorDeleteUnavailable" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

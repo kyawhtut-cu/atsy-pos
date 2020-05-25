@@ -8,7 +8,9 @@
     app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="@dimen/margin_medium"
     app:cardElevation="0dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:strokeColor="@color/colorWhite"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -66,15 +68,31 @@
 
         <com.kyawhtut.fontchooserlib.component.MMTextView
             android:id="@+id/tv_product_price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:gravity="end"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view_low_item"
             tools:text="2 $" />
+
+        <View
+            android:id="@+id/view_low_item"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:background="@drawable/ic_circle_accent"
+            android:backgroundTint="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_product_price"
+            app:layout_constraintStart_toStartOf="@+id/iv_bundle"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

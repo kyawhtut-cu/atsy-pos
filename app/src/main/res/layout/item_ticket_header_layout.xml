@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_store_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:textAlignment="center"
+        android:textColor="@color/color333"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_customer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-32dp"
+        android:gravity="end"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="@+id/tv_store_header"
+        app:layout_constraintStart_toStartOf="@+id/tv_store_header"
+        app:layout_constraintTop_toBottomOf="@+id/tv_store_header"
+        tools:text="Customer - Kyaw Kyaw" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_customer_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:ellipsize="end"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_name"
+        tools:text="Phone - 09973419006" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_ticket_waiter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone"
+        tools:text="1/Kyaw Htut" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_ticket_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_customer_phone"
+        tools:text="12-02-2019 12:30 PM" />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_ticket_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_waiter"
+        tools:text="TICKET-123456" />
+
+    <TextView
+        android:id="@+id/tv_product_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="No."
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_id"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ticket_number"
+        tools:text="No." />
+
+    <com.kyawhtut.fontchooserlib.component.MMTextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Items"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintStart_toStartOf="@+id/guideline_id"
+        app:layout_constraintTop_toTopOf="@+id/tv_product_count" />
+
+    <TextView
+        android:id="@+id/tv_product_qty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Qty"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_product_name" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="Price"
+        android:textColor="@color/default_textColor"
+        android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_product_qty"
+        app:layout_constraintTop_toTopOf="@+id/tv_product_qty" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_product_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

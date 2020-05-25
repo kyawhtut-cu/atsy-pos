@@ -5,17 +5,20 @@
     <color name="colorAccent">#8090fd</color>
     <color name="color333">#333333</color>
     <color name="colorc9c9c9">#c9c9c9</color>
+    <color name="colorDeleteUnavailable">#F03636</color>
 
-    <color name="selected_background_color">#15a4fa</color>
-    <color name="unselected_background_color">#1c324a</color>
-    <color name="shadow_background_color">#28415f</color>
-    <color name="unselected_header_background_color">#1f3650</color>
+    <color name="colorWarning">#f28944</color>
 
-    <color name="unselected_text_color">#537095</color>
-    <color name="selected_text_color">#ffffff</color>
+    <color name="selected_background_color">#1E757575</color>
+    <color name="unselected_background_color">#ffffff</color>
+    <color name="shadow_background_color">#1E757575</color>
+    <color name="unselected_header_background_color">#ffffff</color>
+
+    <color name="unselected_text_color">@color/default_textColor</color>
+    <color name="selected_text_color">@color/default_textColor</color>
     <color name="separator_color">#273e5b</color>
 
-    <color name="popup_menu_item_text_color">#88a5c9</color>
+    <color name="popup_menu_item_text_color">@color/colorAccent</color>
 
     <color name="female_icon_color">#e9515f</color>
     <color name="male_icon_color">#f28944</color>

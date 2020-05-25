@@ -3,8 +3,7 @@ package com.kyawhtut.pos.data.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.joda.time.DateTime
-import java.util.*
+import com.kyawhtut.pos.utils.getCurrentTimeString
 
 @Entity(tableName = "role_table")
 data class RoleEntity(
@@ -22,10 +21,9 @@ data class RoleEntity(
 class RoleBuilder {
     var id: Int = 0
     var roleName = ""
-    var createdDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate = getCurrentTimeString()
 
-    fun build(): RoleEntity = RoleEntity(id, roleName, createdDate, updatedDate)
+    fun build(): RoleEntity = RoleEntity(id, roleName, createdDate, getCurrentTimeString())
 }
 
 fun role(block: RoleBuilder.() -> Unit): RoleEntity = RoleBuilder().apply(block).build()

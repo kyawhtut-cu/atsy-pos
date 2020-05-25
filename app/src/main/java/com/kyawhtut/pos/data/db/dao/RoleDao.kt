@@ -1,33 +1,33 @@
 package com.kyawhtut.pos.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
+import com.kyawhtut.pos.base.BaseDao
 import com.kyawhtut.pos.data.db.entity.RoleEntity
+import io.reactivex.Flowable
 
 @Dao
-interface RoleDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg role: RoleEntity)
+abstract class RoleDao : BaseDao<RoleEntity> {
 
     @Query("select count(*) from role_table")
-    fun count(): Int
+    abstract fun count(): Int
 
     @Query("select * from role_table")
-    fun get(): List<RoleEntity>
+    abstract fun get(): List<RoleEntity>
 
     @Query("select * from role_table")
-    fun liveData(): LiveData<List<RoleEntity>>
+    abstract fun liveData(): LiveData<List<RoleEntity>>
+
+    @Query("select * from role_table")
+    abstract fun flowable(): Flowable<List<RoleEntity>>
 
     @Query("select * from role_table where role_id = :roleId limit 1")
-    fun get(roleId: Int): RoleEntity
+    abstract fun get(roleId: Int): RoleEntity
 
     @Query("delete from role_table")
-    fun delete()
+    abstract fun delete()
 
     @Query("delete from role_table where role_id = :roleId")
-    fun delete(roleId: Int)
-
-    @Delete
-    fun delete(role: RoleEntity)
+    abstract fun delete(roleId: Int)
 }

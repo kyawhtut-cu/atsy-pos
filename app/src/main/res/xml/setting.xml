@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/pref_header_about"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="prefs_version_name"
+            android:summary=""
+            android:title="@string/prefs_version_name"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="General"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="pref_print_header_key"
+            android:summary="Summary"
+            android:title="Print Header"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pref_print_footer_key"
+            android:summary="Summary"
+            android:title="Print Footer"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pref_tax_key"
+            android:summary="5 %"
+            android:title="Tax Amount"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pref_alert_amount_key"
+            android:summary="5"
+            android:title="Alert Amount"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pref_font_key"
+            android:summary="English - Unicode"
+            android:title="Font"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pref_run_as_server"
+            android:summary="Running - http://"
+            android:title="Run as Server"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/prefs_developed_by"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="prefs_developed_by"
+            android:summary="@string/prefs_developed_by_me"
+            android:title="Developer"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,6 +1,7 @@
 package com.kyawhtut.pos.data.sharedpreference
 
 import android.content.SharedPreferences
+import com.kyawhtut.pos.utils.SHKey
 
 object SharedPreferenceExtension
 
@@ -40,5 +41,7 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
 }
 
 fun SharedPreferences.clear() {
+    val phone = get(SHKey.KEY_PHONE_NUMBER, "")
     this.edit().clear().apply()
+    put(SHKey.KEY_PHONE_NUMBER, phone)
 }

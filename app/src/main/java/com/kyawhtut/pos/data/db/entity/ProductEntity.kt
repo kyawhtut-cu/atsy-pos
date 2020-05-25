@@ -2,23 +2,38 @@ package com.kyawhtut.pos.data.db.entity
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
+import com.google.gson.Gson
+import com.kyawhtut.pos.R
+import com.kyawhtut.pos.base.BaseColumn
+import com.kyawhtut.pos.data.vo.TableCellVO
+import com.kyawhtut.pos.data.vo.TableRowHeaderVO
+import com.kyawhtut.pos.data.vo.rowHeader
+import com.kyawhtut.pos.data.vo.tableCellList
+import com.kyawhtut.pos.utils.Constants.DEFAULT_BG_COLOR
+import com.kyawhtut.pos.utils.Constants.DEFAULT_TEXT_COLOR
 import com.kyawhtut.pos.utils.ProductType
-import org.joda.time.DateTime
-import java.util.*
+import com.kyawhtut.pos.utils.getCurrentTimeString
+import com.kyawhtut.pos.utils.toBoolean
+import com.kyawhtut.pos.utils.toInt
+import timber.log.Timber
 
 @Entity(tableName = "product_table")
 data class ProductEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "product_id")
     val id: Int,
+    @ColumnInfo(name = "product_code")
+    val productCode: String,
     @ColumnInfo(name = "product_name")
     val productName: String,
+    @ColumnInfo(name = "product_description")
+    val productDescription: String,
     @ColumnInfo(name = "product_price")
     val productPrice: Long,
     @ColumnInfo(name = "product_color")
-    val productColor: Int,
+    val productColor: String,
     @ColumnInfo(name = "product_text_color")
-    val productTextColor: Int,
+    val productTextColor: String,
     @ColumnInfo(name = "product_unit")
     val productUnit: String,
     @ColumnInfo(name = "product_count")
@@ -34,6 +49,10 @@ data class ProductEntity(
     val categoryId: Int,
     @ColumnInfo(name = "product_available")
     val productAvailable: Int,
+    @ColumnInfo(name = "show_alert_remain_amount")
+    val productRemainAmountShow: Int,
+    @ColumnInfo(name = "product_sell_count")
+    val productSellCount: Int,
     @ColumnInfo(name = "created_user_id")
     @ForeignKey(
         entity = UserEntity::class,
@@ -57,7 +76,7 @@ data class ProductEntity(
     @Ignore
     var type: ProductType = ProductType.Product
 
-    fun getProductCountValue() = if (productCount == 0) "Empty" else "$productCount"
+    fun getProductCountValue() = if (productCount <= 0) "Empty" else "$productCount"
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ProductEntity>() {
@@ -80,24 +99,29 @@ data class ProductEntity(
 
 class ProductBuilder {
     var id: Int = 0
+    var productCode: String = ""
     var productName: String = ""
+    var productDescription: String = ""
     var productPrice: Long = 0
-    var productColor: Int = 0
-    var productTextColor: Int = 0
+    var productColor: String = DEFAULT_BG_COLOR
+    var productTextColor: String = DEFAULT_TEXT_COLOR
     var productUnit: String = ""
     var productCount: Int = 0
     var productRetailPrice: Long = 0
     var categoryId: Int = 0
     var productAvailable = 1
+    var productRemainAmountShow: Boolean = true
+    var productSellCount: Int = 0
     var createdUserId = 0
     var updatedUserId = 0
     var type: ProductType = ProductType.Product
-    var createdDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
-    var updatedDate: String = DateTime.now().toString("dd-MM-yyyy", Locale.ENGLISH)
+    var createdDate: String = getCurrentTimeString()
 
     fun build() = ProductEntity(
         id,
+        productCode,
         productName,
+        productDescription,
         productPrice,
         productColor,
         productTextColor,
@@ -106,13 +130,169 @@ class ProductBuilder {
         productRetailPrice,
         categoryId,
         productAvailable,
+        productRemainAmountShow.toInt(),
+        productSellCount,
         createdUserId,
         updatedUserId,
         createdDate,
-        updatedDate
+        getCurrentTimeString()
     ).apply {
         type = this@ProductBuilder.type
     }
 }
+
+class ProductColumn : BaseColumn(
+    "Product Code",
+    "Product Name",
+    "Product Description",
+    "Product Price",
+    "Color",
+    "Text Color",
+    "Product Count",
+    "Retail Price",
+    "Sell Count",
+    "Category Name",
+    "Status",
+    "Created User Name",
+    "Updated User Name",
+    "Show Alert",
+    "Created Date",
+    "Updated Date",
+    "Action"
+) {
+    companion object {
+        fun getRowHeaderList(
+            list: List<ProductTable>,
+            isOverLimit: List<Boolean>
+        ): List<TableRowHeaderVO> {
+            Timber.d("isOverLimit => %s", Gson().toJson(isOverLimit))
+            list.mapIndexed { index, it ->
+                rowHeader {
+                    data = "${it.product.id}"
+                    color = android.R.color.transparent.takeUnless { isOverLimit[index] }
+                        ?: R.color.colorWarning
+                }
+            }.run {
+                return this
+            }
+        }
+
+        private fun getTableCellList(list: ProductTable): List<TableCellVO> {
+            tableCellList {
+                tableCell {
+                    cellId = "product_code"
+                    data = list.product.productCode
+                }
+                tableCell {
+                    cellId = "product_name"
+                    data = list.product.productName
+                }
+                tableCell {
+                    cellId = "product_description"
+                    data = list.product.productDescription
+                }
+                tableCell {
+                    cellId = "product_price"
+                    data = "${list.product.productPrice}"
+                }
+                tableCell {
+                    cellId = "product_color"
+                    data = list.product.productColor
+                }
+                tableCell {
+                    cellId = "product_text_color"
+                    data = list.product.productTextColor
+                }
+                tableCell {
+                    cellId = "product_count"
+                    data = "${list.product.productCount}"
+                }
+                tableCell {
+                    cellId = "product_retail_Price"
+                    data = "${list.product.productRetailPrice}"
+                }
+                tableCell {
+                    cellId = "product_sell_count"
+                    data = "${list.product.productSellCount}"
+                }
+                tableCell {
+                    cellId = "category_name"
+                    data = list.categoryName
+                }
+                tableCell {
+                    cellId = "product_status"
+                    data = list.product.productAvailable
+                }
+                tableCell {
+                    cellId = "created_user"
+                    data = list.createdUser ?: ""
+                }
+                tableCell {
+                    cellId = "updated_user"
+                    data = list.updatedUser ?: ""
+                }
+                tableCell {
+                    cellId = "show_alert"
+                    data = if (list.product.productRemainAmountShow.toBoolean()) "Show" else "Off"
+                }
+                tableCell {
+                    cellId = "created_date"
+                    data = list.product.createdDate
+                }
+                tableCell {
+                    cellId = "updated_date"
+                    data = list.product.updatedDate
+                }
+                tableCell {
+                    cellId = "${list.product.id}"
+                    data = list.sellCount.size
+                }
+            }.run {
+                return this
+            }
+        }
+
+        fun getTableCellList(list: List<ProductTable>): List<List<TableCellVO>> {
+            list.map {
+                getTableCellList(it)
+            }.run {
+                return this
+            }
+        }
+    }
+}
+
+data class ProductTable(
+    @Embedded
+    val product: ProductEntity,
+    @Relation(
+        parentColumn = "category_id",
+        entityColumn = "category_id",
+        entity = CategoryEntity::class,
+        projection = ["category_name"]
+    )
+    val categoryName: String,
+    @Relation(
+        parentColumn = "created_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var createdUser: String?,
+    @Relation(
+        parentColumn = "updated_user_id",
+        entityColumn = "user_id",
+        entity = UserEntity::class,
+        projection = ["user_display_name"]
+    )
+    var updatedUser: String?,
+    @Relation(
+        parentColumn = "product_id",
+        entityColumn = "product_id",
+        entity = SellEntity::class,
+        projection = ["sell_id"]
+    )
+    val sellCount: List<Int>
+)
 
 fun product(block: ProductBuilder.() -> Unit) = ProductBuilder().apply(block).build()

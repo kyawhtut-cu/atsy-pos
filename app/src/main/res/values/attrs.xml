@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="function_list_type" format="integer" />
+
+    <declare-styleable name="FunctionListFragment">
+        <attr name="function_list_type" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewPodMenuItem">
+        <attr name="icon" format="reference" />
+        <attr name="background" format="reference" />
+        <attr name="iconTintColor" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ComponentEmptyView">
+        <attr name="android:text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableItemStyle">
+        <attr name="expandableItemStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableItem">
+        <attr name="duration" format="integer" />
+        <attr name="layoutHeader" format="reference" />
+        <attr name="layoutContent" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ComponentBarChart">
+        <attr name="android:title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ComponentReportItem">
+        <attr name="android:text" format="string" />
+        <attr name="android:icon" format="reference" />
+    </declare-styleable>
+</resources>

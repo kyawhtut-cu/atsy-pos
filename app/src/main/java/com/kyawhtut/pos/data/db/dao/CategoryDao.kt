@@ -1,36 +1,44 @@
 package com.kyawhtut.pos.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
+import androidx.room.Transaction
+import com.kyawhtut.pos.base.BaseDao
 import com.kyawhtut.pos.data.db.entity.CategoryEntity
+import com.kyawhtut.pos.data.db.entity.CategoryTable
 import com.kyawhtut.pos.data.db.entity.CategoryWithProduct
 import io.reactivex.Flowable
 
 @Dao
-interface CategoryDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg category: CategoryEntity)
+abstract class CategoryDao : BaseDao<CategoryEntity> {
 
     @Query("select * from category_table order by category_sell_count desc")
-    fun get(): List<CategoryEntity>
+    abstract fun get(): List<CategoryEntity>
 
     @Query("select * from category_table where category_id = :categoryId limit 1")
-    fun get(categoryId: Int): CategoryEntity
+    abstract fun get(categoryId: Int): CategoryEntity?
+
+    @Query("select * from category_table order by category_sell_count desc limit :limit offset :page")
+    abstract fun get(page: Int, limit: Int): List<CategoryEntity>
 
     @Query("select * from category_table")
-    fun liveData(): LiveData<List<CategoryEntity>>
+    abstract fun liveData(): LiveData<List<CategoryEntity>>
+
+    @Transaction
+    @Query("select * from category_table where category_available = 1")
+    abstract fun flowable(): Flowable<List<CategoryWithProduct>>
 
     @Transaction
     @Query("select * from category_table")
-    fun flowable(): Flowable<List<CategoryWithProduct>>
+    abstract fun getCategoryTable(): Flowable<List<CategoryTable>>
+
+    @Query("select count(*) from product_table where category_id = :categoryId")
+    abstract fun canDeleteCategoryById(categoryId: Int): Int
 
     @Query("delete from category_table where category_id = :categoryId")
-    fun delete(categoryId: Int)
+    abstract fun delete(categoryId: Int)
 
     @Query("delete from category_table")
-    fun delete()
-
-    @Delete
-    fun delete(category: CategoryEntity)
+    abstract fun delete()
 }

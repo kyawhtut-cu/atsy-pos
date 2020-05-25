@@ -9,7 +9,7 @@ import androidx.appcompat.widget.PopupMenu;
 import com.evrencoskun.tableview.ITableView;
 import com.evrencoskun.tableview.sort.SortState;
 import com.kyawhtut.pos.R;
-import com.kyawhtut.pos.data.adapter.viewholder.ColumnHeaderViewHolder;
+import com.kyawhtut.pos.adapter.viewholder.TableColumnHeaderViewHolder;
 
 public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
         .OnMenuItemClickListener {
@@ -18,7 +18,7 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
     // Sort states
     private static final int ASCENDING = 1;
     private static final int DESCENDING = 2;
-    private static final int CLEAR = 3;
+    private static final int CLEAR = 5;
     // Test menu items for showing / hiding row
     private static final int ROW_HIDE = 4;
     private static final int ROW_SHOW = 3;
@@ -27,12 +27,12 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
     private static final int TEST_ROW_INDEX = 4;
 
 
-    private ColumnHeaderViewHolder m_iViewHolder;
+    private TableColumnHeaderViewHolder m_iViewHolder;
     private ITableView m_iTableView;
     private Context mContext;
     private int mXPosition;
 
-    public ColumnHeaderLongPressPopup(ColumnHeaderViewHolder p_iViewHolder, ITableView
+    public ColumnHeaderLongPressPopup(TableColumnHeaderViewHolder p_iViewHolder, ITableView
             p_jTableView) {
         super(p_iViewHolder.itemView.getContext(), p_iViewHolder.itemView);
         this.m_iViewHolder = p_iViewHolder;
@@ -41,7 +41,7 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
         this.mXPosition = m_iViewHolder.getAdapterPosition();
 
         // find the view holder
-        m_iViewHolder = (ColumnHeaderViewHolder) m_iTableView.getColumnHeaderRecyclerView()
+        m_iViewHolder = (TableColumnHeaderViewHolder) m_iTableView.getColumnHeaderRecyclerView()
                 .findViewHolderForAdapterPosition(mXPosition);
 
         initialize();
@@ -57,8 +57,9 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
     private void createMenuItem() {
         this.getMenu().add(Menu.NONE, ASCENDING, 0, mContext.getString(R.string.sort_ascending));
         this.getMenu().add(Menu.NONE, DESCENDING, 1, mContext.getString(R.string.sort_descending));
-        this.getMenu().add(Menu.NONE, ROW_HIDE, 2, mContext.getString(R.string.row_hide));
-        this.getMenu().add(Menu.NONE, ROW_SHOW, 3, mContext.getString(R.string.row_show));
+        this.getMenu().add(Menu.NONE, CLEAR, 2, "Clear Sort");
+        this.getMenu().add(Menu.NONE, ROW_HIDE, 3, mContext.getString(R.string.row_hide));
+        this.getMenu().add(Menu.NONE, ROW_SHOW, 4, mContext.getString(R.string.row_show));
         // add new one ...
 
     }
@@ -107,6 +108,9 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
                 // Show 5. row for testing process
                 // index starts from 0. That's why TEST_ROW_INDEX is 4.
                 m_iTableView.showRow(TEST_ROW_INDEX);
+                break;
+            case CLEAR:
+                m_iTableView.sortColumn(mXPosition, SortState.UNSORTED);
                 break;
         }
 

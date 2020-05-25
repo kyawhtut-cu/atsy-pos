@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:canRightSwipe="false"
+    app:contentView="@+id/view_content"
+    app:leftMenuView="@+id/left"
+    app:rightMenuView="@+id/right">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:paddingBottom="@dimen/margin_medium_2">
+
+        <TextView
+            android:id="@+id/tv_customer_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="serif"
+            android:text="@string/lbl_hint_user_name"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_customer_debt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="serif"
+            android:text="@string/lbl_hint_user_name"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintEnd_toEndOf="@+id/tv_customer_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_customer_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_customer_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="@+id/tv_customer_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_customer_debt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.kyawhtut.pos.ui.view.ViewPodMenuItem
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:background="@android:color/transparent"
+            app:icon="@drawable/ic_edit_white"
+            app:iconTintColor="@color/colorBlack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.kyawhtut.pos.ui.view.ViewPodMenuItem
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:background="@android:color/transparent"
+            app:icon="@drawable/ic_delete_black"
+            app:iconTintColor="@color/colorBlack"
+            app:layout_constraintStart_toEndOf="@+id/btn_edit"
+            app:layout_constraintTop_toTopOf="@+id/btn_edit" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>

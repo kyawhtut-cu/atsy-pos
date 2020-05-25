@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>POS | System API</title>
+    <style>
+        .center_horizontal {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="card-body">
+            <div class="py-3" style="border-bottom:2px solid rgba(2,117,216,0.2) ">
+                <p class="text-primary" style="text-decoration:underline; font-size:15px">ပြည်နယ် နှင့်
+                    တိုင်း များအားလုံး
+                </p>
+                <div class="p-3 mb-3" style="background: rgba(2,117,216,0.2); font-size:15px;font-weight:bold">
+                    <span class=" badge badge-primary px-3 py-2 mb-1" style="">GET</span>
+                    <a href=" http://myancity.devsm.net/states">http://myancity.devsm.net/states </a>
+                </div>
+            </div>
+            <div class="py-3" style="border-bottom:2px solid rgba(2,117,216,0.2) ">
+                <p class="text-primary" style="text-decoration:underline; font-size:15px">မြို့နယ် များအားလုံး
+                </p>
+                <div class="p-3 mb-3" style="background: rgba(2,117,216,0.2); font-size:15px;font-weight:bold">
+                    <span class=" badge badge-primary px-3 py-2 mb-1" style="">GET</span>
+                    <a href=" http://myancity.devsm.net/townships">http://myancity.devsm.net/townships </a>
+                </div>
+            </div>
+            <div class="py-3" style="">
+                <p class="text-primary" style="text-decoration:underline; font-size:15px">ပြည်နယ် / တိုင်း ၏
+                    မြို့နယ်များ
+                </p>
+                <div class="p-3 mb-3" style="background: rgba(2,117,216,0.2); font-size:15px;font-weight:bold">
+                    <span class=" badge badge-primary px-3 py-2 mb-1" style="">GET</span>
+                    <a href=" http://myancity.devsm.net/yangon/townships">http://myancity.devsm.net/yangon/townships
+                    </a>
+                </div>
+                <p class="text-muted" style=""><span class="text-primary">/yangon</span> သည် တိုင်း
+                    / ပြည်နယ် ၏ အမည် ဖြစ်သည်။ ရယူလိုသော အချက်အလက်များ အရ ပြောင်းပေးရမည်။
+                </p>
+                <p class="text-muted"> ဥပမာ - မန္တလေး တိုင်း၏
+                    မြို့နယ်များ ရယူရန် /mandalay/townships ဟု ပို့ပေးရမည်။
+                </p>
+                <div>
+                    <p class="text-primary" style="text-decoration:underline; font-size:15px">Response များရှင်းလင်းချက်
+                    </p>
+                    <dl class="row">
+                        <dt class="text-muted col-sm-3">id</dt>
+                        <dd class="col-sm-9">ရရှိလာသော အချက်အလက်၏ အမှတ်စဥ်</dd>
+                        <dt class="text-muted col-sm-3">state_divison</dt>
+                        <dd class="col-sm-9">
+                            ပြည်နယ် / တိုင်း ၏ အမည်
+                        </dd>
+                        <dt class="text-muted col-sm-3">p_code</dt>
+                        <dd class="col-sm-9">
+                            <p>
+                                &zwnj;နေရာ&zwnj;ဒေသအမှတ် (Postal Code ဖြင့်တူသည်)
+                            </p>
+                            <p>MMR017 - MMR သည် မြန်မာပြည် ကို ရည်ညွှန်းပြီး 017 သည် ဧရာ၀တီ တိုင်း ကို ရည်ညွှန်းသည်။</p>
+                            <p>MMR017024 - MMR သည် မြန်မာပြည် ကို ရည်ညွှန်းပြီး 017 သည် ဧရာ၀တီ တိုင်း ကို ရည်ညွှန်းသည်။
+                                024 သည် ဘိုကလေး မြို့အား ရည်ညွှန်းသည်။
+                            </p>
+                        </dd>
+                        <dt class="text-muted col-sm-3">townships</dt>
+                        <dd class="col-sm-9">
+                            မြို့နယ်များ
+                        </dd>
+                        <dt class="text-muted col-sm-3">map_index</dt>
+                        <dd class="col-sm-9">
+                            မြို့နယ် ၏ မြေပုံအမှတ်
+                        </dd>
+                        <dt class="text-muted col-sm-3">map_index</dt>
+                        <dd class="col-sm-9">
+                            မြို့နယ် ၏ မြေပုံအမှတ်
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

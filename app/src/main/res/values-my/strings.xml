@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">POS</string>
+    <string name="app_name">Athone Sayin | POS</string>
     <string name="action_settings">ပြင်ဆင်ရန်</string>
     <string name="lbl_welcome">ကြိုဆိုပါသည်</string>
     <string name="lbl_glad_to_see_you">မင်းကိုတွေ့ရတာ ဝမ်းသာပါတယ်။</string>
@@ -8,11 +8,92 @@
     <string name="lbl_btn_login">အကောင့်ဝင်မည်</string>
     <string name="lbl_hint_user_name">အကောင့်နာမည်</string>
     <string name="lbl_hint_user_password">ပတ်စဝေါ့</string>
-    <string name="lbl_hint_user_display_name">သင့်နာမည်</string>
+    <string name="lbl_hint_user_display_name">နာမည်</string>
     <string name="lbl_btn_create">အကောင့်ဖွင့်မည်</string>
     <string name="lbl_hint_category_name">အမျိုးစား နာမည်</string>
     <string name="lbl_btn_ok">Ok</string>
     <string name="lbl_btn_cancel">Cancel</string>
+    <string name="lbl_btn_delete">ဖျတ်မည်</string>
     <string name="lbl_category_color">Category color</string>
     <string name="lbl_category_text_color">Category text color</string>
+    <string name="lbl_active_status">Active</string>
+    <string name="lbl_delete_unavailable">ဖျတ်လို့မရပါ။</string>
+    <string name="lbl_btn_edit">ပြင်ဆင်မည်</string>
+    <string name="lbl_btn_add">အသစ်ထည့်မည်</string>
+    <string name="lbl_product_color">Product Color</string>
+    <string name="lbl_product_text_color">Product Text Color</string>
+    <string name="lbl_hint_product_price">မူရင်းစျေး</string>
+    <string name="lbl_hint_product_retail_price">ရောင်းစျေး</string>
+    <string name="lbl_hint_product_name">ပစ္စည်းအမည်</string>
+    <string name="lbl_show_low_balance">ပစ္စည်းအရေအတွက် %s ထက်လျော့နည်းပါက notification တွင်ပြရန်။</string>
+    <string name="lbl_hint_product_count">ပစ္စည်းအရေအတွက်</string>
+    <string name="lbl_hint_phone_number">ဖုန်းနံပါတ်</string>
+    <string name="lbl_hint_user_address">လိပ်စာ</string>
+    <string name="lbl_total_amount">စုစုပေါင်း</string>
+    <string name="lbl_tax_amount">အခွန်တန်ဖိုး (%d%%)</string>
+    <string name="lbl_net_amount">အခွန် + စုစုပေါင်း</string>
+    <string name="lbl_paid_amount">ပေးငွေ</string>
+    <string name="lbl_change_amount">ပြန်အမ်းငွေ</string>
+
+    <string name="pref_header_about">အကြောင်း</string>
+    <string name="prefs_version_name">ဗားရှင်း</string>
+    <string name="prefs_developed_by">Develop by</string>
+    <string name="lbl_search">ရှာဖွေရန်</string>
+    <string name="prefs_developed_by_me">ကျော်ထွဋ်</string>
+    <string name="label_setting_title">ပြင်ဆင်ရန်</string>
+    <string name="lbl_btn_new_voucher">ဘောင်ချာအသစ်ဖွင့်မည်။</string>
+    <string name="lbl_category_new">အမျိုးအစားအသစ်ထည့်ရန်</string>
+    <string name="lbl_category_edit">အမျိုးအစားပြင်ရန်</string>
+    <string name="lbl_customer_new">New Customer</string>
+    <string name="lbl_customer_edit">Edit Customer</string>
+    <string name="lbl_product_new">ပစ္စည်းအသစ်ထည့်ရန်</string>
+    <string name="lbl_hint_product_code">ပစ္စည်း ကုဒ်နံပါတ်</string>
+    <string name="lbl_product_edit">Edit Product</string>
+    <string name="lbl_user_new">ဝန်ထမ်းအသစ်ထည့်ရန်</string>
+    <string name="lbl_user_edit">Edit User</string>
+    <string name="lbl_scanner">ကုဒ်နံပါတ် ဖတ်ရန်</string>
+    <string name="lbl_choose_customer">Customer ရွေးချယ်ပါ</string>
+    <string name="lbl_discount_amount">လျှော့စျေး</string>
+    <string name="lbl_hint_discount_amount">@string/lbl_discount_amount</string>
+    <string name="lbl_hint_paid_amount">ပေးငွေ</string>
+    <string name="lbl_hint_product_description">ပစ္စည်းအကြောင်းအရာ</string>
+    <string name="lbl_hint_percentage_title">Tax Percentage</string>
+    <string name="lbl_hint_percentage">Enter Tax Percentage(5)</string>
+    <string name="lbl_percentage_change_title">Tax Percentage</string>
+    <string name="lbl_hint_limitation_title">Limitation Alert</string>
+    <string name="lbl_hint_pay_amount_title">Pay Amount</string>
+    <string name="lbl_hint_limitation">Enter Limitation Alert(5)</string>
+    <string name="lbl_hint_pay_amount">Enter Pay Amount</string>
+    <string name="lbl_limitation_change_title">Alert Limitation Amount</string>
+    <string name="lbl_add_pay_money">Add Pay Amount</string>
+    <string name="lbl_btn_check_device">စစ်ဆေးရန်</string>
+    <string name="lbl_check_device_title">ဖုန်းနံပါတ်စစ်ဆေးရန်</string>
+    <string name="lbl_btn_retry">ထပ်မံပြုလုပ်ရန်</string>
+
+    <string name="lbl_paired_devices">ချိတ်ဆက်ပြီးသော ပစ္စည်းများ</string>
+    <string name="lbl_other_devices">ရနိုင်သော ပစ္စည်းများ</string>
+    <string name="lbl_scan_device">ရှာဖွေမည်</string>
+    <string name="lbl_ticket_history">Ticket History</string>
+    <string name="lbl_add_payment">Add Payment</string>
+
+    <string name="lbl_debt">အကြွေး</string>
+    <string name="lbl_kyat">ကျပ်</string>
+    <string name="lbl_delete_title">ဖျတ်မည်</string>
+    <string name="lbl_delete_fail_title">ဖျတ်လို့မရပါ</string>
+    <string name="lbl_delete_message">%s ကို ဖျတ်မှာသေချာပါသလား။</string>
+    <string name="lbl_delete_fail_message">%s ကို ဖျတ်လို့မရနိုင်ပါ။</string>
+
+    <string name="lbl_total_sale_title">ဘောင်ချာများ</string>
+    <string name="lbl_total_item_title">ပစ္စည်းများ</string>
+    <string name="lbl_total_item_warning_title">လက်ကျန်ပစ္စည်းများ</string>
+    <string name="lbl_total_customer_title">ဖောက်သည်များ</string>
+    <string name="lbl_most_sell_product">ရောင်းရသည့် ပစ္စည်းများ</string>
+    <string name="lbl_home_title_title">ဘောင်ချာများ</string>
+
+    <!--Empty data-->
+    <string name="lbl_empty_items">ပစ္စည်းအမျိုးအစားများမရှိသေးပါ။</string>
+    <string name="lbl_empty_products">ပစ္စည်းများ မရှိသေးပါ။</string>
+    <string name="lbl_empty_users">ဝန်ထမ်းများမရှိသေးပါ။</string>
+    <string name="lbl_empty_customers">ဖောက်သည်များမရှိသေးပါ။</string>
+    <string name="lbl_empty_tickets">ဘောင်ချာများမရှိသေးပါ။</string>
 </resources>

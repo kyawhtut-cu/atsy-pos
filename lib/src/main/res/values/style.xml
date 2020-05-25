@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RippleToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="colorControlHighlight">@color/dark_gray</item>
+        <item name="colorControlNormal">@color/colorBlack</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+    </style>
+
+</resources>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.MainFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/view_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/view_header"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_voucher_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ticket"
+                android:tint="@color/colorWhite"
+                app:layout_constraintBottom_toTopOf="@+id/tv_total_sale_count"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_sale"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_sale"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/iv_product_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_shopping_bag_black"
+                android:tint="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_item"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_item"
+                app:layout_constraintTop_toTopOf="@+id/iv_voucher_image" />
+
+            <TextView
+                android:id="@+id/tv_total_sale_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:text="0"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_total_sale"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_sale"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_sale"
+                app:layout_constraintTop_toBottomOf="@+id/iv_voucher_image" />
+
+            <TextView
+                android:id="@+id/tv_total_item_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_item"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_item"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_sale_count" />
+
+            <com.kyawhtut.fontchooserlib.component.MMTextView
+                android:id="@+id/tv_total_sale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lbl_total_sale_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="@+id/view_header"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_item"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_sale_count" />
+
+            <com.kyawhtut.fontchooserlib.component.MMTextView
+                android:id="@+id/tv_total_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lbl_total_item_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_sale"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_sale" />
+
+            <View
+                android:id="@+id/divider_header"
+                android:layout_width="0.7dp"
+                android:layout_height="0dp"
+                android:alpha="0.5"
+                android:background="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_sale"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_item"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_sale"
+                app:layout_constraintTop_toTopOf="@+id/iv_voucher_image" />
+
+            <!--Second View-->
+            <View
+                android:id="@+id/view_secondary"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:background="@color/colorWhite"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_header" />
+
+            <com.kyawhtut.fontchooserlib.component.MMTextView
+                android:id="@+id/tv_total_item_remain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lbl_total_item_warning_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/color333"
+                app:layout_constraintBottom_toBottomOf="@+id/view_secondary"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_customer"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_item_remain_count" />
+
+            <com.kyawhtut.fontchooserlib.component.MMTextView
+                android:id="@+id/tv_total_customer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lbl_total_customer_title"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/color333"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_item_remain"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_item_remain" />
+
+            <TextView
+                android:id="@+id/tv_total_customer_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/color333"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_customer"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_customer"
+                app:layout_constraintTop_toTopOf="@+id/tv_total_item_remain_count" />
+
+            <TextView
+                android:id="@+id/tv_total_item_remain_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:text="0"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/colorDeleteUnavailable"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_total_item_remain"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_item_remain"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_item_remain"
+                app:layout_constraintTop_toBottomOf="@+id/iv_item_image" />
+
+            <ImageView
+                android:id="@+id/iv_customer_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_user_group_black"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_customer"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_customer"
+                app:layout_constraintTop_toTopOf="@+id/iv_item_image" />
+
+            <ImageView
+                android:id="@+id/iv_item_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_shopping_bag_black"
+                app:layout_constraintBottom_toTopOf="@+id/tv_total_item_remain_count"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_item_remain"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_item_remain"
+                app:layout_constraintTop_toTopOf="@+id/view_secondary"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <View
+                android:id="@+id/divider_secondary"
+                android:layout_width="0.7dp"
+                android:layout_height="0dp"
+                android:alpha="0.5"
+                android:background="@color/colorBlack"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_total_item_remain"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_customer"
+                app:layout_constraintStart_toEndOf="@+id/tv_total_item_remain"
+                app:layout_constraintTop_toTopOf="@+id/iv_item_image" />
+
+            <View
+                android:id="@+id/shadow_bottom_secondary"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@drawable/shadow_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_secondary" />
+
+            <!--Top Sell Graph-->
+            <View
+                android:id="@+id/shadow_top_graph"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:background="@drawable/shadow_top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shadow_bottom_secondary" />
+
+            <com.kyawhtut.pos.ui.view.ComponentBarChart
+                android:id="@+id/view_graph_for_product"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:title="@string/lbl_most_sell_product"
+                app:layout_constraintEnd_toEndOf="@+id/shadow_top_graph"
+                app:layout_constraintStart_toStartOf="@+id/shadow_top_graph"
+                app:layout_constraintTop_toBottomOf="@+id/shadow_top_graph" />
+
+            <View
+                android:id="@+id/shadow_bottom_graph"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@drawable/shadow_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_graph_for_product" />
+
+            <!--Ticket-->
+            <View
+                android:id="@+id/shadow_top_ticket"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:background="@drawable/shadow_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shadow_bottom_graph" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_for_ticket"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shadow_top_ticket">
+
+                <com.kyawhtut.fontchooserlib.component.MMTextView
+                    android:id="@+id/tv_ticket_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/margin_medium_2"
+                    android:text="@string/lbl_home_title_title"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/color333"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <org.angmarch.views.NiceSpinner
+                    android:id="@+id/sp_ticket_filter_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:minWidth="150dp"
+                    android:textColor="@color/default_textColor"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_ticket_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_ticket_title"
+                    app:popupTextAlignment="start" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_ticket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="true"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingBottom="@dimen/margin_medium_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ticket_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_ticket_title" />
+
+                <com.kyawhtut.pos.ui.view.ComponentEmptyView
+                    android:id="@+id/empty_view_ticket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:text="@string/lbl_empty_tickets"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_ticket_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_ticket_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/view_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_medium_2"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Main Fragment"
+            android:textColor="@color/default_textColor"
+            android:textSize="@dimen/text_big_3x" />
+
+        <Button
+            android:id="@+id/btn_go_to_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+    </LinearLayout>
+</FrameLayout>
