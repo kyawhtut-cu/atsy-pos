@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.hhl:recyclerviewindicator:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4edd9c756757d9ddaec24ab97beeeca0/jetified-recyclerviewindicator-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4edd9c756757d9ddaec24ab97beeeca0/jetified-recyclerviewindicator-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/514eed82a067ee519b156ef343e40aae/jetified-recyclerviewindicator-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/514eed82a067ee519b156ef343e40aae/jetified-recyclerviewindicator-1.0.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hhl/recyclerviewindicator/1.0.0/2444a14cfe90f45001a49c63067793eb9a731267/recyclerviewindicator-1.0.0-javadoc.jar!/" />
