@@ -4,7 +4,6 @@
 .DS_Store
 /build
 .externalNativeBuild
-/release
 local.properties
 /.idea/caches
 /.idea/libraries
