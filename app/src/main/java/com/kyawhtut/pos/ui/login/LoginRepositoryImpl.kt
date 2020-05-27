@@ -28,7 +28,7 @@ class LoginRepositoryImpl(
         if (!sh.get(
                 SHKey.KEY_INSERT_TRIAL_USER_ADMIN,
                 false
-            ) && BuildConfig.BUILD_TYPE == "trial"
+            ) && BuildConfig.isTrial
         ) {
             userDao.insert(user {
                 id = 1

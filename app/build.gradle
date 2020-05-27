@@ -29,10 +29,9 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
 
-        versionCode 1
         versionName androidGitVersion.name()
-//        versionCode androidGitVersion.code()
-        archivesBaseName = "POS-$versionName"
+        versionCode androidGitVersion.code()
+        archivesBaseName = "AThone Sayin - POS($versionName)"
 
         signingConfig signingConfigs.release
 
@@ -43,6 +42,8 @@ android {
     buildTypes {
         debug {
             resValue("string", "PORT_NUMBER", "8081")
+            buildConfigField "boolean", "isTrial", "false"
+
             debuggable true
             jniDebuggable true
             renderscriptDebuggable true
@@ -54,6 +55,8 @@ android {
 
         trial {
             resValue("string", "PORT_NUMBER", "8081")
+            buildConfigField "boolean", "isTrial", "true"
+
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
@@ -64,6 +67,8 @@ android {
         }
 
         release {
+            buildConfigField "boolean", "isTrial", "false"
+
             initWith trial
         }
     }

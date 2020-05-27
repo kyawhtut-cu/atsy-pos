@@ -34,9 +34,7 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
     private var prefsLimitAmount: Preference? = null
     private var taxAmount: Int = 0
     private var limitAmount: Int = 0
-    private val isTrial by lazy {
-        BuildConfig.BUILD_TYPE == "trial"
-    }
+    private val isTrial = BuildConfig.isTrial
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.setting)
