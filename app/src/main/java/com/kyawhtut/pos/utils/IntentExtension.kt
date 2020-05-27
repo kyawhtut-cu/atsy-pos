@@ -1,4 +1,3 @@
-
 @file:Suppress("UNCHECKED_CAST")
 
 package com.kyawhtut.pos.utils
@@ -332,3 +331,31 @@ fun Context?.openPermission() {
         data = Uri.fromParts("package", checkNull().packageName, null)
     })
 }
+
+fun Context.openFacebookAccount(fbID: String) {
+    if (fbID.isEmpty()) throw Exception("Facebook ID must not be null.")
+    try {
+        packageManager.getPackageInfo("com.facebook.katana", 0)
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(String.format("fb://profile/%s", fbID))))
+    } catch (e: Exception) {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(String.format("https://www.facebook.com/profile.php?id=,%s", fbID))
+            )
+        )
+    }
+}
+
+fun Fragment.openFacebookAccount(fbID: String) = requireContext().openFacebookAccount(fbID)
+
+fun Context.openPlayStore() {
+    try {
+        val uri = Uri.parse("market://details?id=$packageName")
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
+    } catch (e: ActivityNotFoundException) {
+        browse("http://play.google.com/store/apps/details?id=$packageName")
+    }
+}
+
+fun Fragment.openPlayStore() = requireContext().openPlayStore()

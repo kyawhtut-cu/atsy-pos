@@ -38,8 +38,6 @@ class UserAddDialog private constructor() : BaseDialogFragment(R.layout.dialog_u
 
     override fun setup(bundle: Bundle) {
 
-        viewModel.initRoleData(context.getStringList(R.array.user_role).toList())
-
         viewModel.getRoleData().observe(this) {
             roleList.apply {
                 clear()

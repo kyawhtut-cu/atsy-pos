@@ -1,6 +1,6 @@
 package com.kyawhtut.pos.data.api.network
 
-import com.kyawhtut.pos.data.api.response.DeviceStatusResponse
+import com.kyawhtut.pos.data.api.response.ApiResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -16,6 +16,6 @@ interface API {
     suspend fun getDeviceStatus(
         @Field("action") action: String,
         @Field("phone") phone: String
-    ): DeviceStatusResponse
+    ): ApiResponse
 
 }

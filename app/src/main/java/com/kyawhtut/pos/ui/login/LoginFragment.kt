@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.base.BaseFragmentViewModel
+import com.kyawhtut.pos.utils.getStringList
 import com.kyawhtut.pos.utils.longSnackBar
 import com.kyawhtut.pos.utils.longToast
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -14,6 +15,8 @@ class LoginFragment : BaseFragmentViewModel<LoginViewModel>(R.layout.fragment_lo
     override val viewModel: LoginViewModel by viewModel()
 
     override fun onViewCreated(bundle: Bundle) {
+
+        viewModel.initRoleData(context.getStringList(R.array.user_role).toList())
 
         ed_user_name.addTextChangedListener {
             viewModel.userName = ed_user_name.text.toString()

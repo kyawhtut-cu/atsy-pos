@@ -16,6 +16,10 @@ class LoginViewModel(private val repo: LoginRepository) : BaseViewModel(repo) {
     var createdUserId: Int = getCurrentUser()?.id ?: 0
     var createdDate: String = getCurrentTimeString()
 
+    init {
+        repo.insertTrialAdmin()
+    }
+
     fun initRoleData(roleList: List<String>) = repo.initRoleData(roleList)
 
     fun loginUser(): UserEntity? {

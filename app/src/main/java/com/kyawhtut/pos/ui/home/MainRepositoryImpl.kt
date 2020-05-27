@@ -2,14 +2,12 @@ package com.kyawhtut.pos.ui.home
 
 import android.content.SharedPreferences
 import androidx.sqlite.db.SimpleSQLiteQuery
-import com.google.gson.Gson
 import com.kyawhtut.pos.base.BaseRepositoryImpl
 import com.kyawhtut.pos.data.db.AppDatabase
 import com.kyawhtut.pos.data.db.entity.TicketEntity
 import com.kyawhtut.pos.data.db.entity.UserEntity
 import com.kyawhtut.pos.utils.toColor
 import org.joda.time.DateTime
-import timber.log.Timber
 import java.util.*
 
 /**
@@ -64,11 +62,7 @@ class MainRepositoryImpl(
     override fun getTicketList(filterType: MainViewModel.TicketFilterType): List<TicketEntity> =
         db.ticketDao().get().filter { ticket ->
             getDateList(filterType).any { filterDate ->
-                ticket.createdDate.contains(filterDate).also {
-                    Timber.d("Filter %s %s", filterDate, ticket.createdDate)
-                }
+                ticket.createdDate.contains(filterDate)
             }.takeIf { filterType != MainViewModel.TicketFilterType.ALL } ?: true
-        }.also {
-            Timber.d("getTicketList => %s", Gson().toJson(it))
         }
 }

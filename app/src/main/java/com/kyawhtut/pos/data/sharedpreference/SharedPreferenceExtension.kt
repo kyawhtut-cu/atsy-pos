@@ -42,6 +42,8 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
 
 fun SharedPreferences.clear() {
     val phone = get(SHKey.KEY_PHONE_NUMBER, "")
+    val isTrialAdminAdded = get(SHKey.KEY_INSERT_TRIAL_USER_ADMIN, false)
     this.edit().clear().apply()
+    put(SHKey.KEY_INSERT_TRIAL_USER_ADMIN, isTrialAdminAdded)
     put(SHKey.KEY_PHONE_NUMBER, phone)
 }

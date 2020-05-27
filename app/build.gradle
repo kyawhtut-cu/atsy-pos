@@ -8,6 +8,15 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    signingConfigs {
+        release {
+            keyAlias 'athonesayin-pos'
+            keyPassword 'kyawhtut@athonesayin'
+            storePassword 'kyawhtut@athonesayin'
+            storeFile file('../keystore/athonesayin-pos.jks')
+        }
+    }
+
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -20,10 +29,12 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
 
-//        versionCode 1
+        versionCode 1
         versionName androidGitVersion.name()
-        versionCode androidGitVersion.code()
+//        versionCode androidGitVersion.code()
         archivesBaseName = "POS-$versionName"
+
+        signingConfig signingConfigs.release
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -32,12 +43,42 @@ android {
     buildTypes {
         debug {
             resValue("string", "PORT_NUMBER", "8081")
-        }
-        release {
-            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        trial {
+            resValue("string", "PORT_NUMBER", "8081")
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            initWith trial
+        }
     }
+
+    flavorDimensions "dist"
+    productFlavors {
+        local {
+            dimension "dist"
+        }
+
+        playstore {
+            dimension "dist"
+        }
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -99,6 +140,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    trialImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 
     //Room
     def room_version = "2.2.5"
@@ -182,7 +224,10 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.github.simbiose:Encryption:2.0.1'
+    implementation 'com.github.tgio:rncryptor-native:0.0.9'
 
     // toast - https://github.com/GrenderG/Toasty
     implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    implementation 'com.github.kyawhtut-cu:Sheet2Json:1.0.0'
 }

@@ -8,6 +8,8 @@ import com.kyawhtut.pos.data.db.entity.UserEntity
 
 interface LoginRepository : BaseRepository {
 
+    fun insertTrialAdmin()
+
     fun canDeleteUserById(id: Int): Boolean
 
     fun initRoleData(roleList: List<String>)

@@ -6,13 +6,16 @@ import androidx.core.widget.addTextChangedListener
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.kyawhtut.fontchooserlib.FontChoose
+import com.kyawhtut.pos.BuildConfig
 import com.kyawhtut.pos.R
 import com.kyawhtut.pos.data.sharedpreference.get
 import com.kyawhtut.pos.data.sharedpreference.put
 import com.kyawhtut.pos.service.CoreService
 import com.kyawhtut.pos.utils.Constants
 import com.kyawhtut.pos.utils.getInflateView
+import com.kyawhtut.pos.utils.openFacebookAccount
 import com.kyawhtut.pos.utils.showDialog
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_change_limit.view.*
 import kotlinx.android.synthetic.main.dialog_change_percentage.view.*
 import kotlinx.android.synthetic.main.dialog_print_header_footer_editor.view.*
@@ -25,11 +28,15 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
     private var prefsPrintFooter: Preference? = null
     private var prefsRunAsServer: Preference? = null
     private var prefsFontChange: Preference? = null
+    private var prefsDeveloper: Preference? = null
 
     private var prefsTax: Preference? = null
     private var prefsLimitAmount: Preference? = null
     private var taxAmount: Int = 0
     private var limitAmount: Int = 0
+    private val isTrial by lazy {
+        BuildConfig.BUILD_TYPE == "trial"
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.setting)
@@ -44,6 +51,7 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
         prefsTax = findPreference("pref_tax_key")
         prefsLimitAmount = findPreference("pref_alert_amount_key")
         prefsFontChange = findPreference("pref_font_key")
+        prefsDeveloper = findPreference("prefs_developed_by")
 
         setVersion()
 
@@ -53,6 +61,7 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
         prefsTax?.onPreferenceClickListener = this
         prefsLimitAmount?.onPreferenceClickListener = this
         prefsFontChange?.onPreferenceClickListener = this
+        prefsDeveloper?.onPreferenceClickListener = this
 
         bindTaxAmount()
         bindLimitAmount()
@@ -82,16 +91,38 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClick
 
     override fun onPreferenceClick(preference: Preference?): Boolean {
         when (preference) {
+            prefsDeveloper -> openFacebookAccount("100008526678537")
             prefsPrintHeader -> {
-                showEditor("Edit Print Header Format", 0)
+                if (isTrial) {
+                    Toasty.warning(
+                        requireContext(),
+                        "အစမ်း Version တွင် မရနိုင်သေးပါ။",
+                        Toasty.LENGTH_LONG
+                    ).show()
+                } else
+                    showEditor("Edit Print Header Format", 0)
             }
             prefsPrintFooter -> {
-                showEditor("Edit Print Footer Format", 1)
+                if (isTrial) {
+                    Toasty.warning(
+                        requireContext(),
+                        "အစမ်း Version တွင် မရနိုင်သေးပါ။",
+                        Toasty.LENGTH_LONG
+                    ).show()
+                } else
+                    showEditor("Edit Print Footer Format", 1)
             }
             prefsRunAsServer -> {
-                (requireActivity() as SettingActivity).startServer()
-                    .takeUnless { CoreService.mServer?.isRunning ?: false }
-                    ?: (requireActivity() as SettingActivity).stopServer()
+                if (isTrial) {
+                    Toasty.warning(
+                        requireContext(),
+                        "အစမ်း Version တွင် မရနိုင်သေးပါ။",
+                        Toasty.LENGTH_LONG
+                    ).show()
+                } else
+                    (requireActivity() as SettingActivity).startServer()
+                        .takeUnless { CoreService.mServer?.isRunning ?: false }
+                        ?: (requireActivity() as SettingActivity).stopServer()
             }
             prefsFontChange -> {
                 FontChoose.change(requireActivity() as SettingActivity)
