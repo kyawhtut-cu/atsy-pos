@@ -61,7 +61,7 @@ object AppInjection {
         }
 
         single {
-            ApiRetrofit().provideApi(get(), "http://kyawhtut.com/", get())
+            ApiRetrofit().provideApi(get(), "https://kyawhtut.com/", get())
         }
     }
 
