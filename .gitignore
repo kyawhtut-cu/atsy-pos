@@ -13,3 +13,4 @@ local.properties
 /.idea/assetWizardSettings.xml
 /captures
 .cxx
+keystore
