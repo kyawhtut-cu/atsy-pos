@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import cat.ereza.customactivityoncrash.config.CaocConfig
 import com.kyawhtut.pos.data.injection.AppInjection
 import com.kyawhtut.pos.utils.webserver.net.FileUtils
-import com.kyawhtut.sheet2json.Sheet2Json
 import com.yanzhenjie.andserver.util.IOUtils
 import net.danlew.android.joda.JodaTimeAndroid
 import org.koin.android.ext.koin.androidContext
@@ -31,8 +30,6 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-
-        Sheet2Json.init()
 
         CaocConfig.Builder.create().showErrorDetails(BuildConfig.DEBUG).apply()
 

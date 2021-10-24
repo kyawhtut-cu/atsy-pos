@@ -1,5 +1,6 @@
 package com.kyawhtut.pos.data.injection
 
+import com.kyawhtut.pos.BuildConfig
 import com.kyawhtut.pos.data.api.network.ApiRetrofit
 import com.kyawhtut.pos.data.api.network.InternetConnectivityInterceptor
 import com.kyawhtut.pos.data.db.*
@@ -61,7 +62,7 @@ object AppInjection {
         }
 
         single {
-            ApiRetrofit().provideApi(get(), "https://kyawhtut.com/", get())
+            ApiRetrofit().provideApi(get(), BuildConfig.API_BASE_URL, get())
         }
     }
 

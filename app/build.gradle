@@ -6,14 +6,23 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def secureProps = new Properties()
+file("${rootDir}/local.properties")?.withInputStream { secureProps.load(it) }
+def encryptionKey = secureProps.getProperty("encryptionKey") ?: ""
+def _keyAlias = secureProps.getProperty("keyAlias") ?: ""
+def _keyPassword = secureProps.getProperty("keyPassword") ?: ""
+def _storePassword = secureProps.getProperty("storePassword") ?: ""
+def _storeFile = secureProps.getProperty("storePath") ?: ""
+def _apiBaseURL = secureProps.getProperty("apiBaseURL") ?: ""
+
 android {
 
     signingConfigs {
         release {
-            keyAlias 'athonesayin-pos'
-            keyPassword 'kyawhtut@athonesayin'
-            storePassword 'kyawhtut@athonesayin'
-            storeFile file('../keystore/athonesayin-pos.jks')
+            keyAlias _keyAlias
+            keyPassword _keyPassword
+            storePassword _storePassword
+            storeFile file(_storeFile)
         }
     }
 
@@ -38,11 +47,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
+
+        buildConfigField "boolean", "isTrial", "true"
+        buildConfigField "String", "ENCRYPTION_KEY", "\"${encryptionKey}\""
+        buildConfigField "String", "API_BASE_URL", "\"${_apiBaseURL}\""
     }
     buildTypes {
         debug {
             resValue("string", "PORT_NUMBER", "8081")
-            buildConfigField "boolean", "isTrial", "false"
 
             debuggable true
             jniDebuggable true
@@ -67,9 +79,9 @@ android {
         }
 
         release {
-            buildConfigField "boolean", "isTrial", "false"
-
             initWith trial
+
+            buildConfigField "boolean", "isTrial", "false"
         }
     }
 
@@ -228,11 +240,8 @@ dependencies {
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    implementation 'com.github.simbiose:Encryption:2.0.1'
     implementation 'com.github.tgio:rncryptor-native:0.0.9'
 
     // toast - https://github.com/GrenderG/Toasty
     implementation 'com.github.GrenderG:Toasty:1.4.2'
-
-    implementation 'com.github.kyawhtut-cu:Sheet2Json:1.0.0'
 }

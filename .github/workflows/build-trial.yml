@@ -1,0 +1,69 @@
+name: Build Trial App
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+
+  build_start:
+
+    name: Build Start
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check Out Branch
+        uses: actions/checkout@v2.3.4
+
+      - name: Tag Version
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+  build_trial:
+
+    needs: build_start
+    name: Build Trial
+    runs-on: ubuntu-18.04
+    env:
+      APP_CONFIG: ${{ secrets.APP_CONFIG }}
+      ROOT_USER_CONFIG: ${{ secrets.ROOT_USER_CONFIG }}
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      FILE_UPLOAD_URL: ${{ secrets.FILE_UPLOAD_URL }}
+
+    steps:
+
+      - name: Check Out Branch
+        uses: actions/checkout@v2.3.4
+
+      - run: touch local.properties
+      - run: echo $APP_CONFIG | base64 --decode > local.properties
+      - run: touch app/src/main/assets/rootUser.properties
+      - run: echo $ROOT_USER_CONFIG | base64 --decode > app/src/main/assets/rootUser.properties
+      - run: mkdir keystore
+      - run: touch keystore/athonesayin-pos.jks
+      - run: echo $KEYSTORE_BASE64 | base64 --decode > keystore/athonesayin-pos.jks
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Tag Version
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Build Trial App
+        run: ./gradlew app:assembleplaystoreTrial
+
+      - name: Upload Trial APK
+        uses: wei/curl@v1
+        with:
+          args: --location --request POST ${{ env.FILE_UPLOAD_URL }} -F 'file=@app/build/outputs/apk/release/${{ env.RELEASE_VERSION }}/AThone Sayin - POS(${{ env.RELEASE_VERSION }})-playstore-trial.apk;type=application/vnd.android.package-archive' --form 'version=${{ env.RELEASE_VERSION }}' --form 'apk_name=ATSY-POS' --form 'file_name=atsy-pos-${{ env.RELEASE_VERSION }}-trial' --form 'update_name=release-trial'
+
+      - name: Upload build app to artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-debug.apk
+          path: app/build/outputs/apk/release/${{ env.RELEASE_VERSION }}/AThone Sayin - POS(${{ env.RELEASE_VERSION }})-playstore-trial.apk
