@@ -55,7 +55,7 @@ jobs:
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Build Trial App
-        run: ./gradlew app:assembleplaystoreTrial
+        run: ./gradlew app:assembleplaystoreTrial --stacktrace
 
       - name: Upload Trial APK
         uses: wei/curl@v1
