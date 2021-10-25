@@ -34,6 +34,22 @@ jobs:
 
     steps:
 
+      - name: Check for specific NDK
+      run: |
+        [ ! -d "$ANDROID_NDK_ROOT/23.0.7599858" ] && echo "NDK_23_0_7599858=not available" >> $GITHUB_ENV
+
+      - name: NDK Cache
+        if: ${{ env.NDK_23_0_7599858 == 'not available' }}
+        id: ndk-cache
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/lib/android/sdk/ndk/23.0.7599858
+          key: ndk-cache-23.0.7599858
+
+      - name: Install NDK
+        if: ${{ env.NDK_23_0_7599858 == 'not available' && steps.ndk-cache.outputs.cache-hit != 'true' }}
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;23.0.7599858"
+
       - name: Check Out Branch
         uses: actions/checkout@v2.3.4
 
