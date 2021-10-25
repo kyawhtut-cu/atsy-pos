@@ -35,8 +35,8 @@ jobs:
     steps:
 
       - name: Check for specific NDK
-      run: |
-        [ ! -d "$ANDROID_NDK_ROOT/23.0.7599858" ] && echo "NDK_23_0_7599858=not available" >> $GITHUB_ENV
+        run: |
+          [ ! -d "$ANDROID_NDK_ROOT/23.0.7599858" ] && echo "NDK_23_0_7599858=not available" >> $GITHUB_ENV
 
       - name: NDK Cache
         if: ${{ env.NDK_23_0_7599858 == 'not available' }}
